@@ -1,0 +1,107 @@
+<form #employeeForm="ngForm" (ngSubmit)="saveOrder(order)">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Enter Order Details</h3>
+    </div>
+    <div class="panel-body">
+
+
+        <div class="form-group" [class.has-error]="itemName.touched && itemName.invalid">
+            <label for="itemName" class="control-label">Item Name</label>
+            <input id="itemName" required type="text" class="form-control"
+                   name="itemName" [(ngModel)]="order.itemName" #itemName="ngModel">
+                   <span class="help-block" *ngIf="itemName.touched && itemName.invalid">
+                     Please enter itemName
+                   </span>
+          </div>
+     
+          <div class="form-group" >
+              <label for="itemType"  class="control-label">Select Item Type</label>
+              <select [(ngModel)]="order.itemType" name="itemType" id="itemType" class="form-control" >
+                  <option value="" disabled selected>select a category</option>
+                  <option *ngFor="let item of availableItemType" [value]="item">{{item}}</option>
+                </select>
+          </div>
+  
+           
+  
+          <div class="form-group" [class.has-error]="weight.touched && weight.invalid">
+            <label for="weight" class="control-label">Weight</label>
+            <input id="weight" required type="text" class="form-control"
+                   name="weight" [(ngModel)]="order.weight" #weight="ngModel">
+                   <span class="help-block" *ngIf="weight.touched && weight.invalid">
+                     Please enter weight
+                   </span>
+          </div>
+  
+          <div class="form-group" >
+            <label for="itemQuality" class="control-label">Iteam Quality (Tanch)%</label>
+            <select [(ngModel)]="order.itemQuality" name="itemQuality" id="itemQuality" class="form-control" >
+              <option value="" disabled selected>select a category</option>
+              <option *ngFor="let itemQuality of itemQualityList" [value]="itemQuality">{{itemQuality}}</option>
+            </select>
+          </div>
+
+      
+
+        <div class="form-group">
+            <label for="dueDate" class="control-label">Due Date</label>
+            <span class="glyphicon glyphicon-calendar"></span>
+            <div class="form-control" >
+                <app-date-picker [(ngModel)]="order.dueDate"  name="dueDate"> </app-date-picker>
+            </div>
+        </div>
+
+      <div class="form-group" [class.has-error]="orderAmount.invalid && orderAmount.touched">
+          <label for="orderAmount" class="control-label">Total Amount</label>
+          <input  id="orderAmount" required  type="text" class="form-control" 
+                  name="orderAmount" [(ngModel)]="order.orderAmount"
+                 #orderAmount="ngModel">
+                 <span class="help-block" *ngIf="orderAmount.invalid && orderAmount.touched">
+                      Please enter Order Amount
+                 </span>
+        </div>
+
+        <div class="form-group" [class.has-error]="receivedAmount.invalid && receivedAmount.touched">
+            <label for="receivedAmount" class="control-label">Recieved Amount</label>
+            <input  id="receivedAmount" required  type="text" class="form-control" 
+                    name="receivedAmount" [(ngModel)]="order.receivedAmount"
+                   #receivedAmount="ngModel">
+                   <span class="help-block" *ngIf="receivedAmount.invalid && receivedAmount.touched">
+                        Please enter Order Amount
+                   </span>
+          </div>
+
+          <div class="form-group" class="text-primary"  *ngIf="order?.receivedAmount">
+              <label for="receivedAmount" class="control-label">Pending Amount : </label>
+             {{order?.orderAmount}}  - {{order?.receivedAmount}} =  
+             <span  class="form-control" class="text-warning"><strong>{{(order?.orderAmount  - order?.receivedAmount)| currency:'INR':'symbol':'4.2-2'}}</strong>  </span> 
+                    
+            </div>
+          
+        
+        
+
+        <div class="form-group">
+          <label for="comments">Comments</label>
+          <input id="comments" type="text" class="form-control"
+                 name="comments" [(ngModel)]="order.comments">
+        </div>
+
+
+
+    </div>
+      <div class="panel-footer">
+       <button class="btn btn-primary" type="submit">Save</button>
+    </div>
+    <div class="panel-footer text-success" *ngIf="successMessage">
+        {{successMessage}}
+     </div>
+     <div class="panel-footer text-danger" *ngIf="errorResponse">
+        {{errorResponse}}
+     </div>
+     
+  </div>
+</form> 
+
+

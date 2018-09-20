@@ -1,0 +1,178 @@
+
+
+ <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Order Details</h3>
+  </div>
+  <div class="panel-body">           
+
+<div class="pannel panel-info">
+  <div class="panel-heading">
+   
+      <span   style="color:rgb(27, 27, 83)">Name  : </span><strong>{{orderDetail?.customerName}}</strong> 
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span  style="color:rgb(27, 27, 83)">City :</span><strong> {{orderDetail?.customerCity}}</strong> 
+   
+  </div>
+
+  <div class="panel-body">
+    <table class="table table-striped table-bordered table-hover table-condensed">
+      <tbody > 
+       <tr>
+          <td>Order Id</td>
+          <td class="text-primary"> {{orderDetail?.orderId}}</td>
+        </tr> 
+        <tr>
+          <td>Khata Number</td>
+          <td class="text-primary"> {{orderDetail?.khataNumber}}</td>
+        </tr> 
+       
+        <tr>
+            <td>Amount</td>
+            <td class="text-primary"> {{orderDetail?.orderAmount | currency:'INR':'symbol':'4.2-2' }}</td>
+        </tr>
+        <tr>
+            <td>Received Amount during order</td>
+            <td class="text-primary"> {{orderDetail?.receivedAmount | currency:'INR':'symbol':'4.2-2' }}</td>
+        </tr>
+         
+        <tr>
+            <td>Due Date</td>
+            <td class="text-primary"> {{orderDetail?.dueDate | date:"dd/MM/yy" }}</td>
+        </tr>
+        <tr>  
+          <td>Item Type</td>
+          <td class="text-primary"> {{orderDetail?.itemType| lowercase}}</td>
+        </tr>
+        <tr>  
+              <td>Item Name</td>
+              <td class="text-primary"> {{orderDetail?.itemName| lowercase}}</td>
+          </tr>
+      
+
+      <tr>  
+          <td>Item Quality</td>
+          <td class="text-primary"> {{orderDetail?.itemQuality}}%</td>
+      </tr>
+      <tr>  
+          <td>Order Placed on Date in ("DD/MM/YY")</td>
+          <td class="text-primary"> {{orderDetail?.createdDate | date:"dd/MM/yy" }}</td>
+      </tr>
+      <tr>  
+          <td>Comment</td>
+          <td class="text-primary"> {{orderDetail?.comments| lowercase}}</td>
+      </tr>
+      <tr>  
+      <tr [class.bg-success]="orderDetail.status=='Closed'">  
+              <td>Order Status</td>
+              <td class="text-primary"> {{orderDetail?.status}}</td>
+        </tr>
+
+
+      <tr *ngIf="orderDetail?.status=='OPEN'">  
+          <td colspan="2" class="text-center"><button class="btn btn-primary" 
+              data-target="#paymentModal"  data-toggle="modal" >Add Payment</button> </td>
+       
+        </tr>
+
+      </tbody>
+      </table>
+      
+      </div>
+</div>
+
+
+<div class="pannel panel-info" *ngIf="checkPaymentDetailsAvailable()">
+    <div class="panel-heading">
+       Order Payment Details
+      </div>
+
+    <div class="panel-body"> 
+        <table class="table  table-bordered table-hover table-condensed">
+            <thead  class="table-bordered">
+              <th>Payment Id</th>
+              <th>Payment Amount</th>
+              <th>Balance Amount</th>
+              <th>Payment Date</th>
+              <!-- <th>Payment Type</th> -->
+              <th>Comment</th>
+              
+             
+            </thead>
+            <tbody > 
+            <tr *ngFor="let payment of orderPaymentDetailsList" 
+            [class.text-success]="payment.paymentType=='Cash'"
+            [class.bg-success]="payment.balanceAmount=='0'" >  
+                <td> {{payment.orderPaymentId}}</td>
+                <td> {{payment.partialPaymentAmount | currency:'INR':'symbol':'4.2-2'}}</td>
+                <td> {{payment.balanceAmount | currency:'INR':'symbol':'4.2-2' }}</td>
+                <td> {{payment.createdOn|  date:"dd/MM/yy"}}</td>
+                <!-- <td> {{payment.paymentType | lowercase}}</td> -->
+               
+                <td> {{payment.comment }}</td>
+                
+               
+            </tr> 
+            
+            </tbody>
+        </table>
+    </div> 
+</div>
+
+ <div class="modal fade" tabindex="-1" id="paymentModal"
+  data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog modal-lg">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+              &times;
+          </button>
+          <h4 class="modal-title">Add Payment</h4>
+      </div>
+      <div class="modal-body">
+          <form>
+              
+              <div class="form-group" >
+                          <label for="partialPaymentAmount" class="control-label">Payment Amount</label>
+                          <input  id="partialPaymentAmount" required  type="number" class="form-control" 
+                                  name="partialPaymentAmount" [(ngModel)]="orderPayment.partialPaymentAmount"
+                                  #orderAmount="ngModel">
+                                 
+              </div>
+              <div class="form-group">
+                      <label for="comment">Comments</label>
+                      <input id="comment" type="text" class="form-control"
+                             name="comment" [(ngModel)]="orderPayment.comment">
+               </div>
+               <div class="form-group">
+                      <label for="createdOn" class="control-label">Payment Date</label>
+                      <span class="glyphicon glyphicon-calendar"></span>
+                      <div class="form-control" >
+                          <app-date-picker [(ngModel)]="orderPayment.createdOn"  name="createdOn"> </app-date-picker>
+                      </div>
+                    </div>
+              <div class="form-group" >
+                      <label for="paymentType" class="control-label">Partial Payment</label>
+                      <select [(ngModel)]="orderPayment.paymentType" name="paymentType" id="paymentType" class="form-control" >
+                        <option value="" disabled selected>select a category</option>
+                        <option *ngFor="let paymentType of paymentTypeList" [value]="paymentType">{{paymentType}}</option>
+                      </select>
+              </div>
+             
+          </form>
+      </div>
+      <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" (click)="savePartialPayment(orderPayment)">Save</button>
+          <button type="button" class="btn btn-primary"
+                  data-dismiss="modal">Close</button>
+      </div>
+      <div class="text-success" style="align-content: center"  *ngIf="success_response"> 
+          <h4>{{success_response}}</h4> </div>
+         
+      <div class="text-error" style="align-content: center"  *ngIf="errorResponseOnPayment">
+           <h4>{{errorResponseOnPayment}}</h4></div>
+  </div>
+</div>
+</div> 
+
+
+</div>

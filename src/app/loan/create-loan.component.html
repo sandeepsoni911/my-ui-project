@@ -1,0 +1,92 @@
+<form #employeeForm="ngForm" (ngSubmit)="saveLoan(loan)">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Enter Loan Details</h3>
+      </div>
+      <div class="panel-body">
+  
+        <div class="form-group" [class.has-error]="loanAmount.invalid && loanAmount.touched">
+          <label for="loanAmount" class="control-label">Loan Amount</label>
+          <input  id="loanAmount" required  type="text" class="form-control" 
+                  name="loanAmount" [(ngModel)]="loan.loanAmount"
+                 #loanAmount="ngModel">
+                 <span class="help-block" *ngIf="loanAmount.invalid && loanAmount.touched">
+                      Please enter Loan Amount
+                 </span>
+        </div>
+
+        <div class="form-group">
+            <label for="dueDate" class="control-label">Due Date</label>
+            <span class="glyphicon glyphicon-calendar"></span>
+            <div class="form-control" >
+                <app-date-picker [(ngModel)]="enteredDate"  name="dueDate"> </app-date-picker>
+            </div>
+          </div>
+          
+     
+          <div class="form-group" >
+              <label for="itemType"  class="control-label">Select Item Type</label>
+              <select [(ngModel)]="loan.itemType" name="itemType" id="itemType" class="form-control" >
+                  <option value="" disabled selected>select a category</option>
+                  <option *ngFor="let item of availableItemType" [value]="item">{{item}}</option>
+                </select>
+            </div>
+
+            <div class="form-group" >
+                <label for="rateOfInterest"  class="control-label">Select Rate Of Interest %</label>
+                <select [(ngModel)]="loan.rateOfInterest" name="rateOfInterest" id="rateOfInterest" class="form-control" >
+                    <option value="" disabled selected>select a Rate Of Interest</option>
+                    <option *ngFor="let rateOfIntrest of rateOfInterestList" [value]="rateOfIntrest">{{rateOfIntrest}}</option>
+                  </select>
+              </div>
+
+         <div class="form-group" [class.has-error]="itemName.touched && itemName.invalid">
+            <label for="itemName" class="control-label">Item Name</label>
+            <input id="itemName" required type="text" class="form-control"
+                   name="itemName" [(ngModel)]="loan.itemName" #itemName="ngModel">
+                   <span class="help-block" *ngIf="itemName.touched && itemName.invalid">
+                     Please enter itemName
+                   </span>
+          </div>
+  
+          <div class="form-group" [class.has-error]="weight.touched && weight.invalid">
+            <label for="weight" class="control-label">Weight</label>
+            <input id="weight" required type="text" class="form-control"
+                   name="weight" [(ngModel)]="loan.weight" #weight="ngModel">
+                   <span class="help-block" *ngIf="weight.touched && weight.invalid">
+                     Please enter weight
+                   </span>
+          </div>
+  
+          <div class="form-group" >
+            <label for="itemQuality" class="control-label">Iteam Quality (Tanch)%</label>
+            <select [(ngModel)]="loan.itemQuality" name="itemQuality" id="itemQuality" class="form-control" >
+              <option value="" disabled selected>select a category</option>
+              <option *ngFor="let itemQuality of itemQualityList" [value]="itemQuality">{{itemQuality}}</option>
+            </select>
+          </div>
+  
+          <div class="form-group">
+            <label for="comments">Comments</label>
+            <input id="comments" type="text" class="form-control"
+                   name="comments" [(ngModel)]="loan.comments">
+          </div>
+  
+  
+  
+      </div>
+        <div class="panel-footer">
+         <button class="btn btn-primary" type="submit">Save</button>
+      </div>
+      <div class="panel-footer text-success" *ngIf="successMessage">
+          {{successMessage}}
+       </div>
+       <div class="panel-footer text-danger" *ngIf="errorResponse">
+          {{errorResponse}}
+       </div>
+       
+    </div>
+  </form> 
+
+  
+  

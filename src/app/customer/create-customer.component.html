@@ -1,0 +1,84 @@
+<form #employeeForm="ngForm" (ngSubmit)="saveCustomer(customer)" >
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Create Customer</h3>
+    </div>
+    <div class="panel-body">
+
+      <div class="form-group" [class.has-error]="name.invalid && name.touched">
+        <label for="name" class="control-label">Name</label>
+        <input  id="name" required  type="text" class="form-control" 
+                name="name" [(ngModel)]="customer.name"
+               #name="ngModel">
+               <span class="help-block" *ngIf="name.invalid && name.touched">
+                    Please enter name
+               </span>
+      </div>
+      <div class="form-group" [class.has-error]="fatherName.invalid && fatherName.touched">
+        <label for="fatherName" class="control-label">Father's Name</label>
+        <input  id="fatherName" required  type="text" class="form-control" 
+               name="fatherName" [(ngModel)]="customer.fatherName"
+               #fatherName="ngModel">
+               <span class="help-block" *ngIf="fatherName.invalid && fatherName.touched">
+                    Please enter Father's name
+               </span>
+      </div>
+
+      <!-- <div class="form-group" [class.has-error]="email.invalid && email.touched">
+        <label for="email" class="control-label">Email</label>
+        <input id="email" required type="text" class="form-control" name="email"
+                [(ngModel)]="customer.email" #email="ngModel">
+        <span class="help-block" *ngIf="email.invalid && email.touched">
+          Email is required
+        </span>
+      </div> -->
+      <div class="form-group">
+        <label>Gender</label>
+        <div class="form-control">
+          <label class="radio-inline">
+            <input type="radio" name="gender" value="male" [(ngModel)]="customer.gender">
+            Male
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="gender" value="female" [(ngModel)]="customer.gender">
+            Female
+          </label>
+        </div>
+      </div>
+      <div class="form-group" [class.has-error]="phone.touched && phone.invalid">
+          <label for="phone"  class="control-label"><span class="glyphicon glyphicon-phone" ></span> Phone</label>
+          <input id="phone" required type="number" class="form-control"
+                 name="phone" [(ngModel)]="customer.phone" #phone="ngModel">
+                 <span class="help-block" *ngIf="phone.touched && phone.invalid">
+                   Please enter phone number
+                 </span>
+        </div>
+       <div class="form-group" [class.has-error]="city.touched && city.invalid">
+          <label for="city" class="control-label">City</label>
+          <input id="city" required type="text" class="form-control"
+                 name="city" [(ngModel)]="customer.city" #city="ngModel">
+                 <span class="help-block" *ngIf="city.touched && city.invalid">
+                   Please enter city name
+                 </span>
+        </div>
+
+      <div class="form-group">
+          <label for="address">Address</label>
+          <input id="address" type="text" class="form-control"
+                 name="address" [(ngModel)]="customer.address">
+        </div>
+
+
+
+    </div>
+    <div class="panel-footer">
+      <button class="btn btn-primary" type="submit">Save</button>
+    </div>
+    
+    <div *ngIf="success_response"  class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Congratulations!</strong> {{success_response}}
+        <a routerLink="/customerList" routerLinkActive="active" class="alert-link">Clik here to See All Customers</a>
+    </div>
+  </div>
+</form> 

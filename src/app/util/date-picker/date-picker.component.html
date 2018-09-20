@@ -1,0 +1,13 @@
+
+
+  <input class="form-control" 
+               placeholder="dd/mm/yyyy"
+               name="dp" 
+               [(ngModel)]="selectedDate"
+               ngbDatepicker #d="ngbDatepicker"
+               (change)="onDateChange($event.target.value)"
+               (dateSelect)="onDateSelect($event)"
+               class="btn btn-outline-secondary" (click)="d.toggle()">
+      
+   
+  

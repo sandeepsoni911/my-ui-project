@@ -1,0 +1,40 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Customer List</h3>
+  </div>
+  <div class="panel-body">
+      <table class="table table-striped table-bordered table-hover table-condensed
+       table-responsive ">
+          <thead >
+            <th>Id</th>
+            <th>Name</th>
+            <th>Father Name</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Loan Details</th>
+            <th>New Loan</th>
+          </thead>
+          <tbody > 
+          <tr *ngFor="let customer of customerList">  
+              <td style ="word-break:break-all;"> {{customer.id}}</td>
+              <td  style ="word-break:break-all;" class="text-primary" >
+                 <a  routerLink="//customerDetails/{{customer.id}}" routerLinkActive="active"> {{customer.name}}</a></td>
+              <td style ="word-break:break-all;" > {{customer.fatherName}}</td>
+              <td style ="word-break:break-all;" > {{customer.phone}}</td>
+              <td style ="word-break:break-all;" > {{customer.address}}</td>
+              <td style ="word-break:break-all;" > {{customer.city}}</td>
+              <td    style="cursor: pointer; word-break:break-all;"> <div  class="text-primary" (click)=fetchLoanDetails(customer.id)>
+                <span class="glyphicon glyphicon-credit-card"></span> Details </div></td>
+              <td    style="cursor: pointer; word-break:break-all;"> <div class="text-primary" (click)=createCustomerLoan(customer.id)> 
+                <span class="glyphicon glyphicon-plus"></span>New Loan </div></td>
+              
+          </tr>
+      </tbody>
+    </table>       
+  </div>
+  </div>
+
+
+
+
