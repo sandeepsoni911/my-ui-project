@@ -18,6 +18,8 @@ export class CreateOrderComponent implements OnInit {
 
   baseResponse : BaseResponse;
   success_response : string;
+  successMessage : string;
+  errorResponse : string;
   errorResponseOnPayment : string;
 
   //customerId : null;

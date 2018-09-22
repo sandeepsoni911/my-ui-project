@@ -4,6 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 
 
@@ -35,6 +36,7 @@ import { PartialPaymentComponent } from './loan/partial-payment.component';
 import { OrderListComponent } from './orders/order-list/order-list.component';
 import { OrderDetailsComponent } from './orders/order-details/order-details.component';
 import { CreateOrderComponent } from './orders/create-order/create-order.component';
+import { OrderDashboardComponent } from './dashboard/order-dashboard/order-dashboard.component';
 
 
 
@@ -51,6 +53,7 @@ const appRoutes : Routes = [
 {path: 'orderDetails/:id', component : OrderDetailsComponent},
 {path: 'createOrder/:cutomerId', component : CreateOrderComponent},
 {path: 'orderList', component: OrderListComponent},
+{path: 'dashboard', component: OrderDashboardComponent},
 
 {path: '', redirectTo: '/home', pathMatch: 'full'}
 
@@ -72,7 +75,8 @@ const appRoutes : Routes = [
     PartialPaymentComponent,
     OrderListComponent,
     OrderDetailsComponent,
-    CreateOrderComponent
+    CreateOrderComponent,
+    OrderDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +84,7 @@ const appRoutes : Routes = [
     NgbAlertModule,
     FormsModule,
     HttpModule,
+    ChartsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes, { useHash: true }),
     NgbModule.forRoot(),

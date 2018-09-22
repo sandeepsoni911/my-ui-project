@@ -1,3 +1,5 @@
+<script src="node_modules/chart.js/src/chart.js"></script>
+<script src="node_modules/chart.js/dist/Chart.bundle.min.js"></script>
 
               
     <nav class="navbar navbar-expand-lg navbar-light navbar-bg-primary" >
@@ -7,6 +9,12 @@
                         routerLinkActive="active">
                              <span class="glyphicon glyphicon-home" ></span> Home</a>
                     </li>
+
+            <li class="nav-item" *ngIf="_authService.loggedIn()">
+                            <a class="nav-link" id="orderList-tab" data-toggle="tab" routerLink="dashboard">
+                                <span class="glyphicon glyphicon-dashboard"></span> Dashboard</a>
+            </li>
+                    
             <li class="nav-item" *ngIf="_authService.loggedIn()">
                 <a class="nav-link" id="customerList-tab" data-toggle="tab" routerLink="/customerList"
                 routerLinkActive="active">
@@ -53,6 +61,8 @@
     <div class="container">
             <router-outlet></router-outlet>            
     </div>
+
+    
    
 
 

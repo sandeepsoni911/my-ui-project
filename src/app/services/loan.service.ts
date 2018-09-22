@@ -22,9 +22,9 @@ const httpOptions = {
 @Injectable()
 export class LoanService{
 
-  //private apiUrl = 'http://ec2-18-188-183-35.us-east-2.compute.amazonaws.com:8080/CounterWebApp/';
+  private apiUrl = 'http://ec2-18-188-183-35.us-east-2.compute.amazonaws.com/CounterWebApp/';
 
-  private apiUrl = 'http://localhost:8080/CounterWebApp/';
+  //private apiUrl = 'http://localhost:8080/CounterWebApp/';
 
    getLoanUrl = this.apiUrl+'loan';
 

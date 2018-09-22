@@ -1,0 +1,111 @@
+
+<div class="panel panel-primary"  >
+  <div class="panel-heading">
+    <h3 class="panel-title">Customer Breakup Details</h3>
+  </div>
+  <div class="panel-body">
+      <table class="table  table-responsive table-bordered table-hover">
+
+        <tr>
+          <td class="col-md-12">
+              <div style="display: block">
+                  <canvas baseChart
+                          [data]="pieChartData"
+                          [labels]="pieChartLabels"
+                          [chartType]="pieChartType"
+                          (chartHover)="chartHovered($event)"
+                          (chartClick)="chartClicked($event)">
+                  </canvas>
+                </div>
+          </td>
+          
+        </tr>
+        </table>
+
+  </div>
+</div>
+
+
+<div class="panel panel-primary"  >
+    <div class="panel-heading">
+      <h3 class="panel-title">Order placed details for year 2017 & 2018</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table  table-responsive table-bordered table-hover">
+  
+            <tr>
+                <td class="col-md-12" >
+                    <div >
+       
+                        <canvas baseChart
+                                    [datasets]="lineChartDataForOrders"
+                                    [labels]="lineChartLabels"
+                                   
+                                    [chartType]="lineChartType"
+                                    (chartHover)="chartHovered($event)"
+                                    (chartClick)="chartClicked($event)"
+                                    [legend]="true"
+                                   
+                                    ></canvas>
+                      </div>
+                </td>
+      
+                
+               </tr>
+          </table>
+  
+    </div>
+  </div>
+
+
+
+  <div class="panel panel-primary"  >
+      <div class="panel-heading">
+        <h3 class="panel-title">Loans placed details for year 2017 & 2018</h3>
+      </div>
+      <div class="panel-body">
+          <table class="table  table-responsive table-bordered table-hover">
+    
+              <tr>
+                  <td class="col-md-12" >
+                      <div >
+         
+                          <canvas baseChart
+                                      [datasets]="lineChartDataForLoans"
+                                      [labels]="lineChartLabels"
+                                     
+                                      [chartType]="lineChartType"
+                                      (chartHover)="chartHovered($event)"
+                                      (chartClick)="chartClicked($event)"
+                                      [legend]="true"
+                                      [colors]="lineChartColors"
+                                     
+                                      ></canvas>
+                        </div>
+                  </td>
+        
+                  
+                 </tr>
+            </table>
+    
+      </div>
+    </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+

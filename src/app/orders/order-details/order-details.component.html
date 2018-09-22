@@ -62,7 +62,7 @@
           <td class="text-primary"> {{orderDetail?.comments| lowercase}}</td>
       </tr>
       <tr>  
-      <tr [class.bg-success]="orderDetail.status=='Closed'">  
+      <tr [class.success]="orderDetail.status=='Closed'">  
               <td>Order Status</td>
               <td class="text-primary"> {{orderDetail?.status}}</td>
         </tr>
