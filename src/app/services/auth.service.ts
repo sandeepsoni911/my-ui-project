@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import {Router} from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
+import { BaseResponse } from '../models/baseResponse.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
