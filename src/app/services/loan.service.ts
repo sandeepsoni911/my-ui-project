@@ -10,6 +10,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 import { HttpHeaders } from '@angular/common/http';
 import {InterestResponse} from '../models/interestResponse.model';
+import { environment } from '../..//environments/environment';
 
 
 const httpOptions = {
@@ -22,15 +23,17 @@ const httpOptions = {
 @Injectable()
 export class LoanService{
 
-  private apiUrl = 'http://ec2-18-188-183-35.us-east-2.compute.amazonaws.com/CounterWebApp/';
+  baseUrl = environment.apiUrl;
+
+  //private apiUrl = 'http://ec2-18-188-183-35.us-east-2.compute.amazonaws.com/CounterWebApp/';
 
   //private apiUrl = 'http://localhost:8080/CounterWebApp/';
 
-   getLoanUrl = this.apiUrl+'loan';
+   getLoanUrl = this.baseUrl+'loan';
 
-   getLoanPaymentUrl = this.apiUrl+'loanPartialPayment/';
+   getLoanPaymentUrl = this.baseUrl+'loanPartialPayment/';
 
-   getCustomerLoanUrl = this.apiUrl+'loanDetailsByCustomerId/';
+   getCustomerLoanUrl = this.baseUrl+'loanDetailsByCustomerId/';
 
 
    
@@ -57,7 +60,7 @@ saveLoan(loan :Loan) : Observable<Loan> {
   };
 
   saveLoanPayment(loanPayment :LoanPayment) : Observable<any> {
-    return this._httpClient.post<LoanPayment>(this.apiUrl.concat('loanPartialPayment'), loanPayment, httpOptions, ) ;
+    return this._httpClient.post<LoanPayment>(this.baseUrl.concat('loanPartialPayment'), loanPayment, httpOptions, ) ;
   };
 
   getLoanDetail(id : string) : Observable<Loan>  {
@@ -71,7 +74,7 @@ saveLoan(loan :Loan) : Observable<Loan> {
   };
 
   getInterest(id : string, date : Date) : Observable<InterestResponse>  {
-    return this._http.get(this.apiUrl.concat('/interest/'+id))
+    return this._http.get(this.baseUrl.concat('/interest/'+id))
     .pipe(map((response : Response) => <InterestResponse>response.json()));
   };
 

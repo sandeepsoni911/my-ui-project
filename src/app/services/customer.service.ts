@@ -9,6 +9,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 import { HttpHeaders } from '@angular/common/http';
 import {Router} from '@angular/router';
+import { environment } from '../..//environments/environment';
 
 
 
@@ -21,8 +22,9 @@ const httpOptions = {
 
 @Injectable()
 export class CustomerService{
-private apiUrl = 'http://ec2-18-188-183-35.us-east-2.compute.amazonaws.com/CounterWebApp/';
+//private apiUrl = 'http://ec2-18-188-183-35.us-east-2.compute.amazonaws.com/CounterWebApp/';
 //private apiUrl = 'http://localhost:8080/CounterWebApp/';
+baseUrl = environment.apiUrl;
 
 
 constructor(private _http : Http, private _httpClient: HttpClient
@@ -31,7 +33,7 @@ constructor(private _http : Http, private _httpClient: HttpClient
 }
 
 getCustomers() : Observable<Customer[]>  {
-    return this._httpClient.get<Customer[]>(this.apiUrl+'customers')
+    return this._httpClient.get<Customer[]>(this.baseUrl+'customers')
     .pipe(
      // retry(3), // retry a failed request up to 3 times
       catchError(this.handleError) // then handle the error
@@ -39,7 +41,7 @@ getCustomers() : Observable<Customer[]>  {
 };
 
 getCustomerDetailsById(custId : String) : Observable<Customer>  {
-  return this._httpClient.get<Customer>(this.apiUrl+'customers/'+custId)
+  return this._httpClient.get<Customer>(this.baseUrl+'customers/'+custId)
   .pipe(
    // retry(3), // retry a failed request up to 3 times
     catchError(this.handleError) // then handle the error
@@ -48,7 +50,7 @@ getCustomerDetailsById(custId : String) : Observable<Customer>  {
 
 saveCustomer(customer :Customer) : any {
   
-  return this._httpClient.post(this.apiUrl+'registerCustomer', customer, httpOptions)
+  return this._httpClient.post(this.baseUrl+'registerCustomer', customer, httpOptions)
   .pipe(
    
     catchError(this.handleError)

@@ -1,28 +1,32 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import {Router} from '@angular/router';
-import { HttpHeaders } from '@angular/common/http';
+import { environment } from '../..//environments/environment';
+
+
 import { BaseResponse } from '../models/baseResponse.model';
 
 const httpOptions = {
-  headers: new HttpHeaders({
+  headers: {
     'Content-Type':  'application/json',
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Request-Method':'*',
+    'Access-Control-Request-Methods':'OPTIONS, GET, PUT, PATCH, DELETE',
     'Access-Control-Allow-Methods': 'OPTIONS, GET, PUT, PATCH, DELETE',
-    'Access-Control-Allow-Headers': 'authorization, content-type'
-  })
+    'Access-Control-Allow-Headers': 'access-control-allow-headers,access-control-allow-methods,access-control-allow-origin,content-type',
+    //'Access-Control-Allow-Credentials':'true'
+  },
+  //withCredentials: true
 };
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  baseUrl = environment.apiUrl;
   
-  //private _loginUrl = "http://localhost:8080/CounterWebApp/login";
-
-  private _loginUrl = "http://ec2-18-188-183-35.us-east-2.compute.amazonaws.com/CounterWebApp/login";
 
   constructor(private http: HttpClient,
               private _router: Router) { }
@@ -30,7 +34,8 @@ export class AuthService {
   
 
   loginUser(user) {
-    return this.http.post<any>(this._loginUrl, user, httpOptions);
+    console.log(httpOptions)
+    return this.http.post<any>( this.baseUrl+'/login', user,  httpOptions);
   }
 
   loggedIn() : boolean {
