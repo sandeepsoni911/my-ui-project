@@ -75,7 +75,7 @@
 
             </tbody>
             </table>
-            <div *ngIf="loanDetail?.loanId"> This customer doesn't have any loan  </div>
+            <div class="text-info" *ngIf="!loanDetail.loanId"> This customer doesn't have any loan  </div>
         </div>
 
         <div class="pannel panel-info" *ngIf="checkPaymentDetailsAvailable()">

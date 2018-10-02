@@ -40,6 +40,23 @@ getCustomers() : Observable<Customer[]>  {
     );
 };
 
+getCustomersWithPagination(pageNo : number, perPage : number) : Observable<any>  {
+  return this._httpClient.get<Customer[]>(this.baseUrl
+    +'customersList?pageNumber='+pageNo+'&perPage='+perPage)
+  .pipe(
+   // retry(3), // retry a failed request up to 3 times
+    catchError(this.handleError) // then handle the error
+  );
+};
+
+searchCustomers(searchString: string) : Observable<Customer[]>  {
+  return this._httpClient.get<Customer[]>(this.baseUrl+'searchCustomer/'+searchString)
+  .pipe(
+   // retry(3), // retry a failed request up to 3 times
+    catchError(this.handleError) // then handle the error
+  );
+};
+
 getCustomerDetailsById(custId : String) : Observable<Customer>  {
   return this._httpClient.get<Customer>(this.baseUrl+'customers/'+custId)
   .pipe(

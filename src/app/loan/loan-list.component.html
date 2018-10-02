@@ -33,7 +33,7 @@
               <!-- <td> {{loan.itemQuality }}%</td> -->
               <td> {{loan.weight}}g</td>
               <td style="cursor: pointer;"> <div class="text-primary" (click)="onSelect(loan.loanId)">Details</div></td>
-              <td style="cursor: pointer;"> <div class="text-primary" (click)=createCustomerLoan(loan.customerId)>
+              <td style="cursor: pointer;"> <div class="text-primary" (click)=createCustomerLoan(loan.customerId,loan.customerName)>
                  <span class="glyphicon glyphicon-plus"></span> Create Loan </div></td>
           </tr>
           </tbody>

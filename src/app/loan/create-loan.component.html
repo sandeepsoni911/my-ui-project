@@ -1,14 +1,14 @@
 <form #employeeForm="ngForm" (ngSubmit)="saveLoan(loan)">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title">Enter Loan Details</h3>
+        <h3 class="panel-title">Enter Loan Details for {{loan?.customerId}}</h3>
       </div>
       <div class="panel-body">
   
         <div class="form-group" [class.has-error]="loanAmount.invalid && loanAmount.touched">
           <label for="loanAmount" class="control-label">Loan Amount</label>
           <input  id="loanAmount" required  type="text" class="form-control" 
-                  name="loanAmount" [(ngModel)]="loan.loanAmount"
+                  name="loanAmount" (keypress)="numberOnly($event)" maxlength="8" [(ngModel)]="loan.loanAmount"
                  #loanAmount="ngModel">
                  <span class="help-block" *ngIf="loanAmount.invalid && loanAmount.touched">
                       Please enter Loan Amount
@@ -51,8 +51,8 @@
   
           <div class="form-group" [class.has-error]="weight.touched && weight.invalid">
             <label for="weight" class="control-label">Weight</label>
-            <input id="weight" required type="text" class="form-control"
-                   name="weight" [(ngModel)]="loan.weight" #weight="ngModel">
+            <input id="weight" required type="text" maxlength="8" class="form-control"
+                   name="weight" [(ngModel)]="loan.weight" (keypress)="numberOnly($event)" #weight="ngModel">
                    <span class="help-block" *ngIf="weight.touched && weight.invalid">
                      Please enter weight
                    </span>

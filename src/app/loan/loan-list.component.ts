@@ -28,8 +28,8 @@ export class LoanListComponent implements OnInit {
       this._router.navigate(['/loanDetail', id]);
    }
 
-   createCustomerLoan(custId){
-    this._router.navigate(['/createLoan', custId]);
+   createCustomerLoan(custId, custName){
+    this._router.navigate(['createLoan', { custId, custName } ]);
   }
 
 }

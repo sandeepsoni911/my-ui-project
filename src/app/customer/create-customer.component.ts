@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
+import {NgForm, FormControl, Validators, FormGroup} from '@angular/forms';
 import {Customer} from '../models/customer.model';
 import {Router} from '@angular/router';
 import { JsonPipe } from '@angular/common';
@@ -14,7 +14,11 @@ import { CustomerService } from '../services/customer.service';
   styleUrls: ['./create-customer.component.css']
   
 })
+
+
 export class CreateCustomerComponent implements OnInit {
+
+  
 
   success_response;
   validationError;
@@ -34,13 +38,14 @@ export class CreateCustomerComponent implements OnInit {
     , private _router : Router) {}
 
   ngOnInit() {
+
     
   }
 
    saveCustomer(customer :Customer): void {
-
-    if(this.validateCustomerData(customer)){
+    if(!this.validateCustomerData(customer)){
       this.validationError='Please enter all required details.'
+      console.log('required customer details are present')
       return ;
     }
     console.log(customer);
@@ -52,22 +57,36 @@ export class CreateCustomerComponent implements OnInit {
   }
 
   validateCustomerData(customer : Customer) : boolean {
+    if(customer == null){
+      return false;
+    }
+
     if(customer.city == null || customer.city == ''){
       console.log(customer.city);
       return false;
     }
-    if(customer.name == null || customer.name== ''){
+    if(customer.name == null || customer.name == ''){
       console.log(customer.name);
       return false;
     }
-    if(customer.address == null || customer.address== ''){
+    if(customer.address == null || customer.address == ''){
       console.log(customer.address);
       return false;
     }
-    if(customer.phone == null || customer.phone== ''){
+    if(customer.phone == null || customer.phone == ''){
       return false;
     }
     return true;
+  }
+
+
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+
   }
 
 }

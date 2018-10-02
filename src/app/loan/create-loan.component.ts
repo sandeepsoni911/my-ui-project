@@ -60,8 +60,9 @@ export class CreateLoanComponent implements OnInit {
 
   
 
-  saveLoan(loan: Loan) : void {
+  saveLoan(loan: Loan) : void { //customerName
     let custId = this._route.snapshot.paramMap.get('customerId');
+    this.loan.customerName = this._route.snapshot.paramMap.get('customerName');
     loan.customerId=custId;
     let datePipe = new DatePipe('en-US');
     this.loan.dueDate=  datePipe.transform(this.enteredDate, 'yyyy-MM-dd');
@@ -83,5 +84,19 @@ export class CreateLoanComponent implements OnInit {
 
    delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
+
+numberOnly(event): boolean {
+  const charCode = (event.which) ? event.which : event.keyCode;
+  if(charCode == 190  || charCode == 46){
+    return true
+  }
+  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    return false;
+  }
+  
+  return true;
+
 }
 }
