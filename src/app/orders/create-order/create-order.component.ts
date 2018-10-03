@@ -60,7 +60,15 @@ export class CreateOrderComponent implements OnInit {
 
   ngOnInit() {
 
-    this.order.customerId = parseInt(this._activatedRoute.snapshot.paramMap.get('cutomerId'));
+   let customerIdName = this._activatedRoute.snapshot.paramMap.get('cutomerId');
+
+   
+   let customeIdNameSplitted : string[]  = customerIdName.split("-");
+   let customerId = customeIdNameSplitted[0];
+   let customerName = customeIdNameSplitted[1];
+
+   this.order.customerId = parseInt(customerId);
+   this.order.customerName = customerName;
   }
 
   saveOrder(order : Order){

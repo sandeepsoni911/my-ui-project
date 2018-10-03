@@ -14,8 +14,8 @@ import {Order} from '../models/order.model';
 export class CustomerLoanDetailComponent implements OnInit {
   loanList: Loan[] ;
   customerOrderList : Order[];
-
-  
+  customerId;
+  customerName;
   constructor(private _ActivatedRoute : ActivatedRoute
               ,private _loanService : LoanService
               ,private _router : Router
@@ -23,12 +23,17 @@ export class CustomerLoanDetailComponent implements OnInit {
 
   ngOnInit() {
 
-   let customerId = this._ActivatedRoute.snapshot.paramMap.get("id");
+   let customerIdName = this._ActivatedRoute.snapshot.paramMap.get("id");
 
-   this._loanService.getCustomerLoanList(customerId)
+   let customeIdNameSplitted : string[]  = customerIdName.split("-");
+   this.customerId = customeIdNameSplitted[0];
+   this.customerName = customeIdNameSplitted[1];
+
+   console.log(customeIdNameSplitted);
+   this._loanService.getCustomerLoanList(this.customerId)
    .subscribe((loanData) => this.loanList = loanData);
 
-   this._orderService.getOrderListForCustomer(customerId, null)
+   this._orderService.getOrderListForCustomer(this.customerId, null)
                     .subscribe((orderData) => this.customerOrderList = orderData)
   }
 
@@ -41,8 +46,8 @@ export class CustomerLoanDetailComponent implements OnInit {
     this._router.navigate(['/orderDetails', id]);
  }
 
- createOrderForCustomer(custId){
-  this._router.navigate(['/createOrder', custId]);
+ createOrderForCustomer(custId, custName){
+  this._router.navigate(['/createOrder', custId+'-'+custName]);
 }
 
 }

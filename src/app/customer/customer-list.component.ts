@@ -18,6 +18,7 @@ export class CustomerListComponent implements OnInit {
  errorResponseOnSearch;
  noSearchResultFound;
  emptySearchString;
+ searchString;
  errorResponse;
  totalRecords;
  perPage;
@@ -51,7 +52,7 @@ export class CustomerListComponent implements OnInit {
     console.log("Invoking getCustomerList for Page "+ pageNumber +" perPage : "+perPage);
     this._customerService.getCustomersWithPagination(pageNumber, perPage).subscribe(
       res => {
-        console.log('CustomerList response with pagination');
+       
         console.log(res);
         if(res != null){
           
@@ -61,7 +62,7 @@ export class CustomerListComponent implements OnInit {
             console.log('totalRecords is '+this.totalRecords)
             this.perPage = res.perPage;
             // initialize to page 1
-            this.setPageOnLoad(res.pageNumber);
+            this.setPageOnLoad(res.pageNumber, res.totalCount);
           }else{
             this.errorResponse = res.message;
           }
@@ -76,13 +77,13 @@ export class CustomerListComponent implements OnInit {
      )
   }
 
-  setPageOnLoad(page: number) {
+  setPageOnLoad(page: number, totalCount : number) {
     if (page < 1 || page > this.pager.totalPages) {
         return;
     }
 
     // get pager object from service
-    this.pager = this.pagerService.getPager(this.totalRecords, page, this.perPage);
+    this.pager = this.pagerService.getPager(totalCount, page, this.perPage);
     this.currentPage = page;
     //console.log('Current page is : '+page);
     // get current page of items
@@ -106,12 +107,12 @@ export class CustomerListComponent implements OnInit {
     this.pagedItems = this.customerList.slice(this.pager.startIndex, this.pager.endIndex + 1);
 }
 
-  createCustomerLoan(custId){
-    this._router.navigate(['/createLoan', custId]);
+  createCustomerLoan(custId, name){
+    this._router.navigate(['/createLoan', custId+'-'+name]);
   }
 
-  fetchLoanDetails(id){
-    this._router.navigate(['/customerLoanDetail', id]);
+  fetchLoanDetails(id, name){
+    this._router.navigate(['/customerLoanDetail', id+'-'+name]);
   }
 
 
@@ -123,25 +124,34 @@ export class CustomerListComponent implements OnInit {
       return;
     }
     this.emptySearchString = null;
-    this._customerService.searchCustomers(searchString).subscribe(
-      (customerData) => 
-      {
-        if(customerData != null){
-          this.customerList = customerData
-          this.noSearchResultFound = null;
-        }else{
-          this.customerList = null;
-          this.noSearchResultFound = "No Customer found with given name";
+    this._customerService.searchCustomers(searchString, 1, 10).subscribe(
+      
+      res => {
+        console.log(res);
+        if(res != null){
+          
+          if(res.status == 'SUCCESS'){
+            this.customerList = res.data;
+            this.totalRecords = res.totalCount;
+            this.noSearchResultFound = null;
+            
+            this.perPage = res.perPage;
+            // initialize to page 1
+            this.setPageOnLoad(res.pageNumber, res.totalCount);
+          }else{
+            this.errorResponse = res.message;
+          }
         }
        
       },
-      error => { this.handleError(error);
-        this.errorResponseOnSearch = JSON.stringify(error);  
-       }
+      err => {
+        this.errorResponseOnSearch = JSON.stringify(err);  
+        console.log(err)
+      }
 
     )
    
-    console.log('searchString is '+searchString)
+    
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -159,6 +169,8 @@ export class CustomerListComponent implements OnInit {
      throw error;
   };
 
-  
+  createOrderForCustomer(custId, custName){
+    this._router.navigate(['/createOrder', custId+'-'+custName]);
+  }
 
 }

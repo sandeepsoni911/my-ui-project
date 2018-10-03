@@ -1,7 +1,8 @@
 <form #employeeForm="ngForm" (ngSubmit)="saveOrder(order)">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Enter Order Details</h3>
+      <h3 class="panel-title">Enter Order Details for :
+                       <strong style="color:rgb(0, 204, 255)">{{order.customerName}}</strong></h3>
     </div>
     <div class="panel-body">
 

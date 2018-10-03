@@ -28,8 +28,8 @@ export class OrderListComponent implements OnInit {
     this._router.navigate(['/orderDetails', id]);
  }
 
- createOrderForCustomer(custId){
-  this._router.navigate(['/createOrder', custId]);
+ createOrderForCustomer(custId, custName){
+  this._router.navigate(['/createOrder', custId+'-'+custName]);
 }
 
 }

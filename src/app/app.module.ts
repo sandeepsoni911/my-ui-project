@@ -44,7 +44,7 @@ const appRoutes : Routes = [
 {path: 'customerList' , component :CustomerListComponent, canActivate : [AuthGuard] },
 {path: 'createCustomer', component: CreateCustomerComponent, canActivate : [AuthGuard] },
 {path: 'loanList', component: LoanListComponent, canActivate : [AuthGuard] },
-{path: 'createLoan/:customerId/:customerName', component : CreateLoanComponent, canActivate : [AuthGuard] },
+{path: 'createLoan/:customerId', component : CreateLoanComponent, canActivate : [AuthGuard] },
 {path: 'loanDetail/:id', component: LoanDetailComponent, canActivate : [AuthGuard] },
 {path: 'customerLoanDetail/:id', component: CustomerLoanDetailComponent, canActivate : [AuthGuard] },
 {path: 'customerDetails/:id', component: CustomerDetailsComponent, canActivate : [AuthGuard] },

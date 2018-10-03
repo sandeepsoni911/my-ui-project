@@ -49,8 +49,9 @@ getCustomersWithPagination(pageNo : number, perPage : number) : Observable<any> 
   );
 };
 
-searchCustomers(searchString: string) : Observable<Customer[]>  {
-  return this._httpClient.get<Customer[]>(this.baseUrl+'searchCustomer/'+searchString)
+searchCustomers(searchString: string, pageNo : number, perPage : number) : Observable<any>  {
+  return this._httpClient.get<Customer[]>(this.baseUrl+'searchCustomer/'+searchString
+  +'?pageNumber='+pageNo+'&perPage='+perPage)
   .pipe(
    // retry(3), // retry a failed request up to 3 times
     catchError(this.handleError) // then handle the error

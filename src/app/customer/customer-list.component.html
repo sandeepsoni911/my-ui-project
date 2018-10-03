@@ -1,22 +1,26 @@
 <div class="panel panel-primary">
    
-    <div class="table-responsive">  
+    <div style="float: right;">  
       <form #searchEmployeeForm="ngForm"   (ngSubmit)="searchCustomer(searchString)">
-          <table >
+          <table class="table-condensed"  >
               <tr>
-                <td>
-                    <label for="name" class="control-label">Enter customer Name</label>
+                    <td>
+                            <div class="text-danger" class="bg-danger" *ngIf="emptySearchString"> {{emptySearchString}} </div>
+                       </td>
+                <td class="mx-auto">
+                    <div >
+                            <input type="text" name="searchString" required  placeholder="Search Customers"
+                            [(ngModel)]="searchString" >
+                            
+                            
+                    </div>
+                   
                 </td>
+
                 <td>
-                    <input type="text" name="searchString" required  placeholder="Search Customers"
-                     [(ngModel)]="searchString" >
+                        <button class="btn btn-info btn-sm" type="submit">Search</button>
                 </td>
-                <td>
-                    <button class="btn btn-primary" type="submit">Search</button>
-                </td>
-                <td>
-                   <div class="text-danger" *ngIf="emptySearchString"> {{emptySearchString}} </div>
-                </td>
+                
               </tr>
 
     
@@ -27,7 +31,7 @@
         
     </div>
   <div class="panel-heading">
-    <h3 class="panel-title">Customer List</h3>
+    <h3 class="panel-title">Customer List : <strong style="color:rgb(173, 237, 241)"> {{totalRecords}} records found</strong></h3> 
     
   </div>
   <div class="panel-body">
@@ -36,47 +40,53 @@
           <thead >
             <th>Id</th>
             <th>Name</th>
-            <th>Father Name</th>
             <th>Phone</th>
             <th>Address</th>
             <th>City</th>
             <th>Details</th>
             <th>New Loan</th>
+            <th>New Order</th>
           </thead>
           <tbody > 
           <tr *ngFor="let customer of customerList">  
               <td style ="word-break:break-all;"> {{customer.id}}</td>
               <td  style ="word-break:break-all;" class="text-primary" >
                  <a  routerLink="//customerDetails/{{customer.id}}" routerLinkActive="active"> {{customer.name}}</a></td>
-              <td style ="word-break:break-all;" > {{customer.fatherName}}</td>
               <td style ="word-break:break-all;" > {{customer.phone}}</td>
               <td style ="word-break:break-all;" > {{customer.address}}</td>
               <td style ="word-break:break-all;" > {{customer.city}}</td>
-              <td    style="cursor: pointer; word-break:break-all;"> <div  class="text-primary" (click)=fetchLoanDetails(customer.id)>
+              <td    style="cursor: pointer; word-break:break-all;"> <div  class="text-primary" (click)=fetchLoanDetails(customer.id,customer.name)>
                 <span class="glyphicon glyphicon-credit-card"></span> Details </div></td>
-              <td    style="cursor: pointer; word-break:break-all;"> <div class="text-primary" (click)=createCustomerLoan(customer.id)> 
+              <td    style="cursor: pointer; word-break:break-all;"> <div class="text-primary" (click)=createCustomerLoan(customer.id,customer.name)> 
                 <span class="glyphicon glyphicon-plus"></span>New Loan </div></td>
+                <td style="cursor: pointer;"> 
+                        <div class="text-primary" (click)=createOrderForCustomer(customer.id,customer.name)>
+                         <span class="glyphicon glyphicon-plus"></span> Create Order </div>
+               </td>
           </tr>
       </tbody>
+      
     </table>   
      <!-- pager -->
-     <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-        <li [ngClass]="{disabled:pager.currentPage === 1}">
-            <a (click)="setPage(1)">First</a>
-        </li>
-        <li [ngClass]="{disabled:pager.currentPage === 1}">
-            <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-        </li>
-        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-            <a (click)="setPage(page)">{{page}}</a>
-        </li>
-        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-            <a (click)="setPage(pager.currentPage + 1)">Next</a>
-        </li>
-        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-            <a (click)="setPage(pager.totalPages)">Last</a>
-        </li>
-    </ul>    
+    <div>
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                <a (click)="setPage(1)">First</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+            </li>
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                <a (click)="setPage(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <a (click)="setPage(pager.currentPage + 1)">Next</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <a (click)="setPage(pager.totalPages)">Last</a>
+            </li>
+        </ul>  
+    </div>
   </div>
     <div *ngIf="noSearchResultFound" class="text-info align-items-center">
       <h4>{{noSearchResultFound}} </h4>

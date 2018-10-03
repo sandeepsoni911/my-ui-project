@@ -1,8 +1,8 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Customer's All Loans</h3>
+      <h3 class="panel-title"><strong style="color:rgb(154, 234, 240)">{{customerName}}'s</strong> All Loans</h3>
     </div>
-    <div class="panel-body">
+    <div class="panel-body" *ngIf="loanList">
         <table class="table table-striped table-bordered table-hover table-condensed">
         <thead  class="table table-bordered">
               <th>Loan Id</th>
@@ -19,7 +19,8 @@
               <th>More Detail</th> 
             </thead>
             <tbody > 
-            <tr *ngFor="let loan of loanList">  
+            <tr *ngFor="let loan of loanList" [class.bg-success]="loan.status=='CLOSED'"
+            [class.text-success]="loan.status=='CLOSED'">  
                 <td> {{loan.loanId}}</td>
                 <td> {{loan.customerName}}</td>
                 <td> {{loan.loanAmount | currency:'INR':'symbol':'4.2-2' }}</td>
@@ -31,20 +32,28 @@
                 <td> {{loan.itemName}}</td>
                 <td> {{loan.itemQuality }}%</td>
                 <td> {{loan.weight}}g</td>
-                <td style="cursor: pointer;"> <div class="text-primary" (click)="onSelect(loan.loanId)">More Details</div></td>
+                <td style="cursor: pointer;"> 
+                    <div class="text-primary" (click)="onSelect(loan.loanId)">More Details</div></td>
             </tr>
             </tbody>
             
             </table>
            
     </div>
+    
+    <div class="panel-body" *ngIf="!loanList">
+            <h5 class="text-info"> {{customerName}} doesn't have any loan yet. Please click on below button to place new loan.</h5>
+            
+            
+                  <button class="btn btn-info " (click)=createOrderForCustomer(customerId,customerName) type="button">Create Loan</button> 
+        </div>
 </div>
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Customer's All Orders</h3>
+      <h3 class="panel-title"> <strong style="color:rgb(154, 234, 240)">{{customerName}}'s</strong> All Orders </h3>
     </div>
-    <div class="panel-body">
+    <div class="panel-body" *ngIf="customerOrderList">
         <table class="table table-striped table-bordered table-hover table-condensed">
             <thead >
               <th>Order Id</th>
@@ -76,15 +85,23 @@
                 <!-- <td> {{loan.itemQuality }}%</td> -->
                 <td> {{order.weight}}g</td>
                 <td style="cursor: pointer;">
-                   <div class="text-primary" (click)="getOrderDetails(order.orderId)">Details</div></td>
+                   <div class="text-primary" (click)="getOrderDetails(order.orderId)">Details</div>
+                </td>
                 <td style="cursor: pointer;"> 
-                  <div class="text-primary" (click)=createOrderForCustomer(order.customerId)>
-                   <span class="glyphicon glyphicon-plus"></span> Create Order </div></td>
+                  <div class="text-primary" (click)=createOrderForCustomer(order.customerId,order.customerName)>
+                   <span class="glyphicon glyphicon-plus"></span> Create Order </div>
+               </td>
             </tr>
             </tbody>
             
          </table>
            
+    </div>
+    <div class="panel-body" *ngIf="!customerOrderList">
+        <h5 class="text-info"> {{customerName}} doesn't have any order yet. Please click on below button to place new Order.</h5>
+        
+            
+              <button class="btn btn-info " (click)=createOrderForCustomer(customerId,customerName) type="button">Create Order</button> 
     </div>
 </div>
   

@@ -29,7 +29,7 @@ export class LoanListComponent implements OnInit {
    }
 
    createCustomerLoan(custId, custName){
-    this._router.navigate(['createLoan', { custId, custName } ]);
+    this._router.navigate(['createLoan', custId+'-'+custName ]);
   }
 
 }

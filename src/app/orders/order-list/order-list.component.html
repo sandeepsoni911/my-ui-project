@@ -36,7 +36,7 @@
               <td style="cursor: pointer;">
                  <div class="text-primary" (click)="getOrderDetails(order.orderId)">Details</div></td>
               <td style="cursor: pointer;"> 
-                <div class="text-primary" (click)=createOrderForCustomer(order.customerId)>
+                <div class="text-primary" (click)=createOrderForCustomer(order.customerId,order.customerName)>
                  <span class="glyphicon glyphicon-plus"></span> Create Order </div></td>
           </tr>
           </tbody>

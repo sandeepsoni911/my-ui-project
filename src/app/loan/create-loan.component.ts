@@ -16,6 +16,7 @@ export class CreateLoanComponent implements OnInit {
  enteredDate : Date;
  successMessage;
  errorResponse;
+ customerName;
 
   availableItemType : string[] = [
     "Gold", "Silver", "Platinum", "Diamond"
@@ -56,14 +57,22 @@ export class CreateLoanComponent implements OnInit {
    }
 
   ngOnInit() {
+
+    let customerIdName = this._route.snapshot.paramMap.get('customerId');
+
+    let customeIdNameSplitted : string[]  = customerIdName.split("-");
+    let custId = customeIdNameSplitted[0];
+    let custName = customeIdNameSplitted[1];
+
+   // this.customerName=custName;
+    this.loan.customerName = custName;
+    this.loan.customerId=custId;
   }
 
   
 
   saveLoan(loan: Loan) : void { //customerName
-    let custId = this._route.snapshot.paramMap.get('customerId');
-    this.loan.customerName = this._route.snapshot.paramMap.get('customerName');
-    loan.customerId=custId;
+   
     let datePipe = new DatePipe('en-US');
     this.loan.dueDate=  datePipe.transform(this.enteredDate, 'yyyy-MM-dd');
     //console.log(loan);
