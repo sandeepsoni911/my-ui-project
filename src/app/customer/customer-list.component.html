@@ -5,6 +5,14 @@
           <table class="table-condensed"  >
               <tr>
                     <td>
+                            <div style="color:aquamarine"  *ngIf="filterInfo">Showing result with filter : {{searchString}} </div>
+                       </td>
+                       <td style="cursor: pointer;">
+                            <div style="color:rgb(222, 224, 236)"  *ngIf="filterInfo" (click)=clearFilter()>
+                                    <span id="searchclear" class="glyphicon glyphicon-remove-circle"> </span>Clear Filter </div>
+                       </td>
+                       
+                    <td>
                             <div class="text-danger" class="bg-danger" *ngIf="emptySearchString"> {{emptySearchString}} </div>
                        </td>
                 <td class="mx-auto">
@@ -31,7 +39,7 @@
         
     </div>
   <div class="panel-heading">
-    <h3 class="panel-title">Customer List : <strong style="color:rgb(173, 237, 241)"> {{totalRecords}} records found</strong></h3> 
+    <h3 class="panel-title">Customer List : <strong style="color:aquamarine"> {{totalRecords}} records found</strong></h3> 
     
   </div>
   <div class="panel-body">
@@ -51,16 +59,16 @@
           <tr *ngFor="let customer of customerList">  
               <td style ="word-break:break-all;"> {{customer.id}}</td>
               <td  style ="word-break:break-all;" class="text-primary" >
-                 <a  routerLink="//customerDetails/{{customer.id}}" routerLinkActive="active"> {{customer.name}}</a></td>
+                 <a  routerLink="//customerDetails/{{customer.id}}" routerLinkActive="active"> {{customer.fullName}}</a></td>
               <td style ="word-break:break-all;" > {{customer.phone}}</td>
               <td style ="word-break:break-all;" > {{customer.address}}</td>
               <td style ="word-break:break-all;" > {{customer.city}}</td>
-              <td    style="cursor: pointer; word-break:break-all;"> <div  class="text-primary" (click)=fetchLoanDetails(customer.id,customer.name)>
+              <td    style="cursor: pointer; word-break:break-all;"> <div  class="text-primary" (click)=fetchLoanDetails(customer.id,customer.fullName)>
                 <span class="glyphicon glyphicon-credit-card"></span> Details </div></td>
-              <td    style="cursor: pointer; word-break:break-all;"> <div class="text-primary" (click)=createCustomerLoan(customer.id,customer.name)> 
+              <td    style="cursor: pointer; word-break:break-all;"> <div class="text-primary" (click)=createCustomerLoan(customer.id,customer.fullName)> 
                 <span class="glyphicon glyphicon-plus"></span>New Loan </div></td>
                 <td style="cursor: pointer;"> 
-                        <div class="text-primary" (click)=createOrderForCustomer(customer.id,customer.name)>
+                        <div class="text-primary" (click)=createOrderForCustomer(customer.id,customer.fullName)>
                          <span class="glyphicon glyphicon-plus"></span> Create Order </div>
                </td>
           </tr>

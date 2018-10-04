@@ -19,9 +19,11 @@ export class CustomerListComponent implements OnInit {
  noSearchResultFound;
  emptySearchString;
  searchString;
+ filterInfo: boolean;
  errorResponse;
  totalRecords;
  perPage;
+ 
  currentPage = 1;
   // pager object
   pager: any = {};
@@ -38,10 +40,7 @@ export class CustomerListComponent implements OnInit {
   }
 
   ngOnInit() {
-
-  //this._customerService.getCustomers()
-                         // .subscribe((customerData) => this.customerList = customerData);
-
+    
    if(this.currentPage == 1){
     this.getCustomerList(this.currentPage, 10);
    } 
@@ -52,7 +51,6 @@ export class CustomerListComponent implements OnInit {
     console.log("Invoking getCustomerList for Page "+ pageNumber +" perPage : "+perPage);
     this._customerService.getCustomersWithPagination(pageNumber, perPage).subscribe(
       res => {
-       
         console.log(res);
         if(res != null){
           
@@ -134,7 +132,7 @@ export class CustomerListComponent implements OnInit {
             this.customerList = res.data;
             this.totalRecords = res.totalCount;
             this.noSearchResultFound = null;
-            
+            this.filterInfo = true;
             this.perPage = res.perPage;
             // initialize to page 1
             this.setPageOnLoad(res.pageNumber, res.totalCount);
@@ -152,6 +150,13 @@ export class CustomerListComponent implements OnInit {
     )
    
     
+  }
+
+  /* To clear serch filters*/
+  clearFilter(){
+    this.getCustomerList(this.currentPage, 10);
+    this.searchString = null;
+    this.filterInfo = false;
   }
 
   private handleError(error: HttpErrorResponse) {

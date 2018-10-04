@@ -43,9 +43,9 @@ constructor(private _http : Http, private _httpClient: HttpClient){
     
 }
 
-getLoanList() : Observable<Loan[]>  {
-    return this._http.get(this.getLoanUrl)
-    .pipe(map((response : Response) => <Loan[]>response.json()));
+getLoanList(pageNum, perPage) : Observable<any>  {
+    return this._http.get(this.getLoanUrl+'?pageNumber='+pageNum+'&perPage='+perPage)
+    .pipe(map((response : Response) => <any>response.json()));
 };
 
 getCustomerLoanList(customerId: string) : Observable<Loan[]>  {

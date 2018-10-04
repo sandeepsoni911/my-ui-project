@@ -21,10 +21,12 @@ export class CreateCustomerComponent implements OnInit {
   
 
   success_response;
+  success_msg;
+  errorResponse;
   validationError;
   customer : Customer = {
     id :null,
-    name : null,
+    fullName : null,
     fatherName : null,
     phone : null,
     address : null,
@@ -43,17 +45,41 @@ export class CreateCustomerComponent implements OnInit {
   }
 
    saveCustomer(customer :Customer): void {
+    this.success_response = null;
+    this.errorResponse = null;
     if(!this.validateCustomerData(customer)){
-      this.validationError='Please enter all required details.'
-      console.log('required customer details are present')
+      this.validationError='Please enter all required details.';
+      console.log('required customer details are not present');
       return ;
     }
     console.log(customer);
     this._customerService.saveCustomer(customer)
-                          .subscribe((customerData) => this.customer = customerData);
-                          this.success_response='Customer Added Successfully.'
-                          //this._router.navigate(['/customerList']);
-                          console.log(this.customer);
+                          .subscribe(
+                            
+                              //(customerData) => this.customer = customerData
+                              res => {
+                              
+                                if(res != null){
+                                  
+                                  if(res.status == 'SUCCESS'){
+                                    this.customer = res.data;
+                                    this.success_response = 'Customer Added Successfully.';
+                                    this.success_msg = 'Customer Added Successfully.';
+                                    console.log(this.success_response);
+                                    this._router.navigate(['/customerList']);
+                                  }else{
+                                    this.errorResponse = "An Error occurred while processing your request. Please try again later.";
+                                    console.log(this.errorResponse);
+                                  }
+                                }
+                              
+                              },
+                              err => {
+                                this.errorResponse = JSON.stringify(err);  
+                                console.log(err)
+                              }
+                          
+                          )
   }
 
   validateCustomerData(customer : Customer) : boolean {
@@ -62,18 +88,19 @@ export class CreateCustomerComponent implements OnInit {
     }
 
     if(customer.city == null || customer.city == ''){
-      console.log(customer.city);
+      console.log("invalid city");
       return false;
     }
-    if(customer.name == null || customer.name == ''){
-      console.log(customer.name);
+    if(customer.fullName == null || customer.fullName == ''){
+      console.log("invalid fullName");
       return false;
     }
     if(customer.address == null || customer.address == ''){
-      console.log(customer.address);
+      console.log("invalid address");
       return false;
     }
     if(customer.phone == null || customer.phone == ''){
+      console.log("invalid phone");
       return false;
     }
     return true;

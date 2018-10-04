@@ -34,9 +34,9 @@ export class OrderService {
 
    }
 
-   getOrderList() : Observable<Order[]>  {
-    return this._http.get(this.baseUrl+'/order')
-    .pipe(map((response : Response) => <Order[]>response.json()));
+   getOrderList(pageNumber, perPage) : Observable<any>  {
+    return this._http.get(this.baseUrl+'/order?pageNumber='+pageNumber+'&perPage='+perPage)
+    .pipe(map((response : Response) => <any>response.json()));
     };
 
     getOrderListForCustomer(customerId : string, customerName : string) : Observable<Order[]>  {

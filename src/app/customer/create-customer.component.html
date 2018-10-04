@@ -5,15 +5,20 @@
     </div>
     <div class="panel-body">
 
-      <div class="form-group" [class.has-error]="name.invalid && name.touched">
-        <label for="name" class="control-label">Name</label>
-        <input  id="name" required  type="text" class="form-control" 
-                name="name" [(ngModel)]="customer.name"
-               #name="ngModel">
-               <span class="help-block" *ngIf="name.invalid && name.touched">
-                    Please enter name
-               </span>
-      </div>
+        <div class="form-group" [class.has-error]="fullName.invalid && fullName.touched">
+            <label for="fullName" class="control-label">Customer Name</label>
+            <input  id="fullName" required  type="text" class="form-control" 
+                    name="fullName"  maxlength="20" [(ngModel)]="customer.fullName"
+                    #fullName="ngModel">
+                   <span class="help-block" *ngIf="fullName.invalid && fullName.touched">
+                        Please enter customer name
+                   </span>
+          </div>
+
+      
+
+      
+
       <div class="form-group" [class.has-error]="fatherName.invalid && fatherName.touched">
         <label for="fatherName" class="control-label">Father's Name</label>
         <input  id="fatherName" required  type="text" class="form-control" 
@@ -52,9 +57,7 @@
                  <span class="help-block" *ngIf="phone.touched && phone.invalid">
                    Please enter phone number
                  </span>
-                 <span class="help-block text-danger"  *ngIf="phone.errors.minlength">
-                  Phone must be at least 10 characters long.
-                </span>
+                 
                 
         </div>
        <div class="form-group" [class.has-error]="city.touched && city.invalid">
@@ -78,18 +81,26 @@
     <div class="panel-footer">
       <button class="btn btn-primary" type="submit">Save</button>
     </div>
-    
-    <div *ngIf="success_response"  class="alert alert-success alert-dismissible" role="alert">
+    <div class="text-success" *ngIf="success_msg">
+       <h3>{{success_msg}}</h3> 
+      </div>
+  
+   <!--  <div *ngIf="success_response"  class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>Congratulations!</strong> {{success_response}}
         Clik <a routerLink="/customerList" routerLinkActive="active" class="alert-link">here </a>to See All Customers
-    </div>
+    </div> -->
     <div *ngIf="validationError"  class="alert alert-danger alert-dismissible" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span></button>
          {{validationError}}
      
   </div>
+  <div class="text-danger" *ngIf="errorResponse">
+    {{errorResponse}}
+  </div>
+ 
+  
     
   </div>
 </form> 

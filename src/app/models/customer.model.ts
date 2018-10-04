@@ -2,7 +2,7 @@ export interface Customer{
 	
 
 	id : string;
-	name : string;
+	fullName : string;
 	fatherName: string;
 	address : string;
 	city : string;
