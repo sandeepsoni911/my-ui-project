@@ -58,7 +58,7 @@ export class OrderService {
     getPaymentDetailsByOrderId(orderId : string) : Observable<OrderPayment[]>{
 
       return this._http.get(this.baseUrl+'orderPayment/'+orderId)
-      .pipe(map((response : Response) => <OrderPayment[]>response.json()))
+      .pipe(map((response : Response) =>  <OrderPayment[]>response.json()))
     }
 
     saveOrderDetails(order : Order): Observable<BaseResponse> {

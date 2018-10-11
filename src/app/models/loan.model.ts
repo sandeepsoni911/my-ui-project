@@ -9,7 +9,7 @@ export interface Loan {
 	rateOfInterest : string;
 	comments : string;
 	status : boolean;
-	itemName : Date;
+	itemName : string;
 	itemQuality: string;
 	weight : number;
 	customerName : string;

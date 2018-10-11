@@ -17,6 +17,10 @@ export interface Order {
 	exchangeItemQuality : number;
 	exchangeWeight : number;
 	receivedAmount : number;
+	discount : number;
+	makingCharge : number;
+	marketRate : number;
+
 
 
 }

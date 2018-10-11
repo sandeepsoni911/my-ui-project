@@ -19,7 +19,7 @@ import { CustomerService } from '../services/customer.service';
 export class CreateCustomerComponent implements OnInit {
 
   
-
+  displayModalObject : string = 'none';
   success_response;
   success_msg;
   errorResponse;
@@ -48,25 +48,27 @@ export class CreateCustomerComponent implements OnInit {
     this.success_response = null;
     this.errorResponse = null;
     if(!this.validateCustomerData(customer)){
-      this.validationError='Please enter all required details.';
+      //this.validationError='Please enter all required details.';
+      //console.log('validationError: '+this.validationError);
       console.log('required customer details are not present');
       return ;
     }
+    this.validationError= null;
     console.log(customer);
     this._customerService.saveCustomer(customer)
                           .subscribe(
                             
-                              //(customerData) => this.customer = customerData
+                             
                               res => {
                               
                                 if(res != null){
                                   
                                   if(res.status == 'SUCCESS'){
-                                    this.customer = res.data;
+                                   
                                     this.success_response = 'Customer Added Successfully.';
                                     this.success_msg = 'Customer Added Successfully.';
-                                    console.log(this.success_response);
-                                    this._router.navigate(['/customerList']);
+                                    this.displayModalObject = 'block';
+                                   
                                   }else{
                                     this.errorResponse = "An Error occurred while processing your request. Please try again later.";
                                     console.log(this.errorResponse);
@@ -84,23 +86,50 @@ export class CreateCustomerComponent implements OnInit {
 
   validateCustomerData(customer : Customer) : boolean {
     if(customer == null){
+      this.validationError='Please enter customer details';
       return false;
     }
 
+     if(customer.fullName == null || customer.fullName == ''){
+      this.validationError='Please enter fullName name';
+      return false;
+    }
+
+    if(customer.fatherName == null || customer.fatherName == ''){
+      console.log("invalid fatherName"); 
+      this.validationError='Please enter father name';
+      return false;
+    }
     if(customer.city == null || customer.city == ''){
+      this.validationError='Please enter city name';
       console.log("invalid city");
       return false;
     }
-    if(customer.fullName == null || customer.fullName == ''){
-      console.log("invalid fullName");
-      return false;
-    }
+
     if(customer.address == null || customer.address == ''){
       console.log("invalid address");
+      this.validationError='Please enter address';
       return false;
     }
+   
+    
     if(customer.phone == null || customer.phone == ''){
       console.log("invalid phone");
+      this.validationError='Please enter phone';
+      return false;
+
+    }
+
+    if(customer.phone.length < 10){
+      console.log("invalid phone length");
+      this.validationError='Please enter phone number of 10 digits';
+      return false;
+      
+    }
+
+    if(customer.gender == null || customer.gender == ''){
+      console.log("invalid gender ");
+      this.validationError='Please select gender';
       return false;
     }
     return true;
@@ -115,5 +144,22 @@ export class CreateCustomerComponent implements OnInit {
     return true;
 
   }
+
+
+  getDisplayObject() {
+   
+    return this.displayModalObject;
+
+ }
+
+ dismissModal()  {
+   this.displayModalObject = 'none';
+
+   return this.displayModalObject;
+ }
+
+ dismissModalAndRedirect(){
+   this._router.navigate(['/customerList'])
+ }
 
 }

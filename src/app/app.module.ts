@@ -38,6 +38,9 @@ import { OrderDetailsComponent } from './orders/order-details/order-details.comp
 import { CreateOrderComponent } from './orders/create-order/create-order.component';
 import { OrderDashboardComponent } from './dashboard/order-dashboard/order-dashboard.component';
 
+import { OrderPaymentDashboardComponent } from './dashboard/order-payment-dashboard/order-payment-dashboard.component';
+import { LoanPaymentDashboardComponent } from './dashboard/loan-payment-dashboard/loan-payment-dashboard.component';
+
 
 
 const appRoutes : Routes = [
@@ -76,7 +79,10 @@ const appRoutes : Routes = [
     OrderListComponent,
     OrderDetailsComponent,
     CreateOrderComponent,
-    OrderDashboardComponent
+    OrderDashboardComponent,
+  
+    OrderPaymentDashboardComponent,
+    LoanPaymentDashboardComponent
   ],
   imports: [
     BrowserModule,

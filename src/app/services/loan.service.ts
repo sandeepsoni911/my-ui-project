@@ -11,6 +11,7 @@ import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 import { HttpHeaders } from '@angular/common/http';
 import {InterestResponse} from '../models/interestResponse.model';
 import { environment } from '../..//environments/environment';
+import {BaseResponse} from '../models/baseResponse.model';
 
 
 const httpOptions = {
@@ -55,8 +56,8 @@ getCustomerLoanList(customerId: string) : Observable<Loan[]>  {
 };
 
 
-saveLoan(loan :Loan) : Observable<Loan> {
-    return this._httpClient.post<Loan>(this.getLoanUrl, loan, httpOptions);
+saveLoan(loan :Loan) : Observable<BaseResponse> {
+    return this._httpClient.post<BaseResponse>(this.getLoanUrl, loan, httpOptions);
   };
 
   saveLoanPayment(loanPayment :LoanPayment) : Observable<any> {

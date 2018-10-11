@@ -15,6 +15,7 @@ import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 export class OrderDetailsComponent implements OnInit {
 
 
+  initialPendingAmount;
   baseResponse : BaseResponse;
 
   orderPaymentDetailsList : OrderPayment[];
@@ -45,14 +46,23 @@ export class OrderDetailsComponent implements OnInit {
 
     this._orderService.getOrderDetails(orderId).subscribe(
       (
-        orderData) => {
-          this.orderDetail = orderData
+        res) => {
+          if(res != null){
+            this.orderDetail = res;
+            this.calculatePendingAmount(res);
+          }
+          
          
+        },
+        error =>{
+          console.log('some error occurred while getting order details')
         }
         
     )
    
     this.getOrderPaymentDetails( orderId);
+   
+    console.log('Order details '+this.orderDetail)
   }
 
   savePartialPayment(payment : OrderPayment){
@@ -101,6 +111,21 @@ export class OrderDetailsComponent implements OnInit {
       return true;
     } else {
       return false;
+    }
+    
+  }
+
+  calculatePendingAmount(orderData : Order){
+    if(orderData != null){
+      //console.log('Inside calculate Pending amount' + orderData.receivedAmount);
+      let makingCharge = orderData.makingCharge != null?orderData.makingCharge:0;
+      let discount = orderData.discount != null ?orderData.discount:0;
+      let receivedAmount = orderData.receivedAmount != null ?orderData.receivedAmount:0;
+      let pendingAmount =(
+                          Number(orderData.orderAmount)+Number(makingCharge))
+                           -(Number(discount)+Number(receivedAmount)
+                           );
+      this.initialPendingAmount = pendingAmount;
     }
     
   }

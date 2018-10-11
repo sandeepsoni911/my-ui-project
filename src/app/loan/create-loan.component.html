@@ -84,9 +84,44 @@
        <div class="panel-footer text-danger" *ngIf="errorResponse">
           {{errorResponse}}
        </div>
-       
+       <div class="panel-footer text-danger"  *ngIf="validationError">
+          {{validationError}}
+       </div>
     </div>
   </form> 
+
+
+  <div class="modal " tabindex="-1" id="confirmationModal"
+  data-keyboard="false" data-backdrop="static" [ngStyle]="{'display':getDisplayObject()}" >
+  <div class="modal-dialog modal-lg">
+  <div class="modal-content">
+        
+                <div class="modal-header">
+          
+                        <button type="button" (click)="dismissModal()" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title">Create Loan Status</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-success" style="align-content: center"  *ngIf="successMessage"> 
+                            <h4>{{successMessage}}</h4> </div>
+                           
+                        <div class="text-error" style="align-content: center"  *ngIf="errorResponse">
+                             <h4>{{errorResponse}}</h4></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" (click)="dismissModal()" class="btn btn-info" >Create one more Loan</button>
+                        <button type="button" class="btn btn-primary"
+                        (click)="dismissModalAndRedirect()"   data-dismiss="modal">Go to Loan List</button>
+                    </div>
+            
+         
+      
+      
+  </div>
+</div>
+</div> 
 
   
   

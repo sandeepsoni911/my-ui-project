@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderDashboardComponent implements OnInit {
 
+  
+  
+
   constructor() { }
 
   ngOnInit() {
@@ -18,14 +21,14 @@ export class OrderDashboardComponent implements OnInit {
   public pieChartType:string = 'pie';
 
   public lineChartDataForOrders:Array<any> = [
-    {data: [65, 59, 80, 81, 56, 55, 40, 37,45, 49, 77,84], label: '2017'},
-    {data: [28, 48, 40, 19, 86, 27, 60, 69], label: '2018'}
+    {data: [45, 49, 50, 51, 66, 72, 50, 37,45, 49, 77,84], label: '2017'},
+    {data: [28, 32, 40, 67, 86, 74, 60, 47, 43], label: '2018'}
   ];
 
 
   public lineChartDataForLoans:Array<any> = [
     {data: [20, 38, 45, 34, 36, 55, 25, 37,45, 39, 67,54], label: '2017'},
-    {data: [28, 48, 50, 39, 46, 57, 30, 49], label: '2018'}
+    {data: [28, 48, 50, 39, 46, 57, 30, 49,38], label: '2018'}
   ];
 
 

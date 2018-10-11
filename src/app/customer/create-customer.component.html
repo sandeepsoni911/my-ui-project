@@ -81,26 +81,58 @@
     <div class="panel-footer">
       <button class="btn btn-primary" type="submit">Save</button>
     </div>
-    <div class="text-success" *ngIf="success_msg">
+   <!--  <div class="text-success" *ngIf="success_msg">
        <h3>{{success_msg}}</h3> 
-      </div>
+      </div> -->
   
    <!--  <div *ngIf="success_response"  class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>Congratulations!</strong> {{success_response}}
         Clik <a routerLink="/customerList" routerLinkActive="active" class="alert-link">here </a>to See All Customers
     </div> -->
-    <div *ngIf="validationError"  class="alert alert-danger alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span></button>
+    <div *ngIf="validationError"  class="alert alert-danger" >
+     
          {{validationError}}
      
   </div>
-  <div class="text-danger" *ngIf="errorResponse">
+ <!--  <div class="text-danger" *ngIf="errorResponse">
     {{errorResponse}}
-  </div>
+  </div> -->
  
   
     
   </div>
 </form> 
+
+
+<div class="modal " tabindex="-1" id="confirmationModal"
+  data-keyboard="false" data-backdrop="static" [ngStyle]="{'display':getDisplayObject()}" >
+  <div class="modal-dialog modal-lg">
+  <div class="modal-content">
+        
+                <div class="modal-header">
+          
+                        <button type="button" (click)="dismissModal()" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title">Create Customer Status</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-success" style="align-content: center"  *ngIf="success_msg"> 
+                            <h4>{{success_msg}}</h4> </div>
+                           
+                        <div class="text-error" style="align-content: center"  *ngIf="errorResponse">
+                             <h4>{{errorResponse}}</h4></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" (click)="dismissModal()" class="btn btn-info" >Create one more Customer</button>
+                        <button type="button" class="btn btn-primary"
+                        (click)="dismissModalAndRedirect()"   data-dismiss="modal">Go to Customer List</button>
+                    </div>
+            
+         
+      
+      
+  </div>
+</div>
+</div> 

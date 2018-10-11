@@ -52,9 +52,22 @@
                 <app-date-picker [(ngModel)]="order.dueDate"  name="dueDate"> </app-date-picker>
             </div>
         </div>
+    
+        <div class="form-group" [class.has-error]="marketRate.invalid && marketRate.touched">
+                <label for="marketRate" class="control-label">Market Rate</label>
+                <input  id="marketRate" required  type="text" class="form-control" 
+                        name="marketRate" [(ngModel)]="order.marketRate"
+                       #marketRate="ngModel" (blur)="calculateAmount(order)">
+                       <span class="help-block" *ngIf="marketRate.invalid && marketRate.touched">
+                            Please enter Market Rate 
+                       </span>
+         </div>
+
 
       <div class="form-group" [class.has-error]="orderAmount.invalid && orderAmount.touched">
-          <label for="orderAmount" class="control-label">Total Amount</label>
+          <label for="orderAmount" class="control-label"> Order Amount  
+              &nbsp;<span *ngIf="calculationLogic" style="color:darkorange">
+                <small><em>({{calculationLogic}})</em></small></span></label>
           <input  id="orderAmount" required  type="text" class="form-control" 
                   name="orderAmount" [(ngModel)]="order.orderAmount"
                  #orderAmount="ngModel">
@@ -63,11 +76,27 @@
                  </span>
         </div>
 
+        <div class="form-group" [class.has-error]="makingCharge.invalid && makingCharge.touched">
+          <label for="makingCharge" class="control-label">Making Charge</label>
+          <input  id="makingCharge"  type="text" class="form-control" 
+                  name="makingCharge" [(ngModel)]="order.makingCharge"
+                 #makingCharge="ngModel">
+                 
+        </div>
+
+        <div class="form-group" [class.has-error]="discount.invalid && discount.touched">
+          <label for="discount" class="control-label">Discount </label>
+          <input  id="discount"  type="text" class="form-control" 
+                  name="discount" [(ngModel)]="order.discount"
+                 #discount="ngModel">
+                 
+        </div>
+
         <div class="form-group" [class.has-error]="receivedAmount.invalid && receivedAmount.touched">
             <label for="receivedAmount" class="control-label">Recieved Amount</label>
             <input  id="receivedAmount" required  type="text" class="form-control" 
                     name="receivedAmount" [(ngModel)]="order.receivedAmount"
-                   #receivedAmount="ngModel">
+                   #receivedAmount="ngModel" (blur)=getPendingAmount(order)>
                    <span class="help-block" *ngIf="receivedAmount.invalid && receivedAmount.touched">
                         Please enter Order Amount
                    </span>
@@ -75,8 +104,12 @@
 
           <div class="form-group" class="text-primary"  *ngIf="order?.receivedAmount">
               <label for="receivedAmount" class="control-label">Pending Amount : </label>
-             {{order?.orderAmount}}  - {{order?.receivedAmount}} =  
-             <span  class="form-control" class="text-warning"><strong>{{(order?.orderAmount  - order?.receivedAmount)| currency:'INR':'symbol':'4.2-2'}}</strong>  </span> 
+             ({{order?.orderAmount}} + {{order?.makingCharge}} ) - ( {{order?.receivedAmount}} +  {{order?.discount}}) =  
+             <span  class="form-control" class="text-warning" *ngIf="pendingAmount">
+               <strong>
+                {{pendingAmount}}
+
+               </strong>  </span> 
                     
             </div>
           
@@ -88,6 +121,13 @@
           <input id="comments" type="text" class="form-control"
                  name="comments" [(ngModel)]="order.comments">
         </div>
+
+        <div class="form-group" >
+                <label for="khataNumber" >Khata Number</label>
+                <input  id="khataNumber"   type="text" class="form-control" 
+                        name="khataNumber" [(ngModel)]="order.khataNumber">
+                      
+              </div>
 
 
 
@@ -101,8 +141,50 @@
      <div class="panel-footer text-danger" *ngIf="errorResponse">
         {{errorResponse}}
      </div>
-     
+     <div class="text-danger" *ngIf="validationError">
+            {{validationError}}
+         </div>
   </div>
 </form> 
+
+
+
+
+<div class="modal " tabindex="-1" id="confirmationModal"
+  data-keyboard="false" data-backdrop="static" [ngStyle]="{'display':getDisplayObject()}" >
+  <div class="modal-dialog modal-lg">
+  <div class="modal-content">
+        
+                <div class="modal-header">
+          
+                        <button type="button" (click)="dismissModal()" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title">Create Order Status</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-success" style="align-content: center"  *ngIf="success_response"> 
+                            <h4>{{success_response}}</h4> </div>
+                           
+                        <div class="text-error" style="align-content: center"  *ngIf="errorResponseOnCreateOrder">
+                             <h4>{{errorResponseOnCreateOrder}}</h4></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" (click)="dismissModal()" class="btn btn-info" >Create one more Order</button>
+                        <button type="button" class="btn btn-primary"
+                        (click)="dismissModalAndRedirect()"   data-dismiss="modal">Go to Order List</button>
+                    </div>
+            
+         
+      
+      
+  </div>
+</div>
+</div> 
+
+
+
+
+
 
 

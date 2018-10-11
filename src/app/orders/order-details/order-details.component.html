@@ -31,9 +31,21 @@
             <td class="text-primary"> {{orderDetail?.orderAmount | currency:'INR':'symbol':'4.2-2' }}</td>
         </tr>
         <tr>
+            <td>Making Charge</td>
+            <td class="text-primary"> {{orderDetail?.makingCharge | currency:'INR':'symbol':'4.2-2' }}</td>
+        </tr>
+        <tr>
+            <td>Discount</td>
+            <td class="text-primary"> {{orderDetail?.discount | currency:'INR':'symbol':'4.2-2' }}</td>
+        </tr>
+        <tr>
             <td>Received Amount during order</td>
             <td class="text-primary"> {{orderDetail?.receivedAmount | currency:'INR':'symbol':'4.2-2' }}</td>
         </tr>
+        <tr *ngIf="!checkPaymentDetailsAvailable() && initialPendingAmount">
+                <td>Pending Amount</td>
+                <td class="text-info"><strong>{{initialPendingAmount| currency:'INR':'symbol':'4.2-2' }}</strong> </td>
+         </tr>
          
         <tr>
             <td>Due Date</td>
@@ -62,7 +74,7 @@
           <td class="text-primary"> {{orderDetail?.comments| lowercase}}</td>
       </tr>
       <tr>  
-      <tr [class.success]="orderDetail.status=='Closed'">  
+      <tr [class.success]="orderDetail?.status=='Closed'">  
               <td>Order Status</td>
               <td class="text-primary"> {{orderDetail?.status}}</td>
         </tr>
@@ -126,7 +138,7 @@
           <button type="button" class="close" data-dismiss="modal">
               &times;
           </button>
-          <h4 class="modal-title">Add Payment</h4>
+          <h4 class="modal-title">Add Order Payment</h4>
       </div>
       <div class="modal-body">
           <form>
@@ -169,7 +181,7 @@
           <h4>{{success_response}}</h4> </div>
          
       <div class="text-error" style="align-content: center"  *ngIf="errorResponseOnPayment">
-           <h4>{{errorResponseOnPayment}}</h4></div>
+           <h4> {{errorResponseOnPayment}} </h4></div>
   </div>
 </div>
 </div> 
