@@ -1,4 +1,35 @@
 <div class="panel panel-primary">
+
+    <div style="float: right;">
+        <form #searchEmployeeForm="ngForm" (ngSubmit)="searchOrders(searchString)">
+          <table class="table-condensed">
+            <tr>
+              <td>
+                <div style="color:aquamarine" *ngIf="filterInfo">Showing result with filter : {{searchString}} </div>
+              </td>
+              <td style="cursor: pointer;">
+                <div style="color:rgb(222, 224, 236)" *ngIf="filterInfo" (click)=clearFilter()>
+                  <span id="searchclear" class="glyphicon glyphicon-remove-circle"> </span>Clear Filter </div>
+              </td>
+    
+              <td>
+                <div class="text-danger" class="bg-danger" *ngIf="emptySearchString"> {{emptySearchString}} </div>
+              </td>
+              <td class="mx-auto">
+                <div>
+                  <input type="text" name="searchString" required placeholder="Search Orders" [(ngModel)]="searchString">
+                </div>
+    
+              </td>
+    
+              <td>
+                <button class="btn btn-info btn-sm" type="submit">Search</button>
+              </td>
+    
+            </tr>
+          </table>
+        </form>
+      </div>
   <div class="panel-heading">
     <h3 class="panel-title">Orders List : <strong style="color:aquamarine"> {{totalRecords}} records found</strong></h3>
   </div>
@@ -41,6 +72,8 @@
           </tr>
           </tbody>
        </table>
+
+       
            <!-- pager -->
     <div>
         <ul *ngIf="pager.pages && pager.pages.length" class="pagination">

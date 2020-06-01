@@ -30,10 +30,10 @@
             <td>Amount</td>
             <td class="text-primary"> {{orderDetail?.orderAmount | currency:'INR':'symbol':'4.2-2' }}</td>
         </tr>
-        <tr>
+       <!--  <tr>
             <td>Making Charge</td>
             <td class="text-primary"> {{orderDetail?.makingCharge | currency:'INR':'symbol':'4.2-2' }}</td>
-        </tr>
+        </tr> -->
         <tr>
             <td>Discount</td>
             <td class="text-primary"> {{orderDetail?.discount | currency:'INR':'symbol':'4.2-2' }}</td>
@@ -51,11 +51,12 @@
             <td>Due Date</td>
             <td class="text-primary"> {{orderDetail?.dueDate | date:"dd/MM/yy" }}</td>
         </tr>
+          <!-- 
         <tr>  
           <td>Item Type</td>
           <td class="text-primary"> {{orderDetail?.itemType| lowercase}}</td>
         </tr>
-        <tr>  
+      <tr>  
               <td>Item Name</td>
               <td class="text-primary"> {{orderDetail?.itemName| lowercase}}</td>
           </tr>
@@ -64,7 +65,7 @@
       <tr>  
           <td>Item Quality</td>
           <td class="text-primary"> {{orderDetail?.itemQuality}}%</td>
-      </tr>
+      </tr> -->
       <tr>  
           <td>Order Placed on Date in ("DD/MM/YY")</td>
           <td class="text-primary"> {{orderDetail?.createdDate | date:"dd/MM/yy" }}</td>
@@ -90,6 +91,42 @@
       </table>
       
       </div>
+</div>
+
+<div class="pannel panel-info" >
+    <div class="panel-heading">
+       Order Item Details
+      </div>
+
+    <div class="panel-body"> 
+        <table class="table  table-bordered table-hover table-condensed">
+            <thead  class="table-bordered">
+              <th>Item Name</th>
+              <th>Item Type</th>
+              <th>Weight (grams)</th>
+              <th>Discount</th>
+              <th>Count</th>
+              <th>Making Charge</th>
+              <th>Item Price</th>
+             
+              
+             
+            </thead>
+            <tbody > 
+            <tr *ngFor="let item of orderDetail?.itemsList"  >  
+                <td> {{item.itemName}}</td>
+                <td> {{item.itemType }}</td>
+                <td> {{item.weight || "NA"}}</td>
+                <td> {{item.discount || "NA"}}</td>
+                <td> {{item.count || "1"}}</td>
+                <td> {{item.makingCharge || "NA"}}</td>
+                <td> {{item.itemPrice || "NA"}}</td>
+                
+            </tr> 
+            
+            </tbody>
+        </table>
+    </div> 
 </div>
 
 

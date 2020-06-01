@@ -25,6 +25,13 @@ export class OrderListComponent implements OnInit {
  
    // paged items
    pagedItems: any[];
+
+   emptySearchString:any;
+   searchString;
+  filterInfo: boolean;
+  errorResponseOnSearch;
+  noSearchResultFound;
+  
  
 
 
@@ -104,5 +111,55 @@ setPage(page: number) {
   
   this.pagedItems = this.orderList.slice(this.pager.startIndex, this.pager.endIndex + 1);
 }
+
+
+
+
+
+searchOrders(searchString : string){
+  if(searchString == null || searchString ==''){
+    this.emptySearchString = "Please enter any name to search."
+
+    return;
+  }
+  this.emptySearchString = null;
+  this._orderService.searchOrders(searchString, 1, 10).subscribe(
+    
+    res => {
+      console.log(res);
+      if(res != null){
+        
+        if(res.status == 'SUCCESS'){
+          this.orderList = res.data;
+          this.totalRecords = res.totalCount;
+          this.noSearchResultFound = null;
+          this.filterInfo = true;
+          this.perPage = res.perPage;
+          // initialize to page 1
+          this.setPageOnLoad(res.pageNumber, res.totalCount);
+        }else{
+          this.errorResponse = res.message;
+        }
+      }
+     
+    },
+    err => {
+      this.errorResponseOnSearch = JSON.stringify(err);  
+      console.log(err)
+    }
+
+  )
+ 
+  
+}
+
+/* To clear serch filters*/
+clearFilter(){
+  this.getOrderListDetials(this.currentPage, 10);
+  this.searchString = null;
+  this.filterInfo = false;
+}
+
+
 
 }

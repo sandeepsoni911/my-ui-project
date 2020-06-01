@@ -1,3 +1,5 @@
+import { Items } from "./items.model";
+
 export interface Order {  	  
     orderId : number;
 	orderAmount: number;
@@ -20,6 +22,7 @@ export interface Order {
 	discount : number;
 	makingCharge : number;
 	marketRate : number;
+	itemList:Items[]
 
 
 

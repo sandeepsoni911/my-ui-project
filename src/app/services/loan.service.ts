@@ -3,7 +3,7 @@ import {Loan} from '../models/loan.model';
 import {LoanPayment} from '../models/loanPayment.model'
 import { Response} from '@angular/http';
 import {HttpErrorResponse} from '@angular/common/http';
-import { Observable} from 'rxjs';
+import { Observable, throwError} from 'rxjs';
 import { map,catchError, filter, switchMap } from 'rxjs/operators';
 import {Http} from '@angular/http';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -77,6 +77,32 @@ saveLoan(loan :Loan) : Observable<BaseResponse> {
   getInterest(id : string, date : Date) : Observable<InterestResponse>  {
     return this._http.get(this.baseUrl.concat('/interest/'+id))
     .pipe(map((response : Response) => <InterestResponse>response.json()));
+  };
+
+
+  searchLoans(searchString: string, pageNo : number, perPage : number) : Observable<any>  {
+    return this._httpClient.get<Loan[]>(this.baseUrl+'searchLoans/'+searchString
+    +'?pageNumber='+pageNo+'&perPage='+perPage)
+    .pipe(
+     // retry(3), // retry a failed request up to 3 times
+      catchError(this.handleError) // then handle the error
+    );
+  };
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
   };
 
 }

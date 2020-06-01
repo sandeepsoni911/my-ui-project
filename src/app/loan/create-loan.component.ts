@@ -15,6 +15,7 @@ export class CreateLoanComponent implements OnInit {
   
  displayModalObject : string = 'none'; 
  enteredDate : Date;
+ loanCreatedDate:Date;
  successMessage;
  errorResponse;
  customerName;
@@ -76,6 +77,7 @@ export class CreateLoanComponent implements OnInit {
   saveLoan(loan: Loan)  { //customerName
     let datePipe = new DatePipe('en-US');
     this.loan.dueDate=  datePipe.transform(this.enteredDate, 'yyyy-MM-dd');
+    this.loan.createdDate = this.loanCreatedDate;
     if(!this.validateLoanData(loan)){
       return;
     }

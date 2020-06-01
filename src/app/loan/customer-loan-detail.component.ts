@@ -50,4 +50,8 @@ export class CustomerLoanDetailComponent implements OnInit {
   this._router.navigate(['/createOrder', custId+'-'+custName]);
 }
 
+createCustomerLoan(custId, custName){
+  this._router.navigate(['/createLoan', custId+'-'+custName]);
+}
+
 }

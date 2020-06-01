@@ -43,7 +43,7 @@ export class LoanListComponent implements OnInit {
    ngOnInit() {
     if(this.currentPage == 1){
         this.getLoanListDetails(1, 10);
-    }
+    } 
    }
 
    getLoanListDetails(currentPage, perPageSize){
@@ -115,5 +115,49 @@ export class LoanListComponent implements OnInit {
     this.pagedItems = this.loanList.slice(this.pager.startIndex, this.pager.endIndex + 1);
 }
 
+
+searchLoans(searchString : string){
+  if(searchString == null || searchString ==''){
+    this.emptySearchString = "Please enter any name to search."
+
+    return;
+  }
+  this.emptySearchString = null;
+  this._loanService.searchLoans(searchString, 1, 10).subscribe(
+    
+    res => {
+      console.log(res);
+      if(res != null){
+        
+        if(res.status == 'SUCCESS'){
+          this.loanList = res.data;
+          this.totalRecords = res.totalCount;
+          this.noSearchResultFound = null;
+          this.filterInfo = true;
+          this.perPage = res.perPage;
+          // initialize to page 1
+          this.setPageOnLoad(res.pageNumber, res.totalCount);
+        }else{
+          this.errorResponse = res.message;
+        }
+      }
+     
+    },
+    err => {
+      this.errorResponseOnSearch = JSON.stringify(err);  
+      console.log(err)
+    }
+
+  )
+ 
+  
+}
+
+/* To clear serch filters*/
+clearFilter(){
+  this.getLoanListDetails(this.currentPage, 10);
+  this.searchString = null;
+  this.filterInfo = false;
+}
 
 }

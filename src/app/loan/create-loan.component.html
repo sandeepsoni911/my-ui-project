@@ -16,12 +16,23 @@
         </div>
 
         <div class="form-group">
+          <label for="loanCreatedDate" class="control-label">Loan Taken on Date</label>
+          <span class="glyphicon glyphicon-calendar"></span>
+          <div class="form-control" >
+              <app-date-picker [(ngModel)]="loanCreatedDate"  name="loanCreatedDate"> </app-date-picker>
+          </div>
+        </div>
+
+        <div class="form-group">
             <label for="dueDate" class="control-label">Due Date</label>
             <span class="glyphicon glyphicon-calendar"></span>
             <div class="form-control" >
                 <app-date-picker [(ngModel)]="enteredDate"  name="dueDate"> </app-date-picker>
             </div>
           </div>
+          
+
+         
           
      
           <div class="form-group" >

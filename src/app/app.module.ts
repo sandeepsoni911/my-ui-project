@@ -40,6 +40,8 @@ import { OrderDashboardComponent } from './dashboard/order-dashboard/order-dashb
 
 import { OrderPaymentDashboardComponent } from './dashboard/order-payment-dashboard/order-payment-dashboard.component';
 import { LoanPaymentDashboardComponent } from './dashboard/loan-payment-dashboard/loan-payment-dashboard.component';
+import { OrderItemDetailsComponent } from './orders/order-item-details/order-item-details.component';
+
 
 
 
@@ -57,6 +59,7 @@ const appRoutes : Routes = [
 {path: 'createOrder/:cutomerId', component : CreateOrderComponent},
 {path: 'orderList', component: OrderListComponent},
 {path: 'dashboard', component: OrderDashboardComponent},
+{path: 'orderItemDetails', component:OrderItemDetailsComponent},
 
 {path: '', redirectTo: '/home', pathMatch: 'full'}
 
@@ -82,7 +85,8 @@ const appRoutes : Routes = [
     OrderDashboardComponent,
   
     OrderPaymentDashboardComponent,
-    LoanPaymentDashboardComponent
+    LoanPaymentDashboardComponent,
+    OrderItemDetailsComponent
   ],
   imports: [
     BrowserModule,

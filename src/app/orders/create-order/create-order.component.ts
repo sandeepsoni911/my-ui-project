@@ -26,7 +26,7 @@ export class CreateOrderComponent implements OnInit {
   errorResponseOnCreateOrder : string;
   displayModalObject : string = 'none';
   calculationLogic : string;
-  
+  submitClicked=false;
 
   pendingAmount : number ;
 
@@ -61,7 +61,8 @@ export class CreateOrderComponent implements OnInit {
       receivedAmount : null,
       discount : null,
       makingCharge : null,
-      marketRate : null
+      marketRate : null,
+      itemList:null
 
 
   }
@@ -88,6 +89,7 @@ export class CreateOrderComponent implements OnInit {
     if(!this.validateLoanData(order)){
       return;
     }
+    this.submitClicked = true;
 
     console.log(order)
     this._orderService.saveOrderDetails(order).subscribe(
