@@ -5,6 +5,7 @@ import { OrderService } from '../../services/order.service';
 import {BaseResponse} from '../../models/baseResponse.model';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
+import { Items } from 'src/app/models/items.model';
 
 
 
@@ -27,9 +28,12 @@ export class CreateOrderComponent implements OnInit {
   displayModalObject : string = 'none';
   calculationLogic : string;
   submitClicked=false;
+  totalOrderAmount=0;
 
   pendingAmount : number ;
+  item = new Items();
 
+  itemContainers  =[];
   //customerId : null;
 
   availableItemType : string[] = [
@@ -62,7 +66,8 @@ export class CreateOrderComponent implements OnInit {
       discount : null,
       makingCharge : null,
       marketRate : null,
-      itemList:null
+      itemsList:null,
+      totalOrderAmount:null
 
 
   }
@@ -82,21 +87,30 @@ export class CreateOrderComponent implements OnInit {
 
    this.order.customerId = parseInt(customerId);
    this.order.customerName = customerName;
+   this.item = new Items();
+   this.itemContainers.push(this.item);
   }
 
   saveOrder(order : Order) {
 
+   let res = this.validateItemList();
+    if(res != ''){
+      this.validationError=res;
+      return;
+    } 
     if(!this.validateLoanData(order)){
       return;
-    }
-    this.submitClicked = true;
+    } 
+    
 
+    this.submitClicked = true;
+    order.itemsList=this.itemContainers;
     console.log(order)
     this._orderService.saveOrderDetails(order).subscribe(
       (paymentData : BaseResponse) => 
       {
 
-        if(paymentData.status=='SUCCESS'){
+        if(paymentData.status=='SUCCESS' || paymentData.message=='SUCCESS'){
           this.baseResponse = paymentData;
           this.success_response= paymentData.message;
           this.displayModalObject = 'block';
@@ -167,7 +181,7 @@ export class CreateOrderComponent implements OnInit {
     return false;
   }
 
-  if(order.itemName == null || order.itemName == ''){
+  /* if(order.itemName == null || order.itemName == ''){
     this.validationError='Please enter itemName';
     return false;
   }
@@ -183,35 +197,102 @@ export class CreateOrderComponent implements OnInit {
   if(order.itemQuality == null ){
     this.validationError='Please enter itemQuality';
     return false;
-  }
+  } */
   if(order.dueDate == null ){
     this.validationError='Please enter dueDate';
     return false;
   }
-  if(order.orderAmount == null || order.orderAmount == 0){
+  /* if(order.orderAmount == null || order.orderAmount == 0){
     this.validationError='Please enter orderAmount';
     return false;
-  }
+  } */
   
   
   return true;
 }
 
+validateItemList() : string {
+  let respnse='';
+  let i =1;
+  this.itemContainers.forEach(function(itm){
 
-calculateAmount(order : Order) {
+    if(itm.itemName == null ){
+      respnse='Please enter Item Name for item '+i;
+      return respnse;
+    }
+
+    if(itm.weight == null ){
+      respnse='Please enter Weight for item : '+i;
+      return respnse;
+    }
+    if(itm.marketRate == null ){
+      respnse='Please enter marketRate for item : '+i;
+    return respnse;
+    }
+    if(itm.makingCharge == null ){
+      this.validationError='Please enter makingCharge for item : '+i;
+    return respnse;
+    }
+    if(itm.itemPrice == null ){
+      respnse='Please enter order amount for Item '+i;
+      return respnse;
+    }
+
+   
+   i++;
+  }
+  
+  )
+  return respnse;
+}
+
+
+calculateItemOrderAmount(itemObj : Items, i:number) {
   let amount : number = 0;
-  if(order.itemType != null && (order.itemType == 'Silver' || order.itemType == 'silver')){
-    this.calculationLogic = 'Amount calculated for Silver rate '+order.marketRate+' per Kg  for weight '+order.weight + ' grams'; 
-    amount = (order.marketRate/1000)*order.weight;
+  let calculationLogicStr="";
+  if(itemObj.itemType != null && (itemObj.itemType == 'Silver' || itemObj.itemType == 'silver')){
+    calculationLogicStr = 'Amount calculated for Silver rate '+itemObj.marketRate+' per Kg  for weight '+itemObj.weight + ' grams'; 
+    itemObj.discount  = itemObj.discount !=null?itemObj.discount :0;
+    amount = ((itemObj.marketRate/1000)*itemObj.weight)-itemObj.discount;
     amount = Math.round(amount);
-  }else if (order.itemType != null && (order.itemType == 'Gold' || order.itemType == 'gold')){
-    this.calculationLogic = 'Amount calculated for Gold rate '+order.marketRate+' per 10 grams  for weight '+order.weight + ' grams';
-    amount = (order.marketRate/10)*order.weight;
+  }else if (itemObj.itemType != null && (itemObj.itemType == 'Gold' || itemObj.itemType == 'gold')){
+    calculationLogicStr = 'Amount calculated for Gold rate '+itemObj.marketRate+' per 10 grams  for weight '+itemObj.weight + ' grams';
+    itemObj.discount  = itemObj.discount !=null?itemObj.discount :0;
+    amount = ((itemObj.marketRate/10)*itemObj.weight)-itemObj.discount;
     amount = Math.round(amount);
   }
-
- this.order.orderAmount=amount;
+this.itemContainers[i].itemPrice=amount;
+this.itemContainers[i].calculationLogicString=calculationLogicStr;
+ //this.order.orderAmount=amount;
 
 }
+
+calculateTotalOrderAmount(order){
+  let ordrAmnt:number=0;
+  this.itemContainers.forEach(function(itm){
+    if(itm.itemPrice != null && !isNaN(itm.itemPrice)){
+      ordrAmnt = ordrAmnt+parseInt(itm.itemPrice);
+      console.log('totalAmount is : '+ordrAmnt);
+      order.totalOrderAmount = ordrAmnt;
+    }
+   
+  }
+  
+  )
+ 
+}
+
+
+
+addMoreItems() {
+  console.log(JSON.stringify(this.itemContainers));
+  this.item = new Items();
+  this.itemContainers.push(this.item);
+}
+
+deleteItems() {
+  this.itemContainers.pop();
+}
+
 
 }

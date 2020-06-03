@@ -1,4 +1,4 @@
-export interface Items {  	  
+export class Items {  	  
    
 	itemType: string;
 	itemComments: string;
@@ -15,5 +15,8 @@ export interface Items {
 	discount : number;
 	makingCharge : number;
 	marketRate : number;
+	calculationLogicString:string;
+
+	
 
 }

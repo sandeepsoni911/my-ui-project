@@ -22,7 +22,8 @@ export interface Order {
 	discount : number;
 	makingCharge : number;
 	marketRate : number;
-	itemList:Items[]
+	itemsList:Items[],
+	totalOrderAmount:number
 
 
 
