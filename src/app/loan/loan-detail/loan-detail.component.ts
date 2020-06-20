@@ -4,8 +4,7 @@ import {LoanService} from '../../services/loan.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { LoanPayment } from '../../models/loanPayment.model';
 import {InterestResponse} from '../../models/interestResponse.model';
-import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {ViewChild, ElementRef} from '@angular/core';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-loan-detail',
@@ -148,4 +147,11 @@ export class LoanDetailComponent implements OnInit {
      throw error;
   };
 
+
+
+  editLoanDetail(loanId){
+    this._router.navigate(['editLoanDetail', loanId ]);
+    
+  }
+ 
 }

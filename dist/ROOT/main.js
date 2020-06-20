@@ -409,6 +409,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dashboard_order_dashboard_order_dashboard_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./dashboard/order-dashboard/order-dashboard.component */ "./src/app/dashboard/order-dashboard/order-dashboard.component.ts");
 /* harmony import */ var _dashboard_order_payment_dashboard_order_payment_dashboard_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./dashboard/order-payment-dashboard/order-payment-dashboard.component */ "./src/app/dashboard/order-payment-dashboard/order-payment-dashboard.component.ts");
 /* harmony import */ var _dashboard_loan_payment_dashboard_loan_payment_dashboard_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./dashboard/loan-payment-dashboard/loan-payment-dashboard.component */ "./src/app/dashboard/loan-payment-dashboard/loan-payment-dashboard.component.ts");
+/* harmony import */ var _orders_order_item_details_order_item_details_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./orders/order-item-details/order-item-details.component */ "./src/app/orders/order-item-details/order-item-details.component.ts");
+/* harmony import */ var _loan_loan_details_edit_loan_details_edit_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./loan/loan-details-edit/loan-details-edit.component */ "./src/app/loan/loan-details-edit/loan-details-edit.component.ts");
+/* harmony import */ var _orders_order_details_edit_order_details_edit_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./orders/order-details-edit/order-details-edit.component */ "./src/app/orders/order-details-edit/order-details-edit.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -446,20 +449,26 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
+
 var appRoutes = [
     { path: 'customerList', component: _customer_customer_list_component__WEBPACK_IMPORTED_MODULE_8__["CustomerListComponent"], canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_21__["AuthGuard"]] },
     { path: 'createCustomer', component: _customer_create_customer_component__WEBPACK_IMPORTED_MODULE_9__["CreateCustomerComponent"], canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_21__["AuthGuard"]] },
     { path: 'loanList', component: _loan_loan_list_component__WEBPACK_IMPORTED_MODULE_11__["LoanListComponent"], canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_21__["AuthGuard"]] },
     { path: 'createLoan/:customerId', component: _loan_create_loan_component__WEBPACK_IMPORTED_MODULE_13__["CreateLoanComponent"], canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_21__["AuthGuard"]] },
     { path: 'loanDetail/:id', component: _loan_loan_detail_loan_detail_component__WEBPACK_IMPORTED_MODULE_16__["LoanDetailComponent"], canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_21__["AuthGuard"]] },
+    { path: 'editLoanDetail/:id', component: _loan_loan_details_edit_loan_details_edit_component__WEBPACK_IMPORTED_MODULE_31__["LoanDetailsEditComponent"], canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_21__["AuthGuard"]] },
     { path: 'customerLoanDetail/:id', component: _loan_customer_loan_detail_component__WEBPACK_IMPORTED_MODULE_17__["CustomerLoanDetailComponent"], canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_21__["AuthGuard"]] },
     { path: 'customerDetails/:id', component: _customer_customer_details_component__WEBPACK_IMPORTED_MODULE_19__["CustomerDetailsComponent"], canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_21__["AuthGuard"]] },
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_20__["LoginComponent"] },
     { path: 'home', component: _home_home_page_component__WEBPACK_IMPORTED_MODULE_18__["HomePageComponent"] },
     { path: 'orderDetails/:id', component: _orders_order_details_order_details_component__WEBPACK_IMPORTED_MODULE_25__["OrderDetailsComponent"] },
+    { path: 'editOrderDetails/:id', component: _orders_order_details_edit_order_details_edit_component__WEBPACK_IMPORTED_MODULE_32__["OrderDetailsEditComponent"] },
     { path: 'createOrder/:cutomerId', component: _orders_create_order_create_order_component__WEBPACK_IMPORTED_MODULE_26__["CreateOrderComponent"] },
     { path: 'orderList', component: _orders_order_list_order_list_component__WEBPACK_IMPORTED_MODULE_24__["OrderListComponent"] },
     { path: 'dashboard', component: _dashboard_order_dashboard_order_dashboard_component__WEBPACK_IMPORTED_MODULE_27__["OrderDashboardComponent"] },
+    { path: 'orderItemDetails', component: _orders_order_item_details_order_item_details_component__WEBPACK_IMPORTED_MODULE_30__["OrderItemDetailsComponent"] },
     { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 var AppModule = /** @class */ (function () {
@@ -485,7 +494,10 @@ var AppModule = /** @class */ (function () {
                 _orders_create_order_create_order_component__WEBPACK_IMPORTED_MODULE_26__["CreateOrderComponent"],
                 _dashboard_order_dashboard_order_dashboard_component__WEBPACK_IMPORTED_MODULE_27__["OrderDashboardComponent"],
                 _dashboard_order_payment_dashboard_order_payment_dashboard_component__WEBPACK_IMPORTED_MODULE_28__["OrderPaymentDashboardComponent"],
-                _dashboard_loan_payment_dashboard_loan_payment_dashboard_component__WEBPACK_IMPORTED_MODULE_29__["LoanPaymentDashboardComponent"]
+                _dashboard_loan_payment_dashboard_loan_payment_dashboard_component__WEBPACK_IMPORTED_MODULE_29__["LoanPaymentDashboardComponent"],
+                _orders_order_item_details_order_item_details_component__WEBPACK_IMPORTED_MODULE_30__["OrderItemDetailsComponent"],
+                _loan_loan_details_edit_loan_details_edit_component__WEBPACK_IMPORTED_MODULE_31__["LoanDetailsEditComponent"],
+                _orders_order_details_edit_order_details_edit_component__WEBPACK_IMPORTED_MODULE_32__["OrderDetailsEditComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -826,7 +838,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"panel panel-primary\">\n   \n    <div style=\"float: right;\">  \n      <form #searchEmployeeForm=\"ngForm\"   (ngSubmit)=\"searchCustomer(searchString)\">\n          <table class=\"table-condensed\"  >\n              <tr>\n                    <td>\n                            <div style=\"color:aquamarine\"  *ngIf=\"filterInfo\">Showing result with filter : {{searchString}} </div>\n                       </td>\n                       <td style=\"cursor: pointer;\">\n                            <div style=\"color:rgb(222, 224, 236)\"  *ngIf=\"filterInfo\" (click)=clearFilter()>\n                                    <span id=\"searchclear\" class=\"glyphicon glyphicon-remove-circle\"> </span>Clear Filter </div>\n                       </td>\n                       \n                    <td>\n                            <div class=\"text-danger\" class=\"bg-danger\" *ngIf=\"emptySearchString\"> {{emptySearchString}} </div>\n                       </td>\n                <td class=\"mx-auto\">\n                    <div >\n                            <input type=\"text\" name=\"searchString\" required  placeholder=\"Search Customers\"\n                            [(ngModel)]=\"searchString\" >\n                            \n                            \n                    </div>\n                   \n                </td>\n\n                <td>\n                        <button class=\"btn btn-info btn-sm\" type=\"submit\">Search</button>\n                </td>\n                \n              </tr>\n\n    \n           </table>\n\n      </form>\n    \n        \n    </div>\n  <div class=\"panel-heading\">\n    <h3 class=\"panel-title\">Customer List : <strong style=\"color:aquamarine\"> {{totalRecords}} records found</strong></h3> \n    \n  </div>\n  <div class=\"panel-body\">\n      <table class=\"table table-striped table-bordered table-hover table-condensed\n       table-responsive \">\n          <thead >\n            <th>Id</th>\n            <th>Name</th>\n            <th>Phone</th>\n            <th>Address</th>\n            <th>City</th>\n            <th>Details</th>\n            <th>New Loan</th>\n            <th>New Order</th>\n          </thead>\n          <tbody > \n          <tr *ngFor=\"let customer of customerList\">  \n              <td style =\"word-break:break-all;\"> {{customer.id}}</td>\n              <td  style =\"word-break:break-all;\" class=\"text-primary\" >\n                 <a  routerLink=\"//customerDetails/{{customer.id}}\" routerLinkActive=\"active\"> {{customer.fullName}}</a></td>\n              <td style =\"word-break:break-all;\" > {{customer.phone}}</td>\n              <td style =\"word-break:break-all;\" > {{customer.address}}</td>\n              <td style =\"word-break:break-all;\" > {{customer.city}}</td>\n              <td    style=\"cursor: pointer; word-break:break-all;\"> <div  class=\"text-primary\" (click)=fetchLoanDetails(customer.id,customer.fullName)>\n                <span class=\"glyphicon glyphicon-credit-card\"></span> Details </div></td>\n              <td    style=\"cursor: pointer; word-break:break-all;\"> <div class=\"text-primary\" (click)=createCustomerLoan(customer.id,customer.fullName)> \n                <span class=\"glyphicon glyphicon-plus\"></span>New Loan </div></td>\n                <td style=\"cursor: pointer;\"> \n                        <div class=\"text-primary\" (click)=createOrderForCustomer(customer.id,customer.fullName)>\n                         <span class=\"glyphicon glyphicon-plus\"></span> Create Order </div>\n               </td>\n          </tr>\n      </tbody>\n      \n    </table>   \n     <!-- pager -->\n    <div>\n        <ul *ngIf=\"pager.pages && pager.pages.length\" class=\"pagination\">\n            <li [ngClass]=\"{disabled:pager.currentPage === 1}\">\n                <a (click)=\"setPage(1)\">First</a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === 1}\">\n                <a (click)=\"setPage(pager.currentPage - 1)\">Previous</a>\n            </li>\n            <li *ngFor=\"let page of pager.pages\" [ngClass]=\"{active:pager.currentPage === page}\">\n                <a (click)=\"setPage(page)\">{{page}}</a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === pager.totalPages}\">\n                <a (click)=\"setPage(pager.currentPage + 1)\">Next</a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === pager.totalPages}\">\n                <a (click)=\"setPage(pager.totalPages)\">Last</a>\n            </li>\n        </ul>  \n    </div>\n  </div>\n    <div *ngIf=\"noSearchResultFound\" class=\"text-info align-items-center\">\n      <h4>{{noSearchResultFound}} </h4>\n    </div>\n  </div>\n\n\n\n\n"
+module.exports = "<div class=\"panel panel-primary\">\n\n  <div style=\"float: right;\">\n    <form #searchEmployeeForm=\"ngForm\" (ngSubmit)=\"searchCustomer(searchString)\">\n      <table class=\"table-condensed\">\n        <tr>\n          <td>\n            <div style=\"color:aquamarine\" *ngIf=\"filterInfo\">Showing result with filter : {{searchString}} </div>\n          </td>\n          <td style=\"cursor: pointer;\">\n            <div style=\"color:rgb(222, 224, 236)\" *ngIf=\"filterInfo\" (click)=clearFilter()>\n              <span id=\"searchclear\" class=\"glyphicon glyphicon-remove-circle\"> </span>Clear Filter </div>\n          </td>\n\n          <td>\n            <div class=\"text-danger\" class=\"bg-danger\" *ngIf=\"emptySearchString\"> {{emptySearchString}} </div>\n          </td>\n          <td class=\"mx-auto\">\n            <div>\n              <input type=\"text\" name=\"searchString\" required placeholder=\"Search Customers\" [(ngModel)]=\"searchString\">\n            </div>\n\n          </td>\n\n          <td>\n            <button class=\"btn btn-info btn-sm\" type=\"submit\">Search</button>\n          </td>\n\n        </tr>\n      </table>\n    </form>\n  </div>\n\n  \n\n  <div class=\"panel-heading\">\n    <h3 class=\"panel-title\">Customer List : <strong style=\"color:aquamarine\"> {{totalRecords}} records found</strong>\n    </h3>\n\n  </div>\n  <div class=\"panel-body\">\n    <table class=\"table table-striped table-bordered table-hover table-condensed\n       table-responsive \">\n      <thead>\n        <th>Id</th>\n        <th>Name</th>\n        <th>Father's Name</th>\n        <th>Phone</th>\n        <th>Address</th>\n        <th>City</th>\n        <th>Details</th>\n        <th>New Loan</th>\n        <th>New Order</th>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let customer of customerList\">\n          <td style=\"word-break:break-all;\"> {{customer.id}}</td>\n          <td style=\"word-break:break-all;\" class=\"text-primary\">\n            <a routerLink=\"//customerDetails/{{customer.id}}\" routerLinkActive=\"active\"> {{customer.fullName}}</a></td>\n            <td style=\"word-break:break-all;\"> {{customer.fatherName}}</td>\n          <td style=\"word-break:break-all;\"> {{customer.phone}}</td>\n          <td style=\"word-break:break-all;\"> {{customer.address}}</td>\n          <td style=\"word-break:break-all;\"> {{customer.city}}</td>\n          <td style=\"cursor: pointer; word-break:break-all;\">\n            <div class=\"text-primary\" (click)=fetchLoanDetails(customer.id,customer.fullName)>\n              <span class=\"glyphicon glyphicon-credit-card\"></span> Details </div>\n          </td>\n          <td style=\"cursor: pointer; word-break:break-all;\">\n            <div class=\"text-primary\" (click)=createCustomerLoan(customer.id,customer.fullName)>\n              <span class=\"glyphicon glyphicon-plus\"></span>New Loan </div>\n          </td>\n          <td style=\"cursor: pointer;\">\n            <div class=\"text-primary\" (click)=createOrderForCustomer(customer.id,customer.fullName)>\n              <span class=\"glyphicon glyphicon-plus\"></span> Create Order </div>\n          </td>\n        </tr>\n      </tbody>\n\n    </table>\n    <!-- pager -->\n    <div>\n      <ul *ngIf=\"pager.pages && pager.pages.length\" class=\"pagination\">\n        <li [ngClass]=\"{disabled:pager.currentPage === 1}\">\n          <a (click)=\"setPage(1)\">First</a>\n        </li>\n        <li [ngClass]=\"{disabled:pager.currentPage === 1}\">\n          <a (click)=\"setPage(pager.currentPage - 1)\">Previous</a>\n        </li>\n        <li *ngFor=\"let page of pager.pages\" [ngClass]=\"{active:pager.currentPage === page}\">\n          <a (click)=\"setPage(page)\">{{page}}</a>\n        </li>\n        <li [ngClass]=\"{disabled:pager.currentPage === pager.totalPages}\">\n          <a (click)=\"setPage(pager.currentPage + 1)\">Next</a>\n        </li>\n        <li [ngClass]=\"{disabled:pager.currentPage === pager.totalPages}\">\n          <a (click)=\"setPage(pager.totalPages)\">Last</a>\n        </li>\n      </ul>\n    </div>\n  </div>\n  <div *ngIf=\"noSearchResultFound\" class=\"text-info align-items-center\">\n    <h4>{{noSearchResultFound}} </h4>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1365,7 +1377,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form #employeeForm=\"ngForm\" (ngSubmit)=\"saveLoan(loan)\">\n    <div class=\"panel panel-primary\">\n      <div class=\"panel-heading\">\n        <h3 class=\"panel-title\">Enter Loan Details for : <strong style=\"color: rgb(0, 204, 255)\"> {{loan?.customerName}}</strong> </h3>\n      </div>\n      <div class=\"panel-body\">\n  \n        <div class=\"form-group\" [class.has-error]=\"loanAmount.invalid && loanAmount.touched\">\n          <label for=\"loanAmount\" class=\"control-label\">Loan Amount</label>\n          <input  id=\"loanAmount\" required  type=\"text\" class=\"form-control\" \n                  name=\"loanAmount\" (keypress)=\"numberOnly($event)\" maxlength=\"8\" [(ngModel)]=\"loan.loanAmount\"\n                 #loanAmount=\"ngModel\">\n                 <span class=\"help-block\" *ngIf=\"loanAmount.invalid && loanAmount.touched\">\n                      Please enter Loan Amount\n                 </span>\n        </div>\n\n        <div class=\"form-group\">\n          <label for=\"loanCreatedDate\" class=\"control-label\">Loan Taken on Date</label>\n          <span class=\"glyphicon glyphicon-calendar\"></span>\n          <div class=\"form-control\" >\n              <app-date-picker [(ngModel)]=\"loanCreatedDate\"  name=\"loanCreatedDate\"> </app-date-picker>\n          </div>\n        </div>\n\n        <div class=\"form-group\">\n            <label for=\"dueDate\" class=\"control-label\">Due Date</label>\n            <span class=\"glyphicon glyphicon-calendar\"></span>\n            <div class=\"form-control\" >\n                <app-date-picker [(ngModel)]=\"enteredDate\"  name=\"dueDate\"> </app-date-picker>\n            </div>\n          </div>\n          \n\n         \n          \n     \n          <div class=\"form-group\" >\n              <label for=\"itemType\"  class=\"control-label\">Select Item Type</label>\n              <select [(ngModel)]=\"loan.itemType\" name=\"itemType\" id=\"itemType\" class=\"form-control\" >\n                  <option value=\"\" disabled selected>select a category</option>\n                  <option *ngFor=\"let item of availableItemType\" [value]=\"item\">{{item}}</option>\n                </select>\n            </div>\n\n            <div class=\"form-group\" >\n                <label for=\"rateOfInterest\"  class=\"control-label\">Select Rate Of Interest %</label>\n                <select [(ngModel)]=\"loan.rateOfInterest\" name=\"rateOfInterest\" id=\"rateOfInterest\" class=\"form-control\" >\n                    <option value=\"\" disabled selected>select a Rate Of Interest</option>\n                    <option *ngFor=\"let rateOfIntrest of rateOfInterestList\" [value]=\"rateOfIntrest\">{{rateOfIntrest}}</option>\n                  </select>\n              </div>\n\n         <div class=\"form-group\" [class.has-error]=\"itemName.touched && itemName.invalid\">\n            <label for=\"itemName\" class=\"control-label\">Item Name</label>\n            <input id=\"itemName\" required type=\"text\" class=\"form-control\"\n                   name=\"itemName\" [(ngModel)]=\"loan.itemName\" #itemName=\"ngModel\">\n                   <span class=\"help-block\" *ngIf=\"itemName.touched && itemName.invalid\">\n                     Please enter itemName\n                   </span>\n          </div>\n  \n          <div class=\"form-group\" [class.has-error]=\"weight.touched && weight.invalid\">\n            <label for=\"weight\" class=\"control-label\">Weight</label>\n            <input id=\"weight\" required type=\"text\" maxlength=\"8\" class=\"form-control\"\n                   name=\"weight\" [(ngModel)]=\"loan.weight\" (keypress)=\"numberOnly($event)\" #weight=\"ngModel\">\n                   <span class=\"help-block\" *ngIf=\"weight.touched && weight.invalid\">\n                     Please enter weight\n                   </span>\n          </div>\n  \n          <div class=\"form-group\" >\n            <label for=\"itemQuality\" class=\"control-label\">Iteam Quality (Tanch)%</label>\n            <select [(ngModel)]=\"loan.itemQuality\" name=\"itemQuality\" id=\"itemQuality\" class=\"form-control\" >\n              <option value=\"\" disabled selected>select a category</option>\n              <option *ngFor=\"let itemQuality of itemQualityList\" [value]=\"itemQuality\">{{itemQuality}}</option>\n            </select>\n          </div>\n  \n          <div class=\"form-group\">\n            <label for=\"comments\">Comments</label>\n            <input id=\"comments\" type=\"text\" class=\"form-control\"\n                   name=\"comments\" [(ngModel)]=\"loan.comments\">\n          </div>\n  \n  \n  \n      </div>\n        <div class=\"panel-footer\">\n         <button class=\"btn btn-primary\" type=\"submit\">Save</button>\n      </div>\n      <div class=\"panel-footer text-success\" *ngIf=\"successMessage\">\n          {{successMessage}}\n       </div>\n       <div class=\"panel-footer text-danger\" *ngIf=\"errorResponse\">\n          {{errorResponse}}\n       </div>\n       <div class=\"panel-footer text-danger\"  *ngIf=\"validationError\">\n          {{validationError}}\n       </div>\n    </div>\n  </form> \n\n\n  <div class=\"modal \" tabindex=\"-1\" id=\"confirmationModal\"\n  data-keyboard=\"false\" data-backdrop=\"static\" [ngStyle]=\"{'display':getDisplayObject()}\" >\n  <div class=\"modal-dialog modal-lg\">\n  <div class=\"modal-content\">\n        \n                <div class=\"modal-header\">\n          \n                        <button type=\"button\" (click)=\"dismissModal()\" class=\"close\" data-dismiss=\"modal\">\n                            &times;\n                        </button>\n                        <h4 class=\"modal-title\">Create Loan Status</h4>\n                    </div>\n                    <div class=\"modal-body\">\n                        <div class=\"text-success\" style=\"align-content: center\"  *ngIf=\"successMessage\"> \n                            <h4>{{successMessage}}</h4> </div>\n                           \n                        <div class=\"text-error\" style=\"align-content: center\"  *ngIf=\"errorResponse\">\n                             <h4>{{errorResponse}}</h4></div>\n                    </div>\n                    <div class=\"modal-footer\">\n                        <button type=\"button\" (click)=\"dismissModal()\" class=\"btn btn-info\" >Create one more Loan</button>\n                        <button type=\"button\" class=\"btn btn-primary\"\n                        (click)=\"dismissModalAndRedirect()\"   data-dismiss=\"modal\">Go to Loan List</button>\n                    </div>\n            \n         \n      \n      \n  </div>\n</div>\n</div> \n\n  \n  "
+module.exports = "<form #employeeForm=\"ngForm\" (ngSubmit)=\"saveLoan(loan)\">\n  <div class=\"panel panel-primary\">\n    <div class=\"panel-heading\">\n      <h3 class=\"panel-title\">Enter Loan Details for : <strong style=\"color: rgb(0, 204, 255)\">\n          {{loan?.customerName}}</strong> </h3>\n    </div>\n    <div class=\"panel-body\">\n\n      <div class=\"form-group\" [class.has-error]=\"loanAmount.invalid && loanAmount.touched\">\n        <label for=\"loanAmount\" class=\"control-label\">Loan Amount</label>\n        <input id=\"loanAmount\" required type=\"text\" class=\"form-control\" name=\"loanAmount\"\n          (keypress)=\"numberOnly($event)\" maxlength=\"8\" [(ngModel)]=\"loan.loanAmount\" #loanAmount=\"ngModel\">\n        <span class=\"help-block\" *ngIf=\"loanAmount.invalid && loanAmount.touched\">\n          Please enter Loan Amount\n        </span>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"loanCreatedDate\" class=\"control-label\">Loan Taken on Date</label>\n        <span class=\"glyphicon glyphicon-calendar\"></span>\n        <div class=\"form-control\">\n          <app-date-picker [(ngModel)]=\"loanCreatedDate\" name=\"loanCreatedDate\"> </app-date-picker>\n        </div>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"dueDate\" class=\"control-label\">Due Date</label>\n        <span class=\"glyphicon glyphicon-calendar\"></span>\n        <div class=\"form-control\">\n          <app-date-picker [(ngModel)]=\"enteredDate\" name=\"dueDate\"> </app-date-picker>\n        </div>\n      </div>\n\n\n      <!-- Item list starts -->\n\n\n      <div class=\"panel panel-default col-md-12\" id=\"itemDetailsId\" *ngFor=\"let itemObj of itemContainers; let i=index\">\n\n        <div class=\"panel-body\">\n          <div class=\"col-md-12\">\n            <div> Add details for Item {{i+1}}</div>\n            <br>\n            <div class=\"form-group col-md-3\">\n              <label for=\"itemName{{i}}\" class=\"control-label\">Item Name</label>\n              <input id=\"itemName{{i}}\" required type=\"text\" class=\"form-control\" name=\"itemName{{i}}\"\n                [(ngModel)]=\"itemObj.itemName\" #itemNameCntrl=\"ngModel\">\n              <span class=\"help-block\" *ngIf=\"itemNameCntrl.touched && itemNameCntrl.invalid\">\n                Please enter itemName\n              </span>\n            </div>\n\n            <div class=\"form-group col-md-3\">\n              <label for=\"itemType{{i}}\" class=\"control-label\">Select Item Type</label>\n              <select [(ngModel)]=\"itemObj.itemType\" name=\"itemType{{i}}\" id=\"itemType{{i}}\" class=\"form-control\">\n                <option value=\"\" disabled selected>select a category</option>\n                <option *ngFor=\"let item of availableItemType\" [value]=\"item\">{{item}}</option>\n              </select>\n            </div>\n\n            <div class=\"form-group col-md-3\">\n              <label for=\"weight{{i}}\" class=\"control-label\">Weight</label>\n              <input id=\"weight{{i}}\" required type=\"text\" class=\"form-control\" name=\"weight\"\n                [(ngModel)]=\"itemObj.weight\" #weightCntrl=\"ngModel\">\n              <span class=\"help-block\" *ngIf=\"weightCntrl.touched && weightCntrl.invalid\">\n                Please enter weight\n              </span>\n\n            </div>\n\n             <div class=\"form-group col-md-3\" >\n                  <label for=\"itemQuality{{i}}\" class=\"control-label\">Iteam Quality (Tanch)%</label>\n                  <select [(ngModel)]=\"itemObj.itemQuality\" name=\"itemQuality{{i}}\" id=\"itemQuality{{i}}\" class=\"form-control\" >\n                    <option value=\"\" disabled selected>select a category</option>\n                    <option *ngFor=\"let itemQuality of itemQualityList\" [value]=\"itemQuality\">{{itemQuality}}</option>\n                  </select>\n                </div> \n\n\n\n\n          </div>\n\n          <div class=\"col-md-12\">\n\n            <div class=\"form-group col-md-3\">\n              <label for=\"marketRate\" class=\"control-label\">Market Rate</label>\n              <input id=\"marketRate{{i}}\" required type=\"text\" class=\"form-control\" name=\"marketRate{{i}}\"\n                [(ngModel)]=\"itemObj.marketRate\" #marketRateCntrl=\"ngModel\">\n              <span class=\"help-block\" *ngIf=\"marketRateCntrl.invalid && marketRateCntrl.touched\">\n                Please enter Market Rate\n              </span>\n\n            </div>\n\n\n           \n\n\n\n\n            <div class=\"form-group col-md-3\">\n              <label for=\"orderAmount{{i}}\" class=\"control-label\"> Item Selling Amount\n                &nbsp;</label>\n              <input id=\"orderAmount{{i}}\" required type=\"text\" class=\"form-control\" name=\"orderAmount{{i}}\"\n                [(ngModel)]=\"itemObj.itemPrice\">\n              <span *ngIf=\"itemObj.calculationLogicString\" style=\"color:darkorange\">\n                <small><em>({{itemObj.calculationLogicString}})</em></small></span>\n            </div>\n\n            <div class=\"form-group col-md-3\">\n              <label for=\"comments\">Item Comments</label>\n              <input id=\"comments\" type=\"text\" class=\"form-control\" name=\"comments\" [(ngModel)]=\"itemObj.itemComments\">\n            </div>\n\n\n          </div>\n\n\n\n\n\n        </div>\n\n\n      </div>\n\n     \n\n        <div form-group col-md-6>\n          <div  class=\"text-primary col-md-2\" style=\"cursor: pointer;\" (click)=\"addMoreItems()\">Add More Items</div>\n          <!--  <button class=\"btn btn-info\" (click)=\"addMoreItems()\">Add More Items</button> -->\n          &nbsp;\n          <div class=\"text-primary col-md-2\" style=\"cursor: pointer;\" (click)=\"deleteItems()\">Delete More Items</div>\n          <!--   <button  class=\"btn btn-info\" (click)=\"deleteItems()\">Delete More Items</button> -->\n        </div>\n\n      \n      <br>\n\n\n\n<!-- \n      <div class=\"form-group\">\n        <label for=\"itemType\" class=\"control-label\">Select Item Type</label>\n        <select [(ngModel)]=\"loan.itemType\" name=\"itemType\" id=\"itemType\" class=\"form-control\">\n          <option value=\"\" disabled selected>select a category</option>\n          <option *ngFor=\"let item of availableItemType\" [value]=\"item\">{{item}}</option>\n        </select>\n      </div> -->\n\n      <div class=\"form-group\">\n        <label for=\"rateOfInterest\" class=\"control-label\">Select Rate Of Interest %</label>\n        <select [(ngModel)]=\"loan.rateOfInterest\" name=\"rateOfInterest\" id=\"rateOfInterest\" class=\"form-control\">\n          <option value=\"\" disabled selected>select a Rate Of Interest</option>\n          <option *ngFor=\"let rateOfIntrest of rateOfInterestList\" [value]=\"rateOfIntrest\">{{rateOfIntrest}}</option>\n        </select>\n      </div>\n <!-- \n      <div class=\"form-group\" [class.has-error]=\"itemName.touched && itemName.invalid\">\n        <label for=\"itemName\" class=\"control-label\">Item Name</label>\n        <input id=\"itemName\" required type=\"text\" class=\"form-control\" name=\"itemName\" [(ngModel)]=\"loan.itemName\"\n          #itemName=\"ngModel\">\n        <span class=\"help-block\" *ngIf=\"itemName.touched && itemName.invalid\">\n          Please enter itemName\n        </span>\n      </div>\n\n      <div class=\"form-group\" [class.has-error]=\"weight.touched && weight.invalid\">\n        <label for=\"weight\" class=\"control-label\">Weight</label>\n        <input id=\"weight\" required type=\"text\" maxlength=\"8\" class=\"form-control\" name=\"weight\"\n          [(ngModel)]=\"loan.weight\" (keypress)=\"numberOnly($event)\" #weight=\"ngModel\">\n        <span class=\"help-block\" *ngIf=\"weight.touched && weight.invalid\">\n          Please enter weight\n        </span>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"itemQuality\" class=\"control-label\">Iteam Quality (Tanch)%</label>\n        <select [(ngModel)]=\"loan.itemQuality\" name=\"itemQuality\" id=\"itemQuality\" class=\"form-control\">\n          <option value=\"\" disabled selected>select a category</option>\n          <option *ngFor=\"let itemQuality of itemQualityList\" [value]=\"itemQuality\">{{itemQuality}}</option>\n        </select>\n      </div>\n\n    -->\n\n      <div class=\"form-group\" >\n        <label for=\"khataNumber\" >Khata Number</label>\n        <input  id=\"khataNumber\"   type=\"text\" class=\"form-control\" \n                name=\"khataNumber\" [(ngModel)]=\"loan.khataNumber\">\n              \n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"comments\">Comments</label>\n        <input id=\"comments\" type=\"text\" class=\"form-control\" name=\"comments\" [(ngModel)]=\"loan.comments\">\n      </div>\n\n\n\n    </div>\n    <div class=\"panel-footer\">\n      <button class=\"btn btn-primary\" type=\"submit\">Save</button>\n    </div>\n    <div class=\"panel-footer text-success\" *ngIf=\"successMessage\">\n      {{successMessage}}\n    </div>\n    <div class=\"panel-footer text-danger\" *ngIf=\"errorResponse\">\n      {{errorResponse}}\n    </div>\n    <div class=\"panel-footer text-danger\" *ngIf=\"validationError\">\n      {{validationError}}\n    </div>\n  </div>\n</form>\n\n\n<div class=\"modal \" tabindex=\"-1\" id=\"confirmationModal\" data-keyboard=\"false\" data-backdrop=\"static\"\n  [ngStyle]=\"{'display':getDisplayObject()}\">\n  <div class=\"modal-dialog modal-lg\">\n    <div class=\"modal-content\">\n\n      <div class=\"modal-header\">\n\n        <button type=\"button\" (click)=\"dismissModal()\" class=\"close\" data-dismiss=\"modal\">\n          &times;\n        </button>\n        <h4 class=\"modal-title\">Create Loan Status</h4>\n      </div>\n      <div class=\"modal-body\">\n        <div class=\"text-success\" style=\"align-content: center\" *ngIf=\"successMessage\">\n          <h4>{{successMessage}}</h4>\n        </div>\n\n        <div class=\"text-error\" style=\"align-content: center\" *ngIf=\"errorResponse\">\n          <h4>{{errorResponse}}</h4>\n        </div>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" (click)=\"dismissModal()\" class=\"btn btn-info\">Create one more Loan</button>\n        <button type=\"button\" class=\"btn btn-primary\" (click)=\"dismissModalAndRedirect()\" data-dismiss=\"modal\">Go to\n          Loan List</button>\n      </div>\n\n\n\n\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1383,6 +1395,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_loan_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/loan.service */ "./src/app/services/loan.service.ts");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _models_items_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../models/items.model */ "./src/app/models/items.model.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1396,20 +1409,23 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var CreateLoanComponent = /** @class */ (function () {
     function CreateLoanComponent(_loanService, _route, _router) {
         this._loanService = _loanService;
         this._route = _route;
         this._router = _router;
         this.displayModalObject = 'none';
+        this.item = new _models_items_model__WEBPACK_IMPORTED_MODULE_4__["Items"]();
+        this.itemContainers = [];
         this.availableItemType = [
             "Gold", "Silver", "Platinum", "Diamond"
         ];
         this.rateOfInterestList = [
-            "1", "1.5", "2", "2.5", "3", "3.5", "4", "4.5", "5"
+            "1.00", "1.25", "1.50", "1.75", "2.00", "2.25", "2.50", "2.75", "3.00", "3.25", "3.50", "3.75", "4.00", "4.25", "4.50", "4.75", "5"
         ];
         this.itemQualityList = [
-            "40", "50", "55", "60", "65", "70", "75", "80", "85", "90", "95", "99"
+            "40", "50", "55", "60", "65", "70", "75", "80", "85", "90", "95", "99", "100"
         ];
         this.loan = {
             loanId: null,
@@ -1426,7 +1442,8 @@ var CreateLoanComponent = /** @class */ (function () {
             itemType: null,
             createdDate: null,
             khataNumber: null,
-            customerCity: null
+            customerCity: null,
+            itemsList: null,
         };
     }
     CreateLoanComponent.prototype.ngOnInit = function () {
@@ -1437,15 +1454,47 @@ var CreateLoanComponent = /** @class */ (function () {
         // this.customerName=custName;
         this.loan.customerName = custName;
         this.loan.customerId = custId;
+        this.itemContainers.push(this.item);
+    };
+    CreateLoanComponent.prototype.validateItemList = function () {
+        var respnse = '';
+        var i = 1;
+        this.itemContainers.forEach(function (itm) {
+            if (itm.itemName == null) {
+                respnse = 'Please enter Item Name for item ' + i;
+                return respnse;
+            }
+            if (itm.weight == null) {
+                respnse = 'Please enter Weight for item : ' + i;
+                return respnse;
+            }
+            if (itm.marketRate == null) {
+                respnse = 'Please enter marketRate for item : ' + i;
+                return respnse;
+            }
+            if (itm.itemPrice == null) {
+                respnse = 'Please enter order amount for Item ' + i;
+                return respnse;
+            }
+            i++;
+        });
+        return respnse;
     };
     CreateLoanComponent.prototype.saveLoan = function (loan) {
         var _this = this;
+        // alert(this.enteredDate)
         var datePipe = new _angular_common__WEBPACK_IMPORTED_MODULE_2__["DatePipe"]('en-US');
         this.loan.dueDate = datePipe.transform(this.enteredDate, 'yyyy-MM-dd');
         this.loan.createdDate = this.loanCreatedDate;
+        var res = this.validateItemList();
+        if (res != '') {
+            this.validationError = res;
+            return;
+        }
         if (!this.validateLoanData(loan)) {
             return;
         }
+        loan.itemsList = this.itemContainers;
         this.validationError = null;
         this._loanService.saveLoan(loan)
             .subscribe(function (res) {
@@ -1503,27 +1552,23 @@ var CreateLoanComponent = /** @class */ (function () {
             this.validationError = 'Please enter dueDate';
             return false;
         }
-        if (loan.itemType == null || loan.itemType == '') {
-            this.validationError = 'Please select itemType';
-            return false;
-        }
         if (loan.rateOfInterest == null || loan.rateOfInterest == '') {
             this.validationError = 'Please select rateOfInterest';
             return false;
         }
-        if (loan.itemName == null || loan.itemName == '') {
-            this.validationError = 'Please enter itemName';
-            return false;
-        }
-        if (loan.weight == null || loan.weight <= 0) {
-            this.validationError = 'Please enter weight';
-            return false;
-        }
-        if (loan.itemQuality == null || loan.itemQuality == '') {
-            this.validationError = 'Please select itemQuality';
+        if (loan.khataNumber == null) {
+            this.validationError = 'Please enter Khata Number';
             return false;
         }
         return true;
+    };
+    CreateLoanComponent.prototype.addMoreItems = function () {
+        console.log(JSON.stringify(this.itemContainers));
+        this.item = new _models_items_model__WEBPACK_IMPORTED_MODULE_4__["Items"]();
+        this.itemContainers.push(this.item);
+    };
+    CreateLoanComponent.prototype.deleteItems = function () {
+        this.itemContainers.pop();
     };
     CreateLoanComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1560,7 +1605,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"panel panel-primary\">\n    <div class=\"panel-heading\">\n      <h3 class=\"panel-title\"><strong style=\"color:rgb(154, 234, 240)\">{{customerName}}'s</strong> All Loans</h3>\n    </div>\n    <div class=\"panel-body\" *ngIf=\"loanList\">\n        <table class=\"table table-striped table-bordered table-hover table-condensed\">\n        <thead  class=\"table table-bordered\">\n              <th>Loan Id</th>\n              <th>Name</th>\n              <th>Amount</th>\n              <th>Due Date</th>\n              <th>Item Type</th>\n              <th>Rate Of Intrest</th>\n              <th>Comments</th>\n              <th>Status</th>\n              <th>Item Name</th>\n              <th>Item Quality</th>\n              <th>Weight(gram)</th> \n              <th>More Detail</th> \n            </thead>\n            <tbody > \n            <tr *ngFor=\"let loan of loanList\" [class.bg-success]=\"loan.status=='CLOSED'\"\n            [class.text-success]=\"loan.status=='CLOSED'\">  \n                <td> {{loan.loanId}}</td>\n                <td> {{loan.customerName}}</td>\n                <td> {{loan.loanAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n                <td> {{loan.dueDate | date:\"dd/MM/yy\" }}</td>\n                <td> {{loan.itemType| uppercase}}</td>\n                <td> {{loan.rateOfInterest}} %</td>\n                <td> {{loan.comments}}</td>\n                <td> {{loan.status | uppercase }}</td>\n                <td> {{loan.itemName}}</td>\n                <td> {{loan.itemQuality }}%</td>\n                <td> {{loan.weight}}g</td>\n                <td style=\"cursor: pointer;\"> \n                    <div class=\"text-primary\" (click)=\"onSelect(loan.loanId)\">More Details</div></td>\n            </tr>\n            </tbody>\n            \n            </table>\n           \n    </div>\n    \n    <div class=\"panel-body\" *ngIf=\"!loanList\">\n            <h5 class=\"text-info\"> {{customerName}} doesn't have any loan yet. Please click on below button to place new loan.</h5>\n            \n            \n                  <button class=\"btn btn-info \" (click)=createOrderForCustomer(customerId,customerName) type=\"button\">Create Loan</button> \n        </div>\n</div>\n\n<div class=\"panel panel-primary\">\n    <div class=\"panel-heading\">\n      <h3 class=\"panel-title\"> <strong style=\"color:rgb(154, 234, 240)\">{{customerName}}'s</strong> All Orders </h3>\n    </div>\n    <div class=\"panel-body\" *ngIf=\"customerOrderList\">\n        <table class=\"table table-striped table-bordered table-hover table-condensed\">\n            <thead >\n              <th>Order Id</th>\n              <th>Name</th>\n              <th>Amount</th>\n              <th>Due Date</th>\n              <!-- <th>Item Type</th> -->\n              <!-- <th>Rate Of Intrest</th> -->\n              <!-- <th>Comments</th> -->\n              <th>Status</th>\n              <th>Name</th>\n              <!-- <th>Quality</th> -->\n              <th>Weight</th> \n              <th>More Detail</th> \n              <th>New Loan</th>\n            </thead>\n            <tbody > \n            <tr *ngFor=\"let order of customerOrderList\" [class.bg-success]=\"order.status=='Closed'\"\n            [class.text-success]=\"order.status=='Closed'\" >  \n                <td> {{order.orderId}}</td>\n                <td> {{order.customerName}}</td>\n                <td> {{order.orderAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n                <td> {{order.dueDate | date:\"dd/MM/yy\" }}</td>\n                <!-- <td> {{loan.itemType| uppercase}}</td> -->\n                <!-- <td> {{loan.rateOfInterest}} %</td> -->\n                <!-- <td> {{loan.comments}}</td> -->\n                <td > {{order.status | lowercase }}</td>\n                <td> {{order.itemName}}</td>\n                <!-- <td> {{loan.itemQuality }}%</td> -->\n                <td> {{order.weight}}g</td>\n                <td style=\"cursor: pointer;\">\n                   <div class=\"text-primary\" (click)=\"getOrderDetails(order.orderId)\">Details</div>\n                </td>\n                <td style=\"cursor: pointer;\"> \n                  <div class=\"text-primary\" (click)=createOrderForCustomer(order.customerId,order.customerName)>\n                   <span class=\"glyphicon glyphicon-plus\"></span> Create Order </div>\n               </td>\n            </tr>\n            </tbody>\n            \n         </table>\n           \n    </div>\n    <div class=\"panel-body\" *ngIf=\"!customerOrderList\">\n        <h5 class=\"text-info\"> {{customerName}} doesn't have any order yet. Please click on below button to place new Order.</h5>\n        \n            \n              <button class=\"btn btn-info \" (click)=createOrderForCustomer(customerId,customerName) type=\"button\">Create Order</button> \n    </div>\n</div>\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  "
+module.exports = "<div class=\"panel panel-primary\">\n    <div class=\"panel-heading\">\n      <h3 class=\"panel-title\"><strong style=\"color:rgb(154, 234, 240)\">{{customerName}}'s</strong> All Loans</h3>\n    </div>\n    <div class=\"panel-body\" *ngIf=\"loanList\">\n        <table class=\"table table-striped table-bordered table-hover table-condensed\">\n        <thead  class=\"table table-bordered\">\n              <th>Loan Id</th>\n              <th>Name</th>\n              <th>Amount</th>\n              <th>Due Date</th>\n              <th>Rate Of Intrest</th>\n              <th>Comments</th>\n              <th>Status</th>\n              <th>More Detail</th> \n              <th>New Loan</th>\n            </thead>\n            <tbody > \n            <tr *ngFor=\"let loan of loanList\" [class.bg-success]=\"loan.status=='CLOSED'\"\n            [class.text-success]=\"loan.status=='CLOSED'\">  \n                <td> {{loan.loanId}}</td>\n                <td> {{loan.customerName}}</td>\n                <td> {{loan.loanAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n                <td> {{loan.dueDate | date:\"dd/MM/yy\" }}</td>\n\n                <td> {{loan.rateOfInterest}} %</td>\n                <td> {{loan.comments}}</td>\n                <td> {{loan.status | uppercase }}</td>\n\n                <td style=\"cursor: pointer;\"> \n                    <div class=\"text-primary\" (click)=\"onSelect(loan.loanId)\">More Details</div></td>\n                    <td style=\"cursor: pointer;\"> \n                      <div class=\"text-primary\" (click)=createCustomerLoan(order.customerId,order.customerName)>\n                       <span class=\"glyphicon glyphicon-plus\"></span> Create Loan </div>\n                   </td>\n            </tr>\n            \n            </tbody>\n            \n            </table>\n           \n    </div>\n    \n    <div class=\"panel-body\" *ngIf=\"!loanList\">\n            <h5 class=\"text-info\"> {{customerName}} doesn't have any loan yet. Please click on below button to place new loan.</h5>\n            \n            \n                  <button class=\"btn btn-info \" (click)=createCustomerLoan(customerId,customerName) type=\"button\">Create Loan</button> \n        </div>\n</div>\n\n<div class=\"panel panel-primary\">\n    <div class=\"panel-heading\">\n      <h3 class=\"panel-title\"> <strong style=\"color:rgb(154, 234, 240)\">{{customerName}}'s</strong> All Orders </h3>\n    </div>\n    <div class=\"panel-body\" *ngIf=\"customerOrderList\">\n        <table class=\"table table-striped table-bordered table-hover table-condensed\">\n            <thead >\n              <th>Order Id</th>\n              <th>Name</th>\n              <th>Amount</th>\n              <th>Due Date</th>\n              <!-- <th>Item Type</th> -->\n              <!-- <th>Rate Of Intrest</th> -->\n              <th>Comments</th>\n              <th>Status</th>\n              <!-- <th>Name</th> -->\n              <!-- <th>Quality</th> -->\n             <!--  <th>Weight</th>  -->\n              <th>More Detail</th> \n              <th>New Order</th>\n              \n            </thead>\n            <tbody > \n            <tr *ngFor=\"let order of customerOrderList\" [class.bg-success]=\"order.status=='Closed'\"\n            [class.text-success]=\"order.status=='Closed'\" >  \n                <td> {{order.orderId}}</td>\n                <td> {{order.customerName}}</td>\n                <td> {{order.orderAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n                <td> {{order.dueDate | date:\"dd/MM/yy\" }}</td>\n                <!-- <td> {{loan.itemType| uppercase}}</td> -->\n                <!-- <td> {{loan.rateOfInterest}} %</td> -->\n                <td> {{order.comments}}</td>\n                <td > {{order.status | uppercase }}</td>\n                <!-- <td> {{order.itemName}}</td> -->\n                <!-- <td> {{loan.itemQuality }}%</td> -->\n                <!-- <td> {{order.weight}}g</td> -->\n                <td style=\"cursor: pointer;\">\n                   <div class=\"text-primary\" (click)=\"getOrderDetails(order.orderId)\">Details</div>\n                </td>\n                <td style=\"cursor: pointer;\"> \n                  <div class=\"text-primary\" (click)=createOrderForCustomer(order.customerId,order.customerName)>\n                   <span class=\"glyphicon glyphicon-plus\"></span> Create Order </div>\n               </td>\n            </tr>\n            </tbody>\n            \n         </table>\n           \n    </div>\n    <div class=\"panel-body\" *ngIf=\"!customerOrderList\">\n        <h5 class=\"text-info\"> {{customerName}} doesn't have any order yet. Please click on below button to place new Order.</h5>\n        \n            \n              <button class=\"btn btn-info \" (click)=createOrderForCustomer(customerId,customerName) type=\"button\">Create Order</button> \n    </div>\n</div>\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  "
 
 /***/ }),
 
@@ -1620,6 +1665,9 @@ var CustomerLoanDetailComponent = /** @class */ (function () {
     CustomerLoanDetailComponent.prototype.createOrderForCustomer = function (custId, custName) {
         this._router.navigate(['/createOrder', custId + '-' + custName]);
     };
+    CustomerLoanDetailComponent.prototype.createCustomerLoan = function (custId, custName) {
+        this._router.navigate(['/createLoan', custId + '-' + custName]);
+    };
     CustomerLoanDetailComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-customer-loan-detail',
@@ -1656,7 +1704,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n <div class=\"panel panel-primary\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\">Loan Details</h3>\n        </div>\n        <div class=\"panel-body\">           \n\n    <div class=\"pannel panel-info\">\n        <div class=\"panel-heading\">\n         \n            <span   style=\"color:rgb(27, 27, 83)\">Name  : </span><strong>{{loanDetail?.customerName}}</strong> \n           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span  style=\"color:rgb(27, 27, 83)\">City :</span><strong> {{loanDetail?.customerCity}}</strong> \n         \n        </div>\n\n        <div class=\"panel-body\">\n          <table class=\"table table-striped table-bordered table-hover table-condensed\">\n            <tbody > \n             <tr>\n                <td>Loan Id</td>\n                <td class=\"text-primary\"> {{loanDetail?.loanId}}</td>\n              </tr> \n              <tr>\n                <td>Khata Number</td>\n                <td class=\"text-primary\"> {{loanDetail?.khataNumber}}</td>\n              </tr> \n             \n              <tr>\n                  <td>Amount</td>\n                  <td class=\"text-primary\"> {{loanDetail?.loanAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n              </tr>\n               \n              <tr>\n                  <td>Due Date</td>\n                  <td class=\"text-primary\"> {{loanDetail?.dueDate | date:\"dd/MM/yy\" }}</td>\n              </tr>\n              <tr>  \n                <td>Item Type</td>\n                <td class=\"text-primary\"> {{loanDetail?.itemType| lowercase}}</td>\n              </tr>\n              <tr>  \n                    <td>Item Name</td>\n                    <td class=\"text-primary\"> {{loanDetail?.itemName| lowercase}}</td>\n                </tr>\n            <tr>  \n                <td>Rate of Interest</td>\n                <td class=\"text-primary\"> {{loanDetail?.rateOfInterest}}%</td>\n            </tr>\n\n            <tr>  \n                <td>Item Quality</td>\n                <td class=\"text-primary\"> {{loanDetail?.itemQuality}}%</td>\n            </tr>\n            <tr>  \n                <td>Loan Taken on Date in (\"DD/MM/YY\")</td>\n                <td class=\"text-primary\"> {{loanDetail?.createdDate | date:\"dd/MM/yy\" }}</td>\n            </tr>\n            <tr>  \n                <td>Comment</td>\n                <td class=\"text-primary\"> {{loanDetail?.comments| lowercase}}</td>\n            </tr>\n            <tr>  \n            <tr [class.bg-success]=\"loanDetail?.status=='CLOSED'\">  \n                    <td>Loan Status</td>\n                    <td class=\"text-primary\"> {{loanDetail?.status }}</td>\n                </tr>\n\n\n            <tr *ngIf=\"loanDetail?.status=='OPEN'\">  \n                <td colspan=\"2\" class=\"text-center\"><button class=\"btn btn-primary\" \n                    data-target=\"#loginModal\"  data-toggle=\"modal\" >Add Payment/Loan </button> </td>\n             \n              </tr>\n\n            </tbody>\n            </table>\n            <div class=\"text-info\" *ngIf=\"!loanDetail.loanId\"> This customer doesn't have any loan  </div>\n        </div>\n\n        <div class=\"pannel panel-info\" *ngIf=\"checkPaymentDetailsAvailable()\">\n            <div class=\"panel-heading\">\n               Loan Payment Details\n              </div>\n\n            <div class=\"panel-body\"> \n                <table class=\"table  table-bordered table-hover table-condensed\">\n                    <thead  class=\"table-bordered\">\n                      <th>Payment Id</th>\n                      <th>Payment Amount</th>\n                      <th>Balance Amount</th>\n                      <th>Interest Amount</th>\n                      <th>Payment Date</th>\n                      <th>Payment Type</th>\n                      <th>Comment</th>\n                      \n                     \n                    </thead>\n                    <tbody > \n                    <tr *ngFor=\"let payment of loanPaymentDetailsList\" \n                    [class.text-success]=\"payment.paymentType=='PARTIAL_PAYMENT'\"\n                    [class.text-danger]=\"payment.paymentType=='ADDITIONAL_LOAN'\">  \n                        <td> {{payment.loanPaymentId}}</td>\n                        <td> {{payment.partialPaymentAmount | currency:'INR':'symbol':'4.2-2'}}</td>\n                        <td> {{payment.balanceAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n                        <td> {{payment.interestAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n                        <td> {{payment.createdOn|  date:\"dd/MM/yy\"}}</td>\n                        <td> {{payment.paymentType | lowercase}}</td>\n                       \n                        <td> {{payment.comment }}</td>\n                        \n                       \n                    </tr> \n                    \n                    </tbody>\n                </table>\n            </div> \n        </div>\n        <div *ngIf=\"loanDetail?.status=='OPEN'\">\n             <table class=\"table table-hover table-condensed\">\n              <tbody > \n                <tr>  \n                  <td colspan=\"5\" class=\"text-center\"><button class=\"btn btn-primary\" \n                    (click)=\"calculateInterest(loanDetail)\">Calculate Intrest </button> </td>\n               \n                </tr>\n             </tbody>\n             </table>\n        </div>\n\n        <div class=\"pannel panel-success\" *ngIf=\"simpleInterest\" >\n            <div class=\"panel-heading\">\n               Calculated Interest Details\n\n              </div>\n\n            <div class=\"panel-body\"> \n            <table class=\"table table-striped table-bordered table-hover\">\n                <tbody > \n                    \n                    <tr  *ngIf=\"simpleInterest\">  \n                        <td>Current Loan Amount</td>\n                        <td class=\"text-success\">{{(currLoanAmount) | currency:'INR':'symbol':'4.2-2' }}</td>\n                    </tr>\n                    <tr  *ngIf=\"simpleInterest\">  \n                        <td> Interest Amount</td>\n                        <td class=\"text-success\">{{(simpleInterest) | currency:'INR':'symbol':'4.2-2' }} \n                            </td>\n                    </tr>\n                    <tr  *ngIf=\"simpleInterest\">  \n                            <td> Total Time </td>\n                            <td class=\"text-success\"> {{noOfMonths}} months and {{noOfDays}} days </td>\n                    </tr>\n                    <tr  *ngIf=\"simpleInterest\">  \n                        <td> Total Amount with Interest  </td>\n                        <td class=\"text-success\"> <strong>{{(totalAmount)\n                            | currency:'INR':'symbol' }}</strong></td>\n                    </tr>\n                </tbody>\n              </table> \n            </div> \n        </div>\n       \n         \n        \n    </div>\n\n\n\n    <div class=\"modal fade\" tabindex=\"-1\" id=\"loginModal\"\n        data-keyboard=\"false\" data-backdrop=\"static\">\n        <div class=\"modal-dialog modal-lg\">\n        <div class=\"modal-content\">\n            <div class=\"modal-header\">\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\">\n                    &times;\n                </button>\n                <h4 class=\"modal-title\">Add Payment</h4>\n            </div>\n            <div class=\"modal-body\">\n                <form>\n                    \n                    <div class=\"form-group\" >\n                                <label for=\"partialPaymentAmount\" class=\"control-label\">Payment Amount</label>\n                                <input  id=\"partialPaymentAmount\" required  type=\"number\" class=\"form-control\" \n                                        name=\"partialPaymentAmount\" [(ngModel)]=\"loanPayment.partialPaymentAmount\"\n                                       #loanAmount=\"ngModel\">\n                                       \n                    </div>\n                    <div class=\"form-group\">\n                            <label for=\"comments\">Comments</label>\n                            <input id=\"comments\" type=\"text\" class=\"form-control\"\n                                   name=\"comments\" [(ngModel)]=\"loanPayment.comment\">\n                     </div>\n                     <div class=\"form-group\">\n                            <label for=\"createdOn\" class=\"control-label\">Payment Date</label>\n                            <span class=\"glyphicon glyphicon-calendar\"></span>\n                            <div class=\"form-control\" >\n                                <app-date-picker [(ngModel)]=\"loanPayment.createdOn\"  name=\"createdOn\"> </app-date-picker>\n                            </div>\n                          </div>\n                    <div class=\"form-group\" >\n                            <label for=\"paymentType\" class=\"control-label\">Additional Loan/Partial Payment</label>\n                            <select [(ngModel)]=\"loanPayment.paymentType\" name=\"paymentType\" id=\"paymentType\" class=\"form-control\" >\n                              <option value=\"\" disabled selected>select a category</option>\n                              <option *ngFor=\"let paymentType of paymentTypeList\" [value]=\"paymentType\">{{paymentType}}</option>\n                            </select>\n                    </div>\n                   \n                </form>\n            </div>\n            <div class=\"modal-footer\">\n                <button type=\"submit\" class=\"btn btn-primary\" (click)=\"savePartialPayment(loanPayment)\">Save</button>\n                <button type=\"button\" class=\"btn btn-primary\"\n                        data-dismiss=\"modal\">Close</button>\n            </div>\n            <div class=\"text-success\" style=\"align-content: center\"  *ngIf=\"success_response\"> \n                <h4>{{success_response}}</h4> </div>\n               \n            <div class=\"text-error\" style=\"align-content: center\"  *ngIf=\"errorResponseOnPayment\">\n                 <h4>{{errorResponseOnPayment}}</h4></div>\n        </div>\n    </div>\n    </div>\n</div>"
+module.exports = "\n\n <div class=\"panel panel-primary\">\n        <div class=\"panel-heading\">\n          <h3 class=\"panel-title\">Loan Details</h3>\n        </div>\n        <div class=\"panel-body\">           \n            <div> <button class=\"btn btn-primary\" \n                (click)=\"editLoanDetail(loanDetail?.loanId)\">Edit Loan Details </button></div>\n    <div class=\"pannel panel-info\">\n        <div class=\"panel-heading\">\n         \n            <span   style=\"color:rgb(27, 27, 83)\">Name  : </span><strong>{{loanDetail?.customerName}}</strong> \n           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span  style=\"color:rgb(27, 27, 83)\">City :</span><strong> {{loanDetail?.customerCity}}</strong> \n         \n        </div>\n\n        <div class=\"panel-body\">\n          <table class=\"table table-striped table-bordered table-hover table-condensed\">\n            <tbody > \n             <tr>\n                <td>Loan Id</td>\n                <td class=\"text-primary\"> {{loanDetail?.loanId}}</td>\n              </tr> \n              <tr>\n                <td>Khata Number</td>\n                <td class=\"text-primary\"> {{loanDetail?.khataNumber}}</td>\n              </tr> \n             \n              <tr>\n                  <td>Amount</td>\n                  <td class=\"text-primary\"> {{loanDetail?.loanAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n              </tr>\n               \n              <tr>\n                  <td>Due Date</td>\n                  <td class=\"text-primary\"> {{loanDetail?.dueDate | date:\"dd/MM/yy\" }}</td>\n              </tr>\n             \n            <tr>  \n                <td>Rate of Interest</td>\n                <td class=\"text-primary\"> {{loanDetail?.rateOfInterest}}%</td>\n            </tr>\n\n           \n            <tr>  \n                <td>Loan Taken on Date in (\"DD/MM/YY\")</td>\n                <td class=\"text-primary\"> {{loanDetail?.createdDate | date:\"dd/MM/yy\" }}</td>\n            </tr>\n            <tr>  \n                <td>Comment</td>\n                <td class=\"text-primary\"> {{loanDetail?.comments| lowercase}}</td>\n            </tr>\n            <tr>  \n            <tr [class.bg-success]=\"loanDetail?.status=='CLOSED'\">  \n                    <td>Loan Status</td>\n                    <td class=\"text-primary\"> {{loanDetail?.status }}</td>\n                </tr>\n\n\n\n\n               \n\n\n\n            <tr *ngIf=\"loanDetail?.status=='OPEN'\">  \n                <td colspan=\"2\" class=\"text-center\"><button class=\"btn btn-primary\" \n                    data-target=\"#loginModal\"  data-toggle=\"modal\" >Add Payment/Loan </button> </td>\n             \n              </tr>\n\n            </tbody>\n            </table>\n            <div class=\"text-info\" *ngIf=\"!loanDetail.loanId\"> This customer doesn't have any loan  </div>\n        </div>\n\n        <div class=\"pannel panel-info\" >\n            <div class=\"panel-heading\">\n               Loan Item Details\n              </div>\n        \n            <div class=\"panel-body\"> \n                <table class=\"table  table-bordered table-hover table-condensed\">\n                    <thead  class=\"table-bordered\">\n                      <th>Item Name</th>\n                      <th>Item Type</th>\n                      <th>Weight (grams)</th>\n                      <th>Item Quality(Tanch)</th>\n                      <th>Count</th>\n                      <th>Item Price</th>\n                     \n                      \n                     \n                    </thead>\n                    <tbody > \n                    <tr *ngFor=\"let item of loanDetail?.itemsList\"  >  \n                        <td> {{item.itemName}}</td>\n                        <td> {{item.itemType }}</td>\n                        <td> {{item.weight || \"NA\"}}</td>\n                        <td> {{item.itemQuality || \"NA\"}}</td>\n                        <td> {{item.count || \"1\"}}</td>\n                        <td> {{item.itemPrice || \"NA\"}}</td>\n                        \n                    </tr> \n                    \n                    </tbody>\n                </table>\n            </div> \n        </div>\n\n\n\n       \n\n\n\n\n\n\n        <div class=\"pannel panel-info\" *ngIf=\"checkPaymentDetailsAvailable()\">\n            <div class=\"panel-heading\">\n               Loan Payment Details\n              </div>\n\n            <div class=\"panel-body\"> \n                <table class=\"table  table-bordered table-hover table-condensed\">\n                    <thead  class=\"table-bordered\">\n                      <th>Payment Id</th>\n                      <th>Payment Amount</th>\n                      <th>Balance Amount</th>\n                      <th>Interest Amount</th>\n                      <th>Payment Date</th>\n                      <th>Payment Type</th>\n                      <th>Comment</th>\n                      \n                     \n                    </thead>\n                    <tbody > \n                    <tr *ngFor=\"let payment of loanPaymentDetailsList\" \n                    [class.text-success]=\"payment.paymentType=='PARTIAL_PAYMENT'\"\n                    [class.text-danger]=\"payment.paymentType=='ADDITIONAL_LOAN'\">  \n                        <td> {{payment.loanPaymentId}}</td>\n                        <td> {{payment.partialPaymentAmount | currency:'INR':'symbol':'4.2-2'}}</td>\n                        <td> {{payment.balanceAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n                        <td> {{payment.interestAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n                        <td> {{payment.createdOn|  date:\"dd/MM/yy\"}}</td>\n                        <td> {{payment.paymentType | lowercase}}</td>\n                       \n                        <td> {{payment.comment }}</td>\n                        \n                       \n                    </tr> \n                    \n                    </tbody>\n                </table>\n            </div> \n        </div>\n        <div *ngIf=\"loanDetail?.status=='OPEN'\">\n             <table class=\"table table-hover table-condensed\">\n              <tbody > \n                <tr>  \n                  <td colspan=\"5\" class=\"text-center\"><button class=\"btn btn-primary\" \n                    (click)=\"calculateInterest(loanDetail)\">Calculate Intrest </button> </td>\n               \n                </tr>\n             </tbody>\n             </table>\n        </div>\n\n        <div class=\"pannel panel-success\" *ngIf=\"simpleInterest\" >\n            <div class=\"panel-heading\">\n               Calculated Interest Details\n\n              </div>\n\n            <div class=\"panel-body\"> \n            <table class=\"table table-striped table-bordered table-hover\">\n                <tbody > \n                    \n                    <tr  *ngIf=\"simpleInterest\">  \n                        <td>Current Loan Amount</td>\n                        <td class=\"text-success\">{{(currLoanAmount) | currency:'INR':'symbol':'4.2-2' }}</td>\n                    </tr>\n                    <tr  *ngIf=\"simpleInterest\">  \n                        <td> Interest Amount</td>\n                        <td class=\"text-success\">{{(simpleInterest) | currency:'INR':'symbol':'4.2-2' }} \n                            </td>\n                    </tr>\n                    <tr  *ngIf=\"simpleInterest\">  \n                            <td> Total Time </td>\n                            <td class=\"text-success\"> {{noOfMonths}} months and {{noOfDays}} days </td>\n                    </tr>\n                    <tr  *ngIf=\"simpleInterest\">  \n                        <td> Total Amount with Interest  </td>\n                        <td class=\"text-success\"> <strong>{{(totalAmount)\n                            | currency:'INR':'symbol' }}</strong></td>\n                    </tr>\n                </tbody>\n              </table> \n            </div> \n        </div>\n       \n         \n        \n    </div>\n\n\n\n    <div class=\"modal fade\" tabindex=\"-1\" id=\"loginModal\"\n        data-keyboard=\"false\" data-backdrop=\"static\">\n        <div class=\"modal-dialog modal-lg\">\n        <div class=\"modal-content\">\n            <div class=\"modal-header\">\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\">\n                    &times;\n                </button>\n                <h4 class=\"modal-title\">Add Payment</h4>\n            </div>\n            <div class=\"modal-body\">\n                <form>\n                    \n                    <div class=\"form-group\" >\n                                <label for=\"partialPaymentAmount\" class=\"control-label\">Payment Amount</label>\n                                <input  id=\"partialPaymentAmount\" required  type=\"number\" class=\"form-control\" \n                                        name=\"partialPaymentAmount\" [(ngModel)]=\"loanPayment.partialPaymentAmount\"\n                                       #loanAmount=\"ngModel\">\n                                       \n                    </div>\n                    <div class=\"form-group\">\n                            <label for=\"comments\">Comments</label>\n                            <input id=\"comments\" type=\"text\" class=\"form-control\"\n                                   name=\"comments\" [(ngModel)]=\"loanPayment.comment\">\n                     </div>\n                     <div class=\"form-group\">\n                            <label for=\"createdOn\" class=\"control-label\">Payment Date</label>\n                            <span class=\"glyphicon glyphicon-calendar\"></span>\n                            <div class=\"form-control\" >\n                                <app-date-picker [(ngModel)]=\"loanPayment.createdOn\"  name=\"createdOn\"> </app-date-picker>\n                            </div>\n                          </div>\n                    <div class=\"form-group\" >\n                            <label for=\"paymentType\" class=\"control-label\">Additional Loan/Partial Payment</label>\n                            <select [(ngModel)]=\"loanPayment.paymentType\" name=\"paymentType\" id=\"paymentType\" class=\"form-control\" >\n                              <option value=\"\" disabled selected>select a category</option>\n                              <option *ngFor=\"let paymentType of paymentTypeList\" [value]=\"paymentType\">{{paymentType}}</option>\n                            </select>\n                    </div>\n                   \n                </form>\n            </div>\n            <div class=\"modal-footer\">\n                <button type=\"submit\" class=\"btn btn-primary\" (click)=\"savePartialPayment(loanPayment)\">Save</button>\n                <button type=\"button\" class=\"btn btn-primary\"\n                        data-dismiss=\"modal\">Close</button>\n            </div>\n            <div class=\"text-success\" style=\"align-content: center\"  *ngIf=\"success_response\"> \n                <h4>{{success_response}}</h4> </div>\n               \n            <div class=\"text-error\" style=\"align-content: center\"  *ngIf=\"errorResponseOnPayment\">\n                 <h4>{{errorResponseOnPayment}}</h4></div>\n        </div>\n    </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -1789,6 +1837,9 @@ var LoanDetailComponent = /** @class */ (function () {
         throw error;
     };
     ;
+    LoanDetailComponent.prototype.editLoanDetail = function (loanId) {
+        this._router.navigate(['editLoanDetail', loanId]);
+    };
     LoanDetailComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-loan-detail',
@@ -1800,6 +1851,203 @@ var LoanDetailComponent = /** @class */ (function () {
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], LoanDetailComponent);
     return LoanDetailComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/loan/loan-details-edit/loan-details-edit.component.css":
+/*!************************************************************************!*\
+  !*** ./src/app/loan/loan-details-edit/loan-details-edit.component.css ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/loan/loan-details-edit/loan-details-edit.component.html":
+/*!*************************************************************************!*\
+  !*** ./src/app/loan/loan-details-edit/loan-details-edit.component.html ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<form #employeeForm=\"ngForm\" (ngSubmit)=\"updateLoan(loan)\">\n    <div class=\"panel panel-primary\">\n      <div class=\"panel-heading\">\n        <h3 class=\"panel-title\">Enter Loan Details for : <strong style=\"color: rgb(0, 204, 255)\">\n            {{loan?.customerName}}</strong> </h3>\n      </div>\n      <div class=\"panel-body\">\n  \n        <div class=\"form-group\" [class.has-error]=\"loanAmount.invalid && loanAmount.touched\">\n          <label for=\"loanAmount\" class=\"control-label\">Loan Amount</label>\n          <input id=\"loanAmount\" required type=\"text\" class=\"form-control\" name=\"loanAmount\"\n            (keypress)=\"numberOnly($event)\" maxlength=\"8\" [(ngModel)]=\"loan.loanAmount\" #loanAmount=\"ngModel\">\n          <span class=\"help-block\" *ngIf=\"loanAmount.invalid && loanAmount.touched\">\n            Please enter Loan Amount\n          </span>\n        </div>\n  \n        <div class=\"form-group\">\n          <label for=\"loanCreatedDate\" class=\"control-label\">Loan Taken on Date</label>\n          <span class=\"glyphicon glyphicon-calendar\"></span>\n          <div class=\"form-control\">\n            <app-date-picker [(ngModel)]=\"loanCreatedDate\" name=\"loanCreatedDate\"> </app-date-picker>\n          </div>\n        </div>\n  \n        <div class=\"form-group\">\n          <label for=\"dueDate\" class=\"control-label\">Due Date</label>\n          <span class=\"glyphicon glyphicon-calendar\"></span>\n          <div class=\"form-control\">\n            <app-date-picker [(ngModel)]=\"enteredDate\" name=\"dueDate\"> </app-date-picker>\n          </div>\n        </div>\n  \n  \n        <!-- Item list starts -->\n  \n  \n        <div class=\"panel panel-default col-md-12\" id=\"itemDetailsId\" *ngFor=\"let itemObj of itemContainers; let i=index\">\n  \n          <div class=\"panel-body\">\n            <div class=\"col-md-12\">\n              <div> Add details for Item {{i+1}}</div>\n              <br>\n              <div class=\"form-group col-md-3\">\n                <label for=\"itemName{{i}}\" class=\"control-label\">Item Name</label>\n                <input id=\"itemName{{i}}\" required type=\"text\" class=\"form-control\" name=\"itemName{{i}}\"\n                  [(ngModel)]=\"itemObj.itemName\" #itemNameCntrl=\"ngModel\">\n                <span class=\"help-block\" *ngIf=\"itemNameCntrl.touched && itemNameCntrl.invalid\">\n                  Please enter itemName\n                </span>\n              </div>\n  \n              <div class=\"form-group col-md-3\">\n                <label for=\"itemType{{i}}\" class=\"control-label\">Select Item Type</label>\n                <select [(ngModel)]=\"itemObj.itemType\" name=\"itemType{{i}}\" id=\"itemType{{i}}\" class=\"form-control\">\n                  <option value=\"\" disabled selected>select a category</option>\n                  <option *ngFor=\"let item of availableItemType\" [value]=\"item\">{{item}}</option>\n                </select>\n              </div>\n  \n              <div class=\"form-group col-md-3\">\n                <label for=\"weight{{i}}\" class=\"control-label\">Weight</label>\n                <input id=\"weight{{i}}\" required type=\"text\" class=\"form-control\" name=\"weight\"\n                  [(ngModel)]=\"itemObj.weight\" #weightCntrl=\"ngModel\">\n                <span class=\"help-block\" *ngIf=\"weightCntrl.touched && weightCntrl.invalid\">\n                  Please enter weight\n                </span>\n  \n              </div>\n  \n               <div class=\"form-group col-md-3\" >\n                    <label for=\"itemQuality{{i}}\" class=\"control-label\">Iteam Quality (Tanch)%</label>\n                    <select [(ngModel)]=\"itemObj.itemQuality\" name=\"itemQuality{{i}}\" id=\"itemQuality{{i}}\" class=\"form-control\" >\n                      <option value=\"\" disabled selected>select a category</option>\n                      <option *ngFor=\"let itemQuality of itemQualityList\" [value]=\"itemQuality\">{{itemQuality}}</option>\n                    </select>\n                  </div> \n  \n  \n  \n  \n            </div>\n  \n            <div class=\"col-md-12\">\n  \n              <div class=\"form-group col-md-3\">\n                <label for=\"marketRate\" class=\"control-label\">Market Rate</label>\n                <input id=\"marketRate{{i}}\" required type=\"text\" class=\"form-control\" name=\"marketRate{{i}}\"\n                  [(ngModel)]=\"itemObj.marketRate\" #marketRateCntrl=\"ngModel\">\n                <span class=\"help-block\" *ngIf=\"marketRateCntrl.invalid && marketRateCntrl.touched\">\n                  Please enter Market Rate\n                </span>\n  \n              </div>\n  \n  \n             \n  \n  \n  \n  \n              <div class=\"form-group col-md-3\">\n                <label for=\"orderAmount{{i}}\" class=\"control-label\"> Item Selling Amount\n                  &nbsp;</label>\n                <input id=\"orderAmount{{i}}\" required type=\"text\" class=\"form-control\" name=\"orderAmount{{i}}\"\n                  [(ngModel)]=\"itemObj.itemPrice\">\n                <span *ngIf=\"itemObj.calculationLogicString\" style=\"color:darkorange\">\n                  <small><em>({{itemObj.calculationLogicString}})</em></small></span>\n              </div>\n  \n              <div class=\"form-group col-md-3\">\n                <label for=\"comments\">Item Comments</label>\n                <input id=\"comments\" type=\"text\" class=\"form-control\" name=\"comments\" [(ngModel)]=\"itemObj.itemComments\">\n              </div>\n  \n  \n            </div>\n  \n  \n  \n  \n  \n          </div>\n  \n  \n        </div>\n  \n       \n  \n          <div form-group col-md-6>\n            <div  class=\"text-primary col-md-2\" style=\"cursor: pointer;\" (click)=\"addMoreItems()\">Add More Items</div>\n            <!--  <button class=\"btn btn-info\" (click)=\"addMoreItems()\">Add More Items</button> -->\n            &nbsp;\n            <div class=\"text-primary col-md-2\" style=\"cursor: pointer;\" (click)=\"deleteItems()\">Delete More Items</div>\n            <!--   <button  class=\"btn btn-info\" (click)=\"deleteItems()\">Delete More Items</button> -->\n          </div>\n  \n        \n        <br>\n  \n  \n  \n  \n       <!--  <div class=\"form-group\">\n          <label for=\"itemType\" class=\"control-label\">Select Item Type</label>\n          <select [(ngModel)]=\"loan.itemType\" name=\"itemType\" id=\"itemType\" class=\"form-control\">\n            <option value=\"\" disabled selected>select a category</option>\n            <option *ngFor=\"let item of availableItemType\" [value]=\"item\">{{item}}</option>\n          </select>\n        </div> -->\n  \n        <div class=\"form-group\">\n          <label for=\"rateOfInterest\" class=\"control-label\">Select Rate Of Interest %</label>\n          <select [(ngModel)]=\"loan.rateOfInterest\" name=\"rateOfInterest\" id=\"rateOfInterest\" class=\"form-control\">\n            <option value=\"\" disabled selected>select a Rate Of Interest</option>\n            <option *ngFor=\"let rateOfIntrest of rateOfInterestList\" [value]=\"rateOfIntrest\">{{rateOfIntrest}}</option>\n          </select>\n        </div>\n  \n       <!--  <div class=\"form-group\" [class.has-error]=\"itemName.touched && itemName.invalid\">\n          <label for=\"itemName\" class=\"control-label\">Item Name</label>\n          <input id=\"itemName\" required type=\"text\" class=\"form-control\" name=\"itemName\" [(ngModel)]=\"loan.itemName\"\n            #itemName=\"ngModel\">\n          <span class=\"help-block\" *ngIf=\"itemName.touched && itemName.invalid\">\n            Please enter itemName\n          </span>\n        </div>\n  \n        <div class=\"form-group\" [class.has-error]=\"weight.touched && weight.invalid\">\n          <label for=\"weight\" class=\"control-label\">Weight</label>\n          <input id=\"weight\" required type=\"text\" maxlength=\"8\" class=\"form-control\" name=\"weight\"\n            [(ngModel)]=\"loan.weight\" (keypress)=\"numberOnly($event)\" #weight=\"ngModel\">\n          <span class=\"help-block\" *ngIf=\"weight.touched && weight.invalid\">\n            Please enter weight\n          </span>\n        </div>\n  \n        <div class=\"form-group\">\n          <label for=\"itemQuality\" class=\"control-label\">Iteam Quality (Tanch)%</label>\n          <select [(ngModel)]=\"loan.itemQuality\" name=\"itemQuality\" id=\"itemQuality\" class=\"form-control\">\n            <option value=\"\" disabled selected>select a category</option>\n            <option *ngFor=\"let itemQuality of itemQualityList\" [value]=\"itemQuality\">{{itemQuality}}</option>\n          </select>\n        </div> -->\n  \n        <div class=\"form-group\" >\n            <label for=\"khataNumber\" >Khata Number</label>\n            <input  id=\"khataNumber\"   type=\"text\" class=\"form-control\" \n                    name=\"khataNumber\" [(ngModel)]=\"loan.khataNumber\">\n                  \n          </div>\n        <div class=\"form-group\">\n          <label for=\"comments\">Comments</label>\n          <input id=\"comments\" type=\"text\" class=\"form-control\" name=\"comments\" [(ngModel)]=\"loan.comments\">\n        </div> \n  \n  \n  \n      </div>\n      <div class=\"panel-footer\">\n        <button class=\"btn btn-primary\" type=\"submit\">Save</button>\n      </div>\n      <div class=\"panel-footer text-success\" *ngIf=\"successMessage\">\n        {{successMessage}}\n      </div>\n      <div class=\"panel-footer text-danger\" *ngIf=\"errorResponse\">\n        {{errorResponse}}\n      </div>\n      <div class=\"panel-footer text-danger\" *ngIf=\"validationError\">\n        {{validationError}}\n      </div>\n    </div>\n  </form>\n  \n  \n  <div class=\"modal \" tabindex=\"-1\" id=\"confirmationModal\" data-keyboard=\"false\" data-backdrop=\"static\"\n    [ngStyle]=\"{'display':getDisplayObject()}\">\n    <div class=\"modal-dialog modal-lg\">\n      <div class=\"modal-content\">\n  \n        <div class=\"modal-header\">\n  \n          <button type=\"button\" (click)=\"dismissModal()\" class=\"close\" data-dismiss=\"modal\">\n            &times;\n          </button>\n          <h4 class=\"modal-title\">Create Loan Status</h4>\n        </div>\n        <div class=\"modal-body\">\n          <div class=\"text-success\" style=\"align-content: center\" *ngIf=\"successMessage\">\n            <h4>{{successMessage}}</h4>\n          </div>\n  \n          <div class=\"text-error\" style=\"align-content: center\" *ngIf=\"errorResponse\">\n            <h4>{{errorResponse}}</h4>\n          </div>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" (click)=\"dismissModal()\" class=\"btn btn-info\">Create one more Loan</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)=\"dismissModalAndRedirect()\" data-dismiss=\"modal\">Go to\n            Loan List</button>\n        </div>\n  \n      </div>\n    </div>\n  </div>"
+
+/***/ }),
+
+/***/ "./src/app/loan/loan-details-edit/loan-details-edit.component.ts":
+/*!***********************************************************************!*\
+  !*** ./src/app/loan/loan-details-edit/loan-details-edit.component.ts ***!
+  \***********************************************************************/
+/*! exports provided: LoanDetailsEditComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoanDetailsEditComponent", function() { return LoanDetailsEditComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_services_loan_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/services/loan.service */ "./src/app/services/loan.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var LoanDetailsEditComponent = /** @class */ (function () {
+    function LoanDetailsEditComponent(_loanService, _route, _router) {
+        this._loanService = _loanService;
+        this._route = _route;
+        this._router = _router;
+        this.displayModalObject = 'none';
+        this.availableItemType = [
+            "Gold", "Silver", "Platinum", "Diamond"
+        ];
+        this.rateOfInterestList = [
+            "1.00", "1.25", "1.50", "1.75", "2.00", "2.25", "2.50", "2.75", "3.00", "3.25", "3.50", "3.75", "4.00", "4.25", "4.50", "4.75", "5"
+        ];
+        this.itemQualityList = [
+            "40", "50", "55", "60", "65", "70", "75", "80", "85", "90", "95", "99"
+        ];
+    }
+    LoanDetailsEditComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        var loanId = this._route.snapshot.paramMap.get('id');
+        this._loanService.getLoanDetail(loanId)
+            .subscribe(function (loanData) {
+            _this.loan = loanData;
+            _this.itemContainers = loanData.itemsList;
+            _this.enteredDate = new Date(loanData.dueDate);
+            _this.loanCreatedDate = new Date(loanData.createdDate);
+            console.log("Loan details are : " + JSON.stringify(_this.loan));
+        });
+    };
+    LoanDetailsEditComponent.prototype.numberOnly = function (event) {
+        var charCode = (event.which) ? event.which : event.keyCode;
+        if (charCode == 190 || charCode == 46) {
+            return true;
+        }
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    };
+    LoanDetailsEditComponent.prototype.getDisplayObject = function () {
+        return this.displayModalObject;
+    };
+    LoanDetailsEditComponent.prototype.dismissModal = function () {
+        this.displayModalObject = 'none';
+        window.location.reload();
+        return this.displayModalObject;
+    };
+    LoanDetailsEditComponent.prototype.dismissModalAndRedirect = function () {
+        this._router.navigate(['/loanList']);
+    };
+    LoanDetailsEditComponent.prototype.validateItemList = function () {
+        var respnse = '';
+        var i = 1;
+        this.itemContainers.forEach(function (itm) {
+            if (itm.itemName == null) {
+                respnse = 'Please enter Item Name for item ' + i;
+                return respnse;
+            }
+            if (itm.weight == null) {
+                respnse = 'Please enter Weight for item : ' + i;
+                return respnse;
+            }
+            if (itm.marketRate == null) {
+                respnse = 'Please enter marketRate for item : ' + i;
+                return respnse;
+            }
+            if (itm.itemPrice == null) {
+                respnse = 'Please enter order amount for Item ' + i;
+                return respnse;
+            }
+            i++;
+        });
+        return respnse;
+    };
+    LoanDetailsEditComponent.prototype.validateLoanData = function (loan) {
+        if (loan == null) {
+            this.validationError = 'Please enter customer details';
+            return false;
+        }
+        if (loan.loanAmount == null || loan.loanAmount == 0) {
+            this.validationError = 'Please enter valid loanAmount';
+            return false;
+        }
+        if (loan.dueDate == null || loan.dueDate == '') {
+            console.log('loan.dueDate : ' + loan.dueDate);
+            this.validationError = 'Please enter dueDate';
+            return false;
+        }
+        if (loan.rateOfInterest == null || loan.rateOfInterest == '') {
+            this.validationError = 'Please select rateOfInterest';
+            return false;
+        }
+        return true;
+    };
+    LoanDetailsEditComponent.prototype.updateLoan = function (loan) {
+        var _this = this;
+        // alert(this.enteredDate)
+        var datePipe = new _angular_common__WEBPACK_IMPORTED_MODULE_3__["DatePipe"]('en-US');
+        this.loan.dueDate = datePipe.transform(this.enteredDate, 'yyyy-MM-dd');
+        this.loan.createdDate = this.loanCreatedDate;
+        var res = this.validateItemList();
+        if (res != '') {
+            this.validationError = res;
+            return;
+        }
+        if (!this.validateLoanData(loan)) {
+            return;
+        }
+        loan.itemsList = this.itemContainers;
+        this.validationError = null;
+        this._loanService.updateLoan(loan)
+            .subscribe(function (res) {
+            if (res != null) {
+                if (res.status == 'SUCCESS') {
+                    _this.successMessage = "Loan Details Saved Successfully.";
+                    _this.displayModalObject = 'block';
+                    _this._router.navigate(['loanDetail', loan.loanId]);
+                    // this._router.navigate(['/loanList']);
+                }
+                else {
+                    _this.errorResponse = res.message;
+                }
+            }
+        }, function (error) {
+            _this.errorResponse = 'An Error Occured while saving Loan, Please try again.';
+            console.error(JSON.stringify(error));
+        });
+        console.log(this._loanService);
+    };
+    LoanDetailsEditComponent.prototype.delay = function (ms) {
+        return new Promise(function (resolve) { return setTimeout(resolve, ms); });
+    };
+    LoanDetailsEditComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-loan-details-edit',
+            template: __webpack_require__(/*! ./loan-details-edit.component.html */ "./src/app/loan/loan-details-edit/loan-details-edit.component.html"),
+            styles: [__webpack_require__(/*! ./loan-details-edit.component.css */ "./src/app/loan/loan-details-edit/loan-details-edit.component.css")]
+        }),
+        __metadata("design:paramtypes", [src_app_services_loan_service__WEBPACK_IMPORTED_MODULE_1__["LoanService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], LoanDetailsEditComponent);
+    return LoanDetailsEditComponent;
 }());
 
 
@@ -1824,7 +2072,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"panel panel-primary\">\n    <div style=\"float: right;\">\n        <form #searchEmployeeForm=\"ngForm\" (ngSubmit)=\"searchLoans(searchString)\">\n          <table class=\"table-condensed\">\n            <tr>\n              <td>\n                <div style=\"color:aquamarine\" *ngIf=\"filterInfo\">Showing result with filter : {{searchString}} </div>\n              </td>\n              <td style=\"cursor: pointer;\">\n                <div style=\"color:rgb(222, 224, 236)\" *ngIf=\"filterInfo\" (click)=clearFilter()>\n                  <span id=\"searchclear\" class=\"glyphicon glyphicon-remove-circle\"> </span>Clear Filter </div>\n              </td>\n    \n              <td>\n                <div class=\"text-danger\" class=\"bg-danger\" *ngIf=\"emptySearchString\"> {{emptySearchString}} </div>\n              </td>\n              <td class=\"mx-auto\">\n                <div>\n                  <input type=\"text\" name=\"searchString\" required placeholder=\"Search Loans\" [(ngModel)]=\"searchString\">\n                </div>\n    \n              </td>\n    \n              <td>\n                <button class=\"btn btn-info btn-sm\" type=\"submit\">Search</button>\n              </td>\n    \n            </tr>\n          </table>\n        </form>\n      </div>\n  <div class=\"panel-heading\">\n    <h3 class=\"panel-title\">Loan List : <strong style=\"color:aquamarine\"> {{totalRecords}} records found</strong></h3>\n  </div>\n  <div class=\"panel-body\">\n      <table class=\"table table-striped table-bordered table-hover table-condensed\">\n          <thead >\n            <th>Loan Id</th>\n            <th>Name</th>\n            <th>Amount</th>\n            <th>Due Date</th>\n            <!-- <th>Item Type</th> -->\n            <!-- <th>Rate Of Intrest</th> -->\n            <!-- <th>Comments</th> -->\n            <th>Status</th>\n            <th>Name</th>\n            <!-- <th>Quality</th> -->\n            <th>Weight</th> \n            <th>More Detail</th> \n            <th>New Loan</th>\n          </thead>\n          <tbody > \n          <tr *ngFor=\"let loan of loanList\" [class.bg-success]=\"loan.status=='CLOSED'\" [class.text-success]=\"loan.status=='CLOSED'\"  >  \n              <td> {{loan.loanId}}</td>\n              <td> {{loan.customerName}}</td>\n              <td> {{loan.loanAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n              <td> {{loan.dueDate | date:\"dd/MM/yy\" }}</td>\n              <!-- <td> {{loan.itemType| uppercase}}</td> -->\n              <!-- <td> {{loan.rateOfInterest}} %</td> -->\n              <!-- <td> {{loan.comments}}</td> -->\n              <td > {{loan.status | lowercase }}</td>\n              <td> {{loan.itemName}}</td>\n              <!-- <td> {{loan.itemQuality }}%</td> -->\n              <td> {{loan.weight}}g</td>\n              <td style=\"cursor: pointer;\"> <div class=\"text-primary\" (click)=\"onSelect(loan.loanId)\">Details</div></td>\n              <td style=\"cursor: pointer;\"> <div class=\"text-primary\" (click)=createCustomerLoan(loan.customerId,loan.customerName)>\n                 <span class=\"glyphicon glyphicon-plus\"></span> Create Loan </div></td>\n          </tr>\n          </tbody>\n          \n       </table>\n        <!-- pager -->\n    <div>\n        <ul *ngIf=\"pager.pages && pager.pages.length\" class=\"pagination\">\n            <li [ngClass]=\"{disabled:pager.currentPage === 1}\">\n                <a (click)=\"setPage(1)\">First</a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === 1}\">\n                <a (click)=\"setPage(pager.currentPage - 1)\">Previous</a>\n            </li>\n            <li *ngFor=\"let page of pager.pages\" [ngClass]=\"{active:pager.currentPage === page}\">\n                <a (click)=\"setPage(page)\">{{page}}</a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === pager.totalPages}\">\n                <a (click)=\"setPage(pager.currentPage + 1)\">Next</a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === pager.totalPages}\">\n                <a (click)=\"setPage(pager.totalPages)\">Last</a>\n            </li>\n        </ul>  \n    </div>\n          \n  </div>\n  </div>\n\n\n\n\n"
+module.exports = "<div class=\"panel panel-primary\">\n    <div style=\"float: right;\">\n        <form #searchEmployeeForm=\"ngForm\" (ngSubmit)=\"searchLoans(searchString)\">\n          <table class=\"table-condensed\">\n            <tr>\n              <td>\n                <div style=\"color:aquamarine\" *ngIf=\"filterInfo\">Showing result with filter : {{searchString}} </div>\n              </td>\n              <td style=\"cursor: pointer;\">\n                <div style=\"color:rgb(222, 224, 236)\" *ngIf=\"filterInfo\" (click)=clearFilter()>\n                  <span id=\"searchclear\" class=\"glyphicon glyphicon-remove-circle\"> </span>Clear Filter </div>\n              </td>\n    \n              <td>\n                <div class=\"text-danger\" class=\"bg-danger\" *ngIf=\"emptySearchString\"> {{emptySearchString}} </div>\n              </td>\n              <td class=\"mx-auto\">\n                <div>\n                  <input type=\"text\" name=\"searchString\" required placeholder=\"Search Loans\" [(ngModel)]=\"searchString\">\n                </div>\n    \n              </td>\n    \n              <td>\n                <button class=\"btn btn-info btn-sm\" type=\"submit\">Search</button>\n              </td>\n    \n            </tr>\n          </table>\n        </form>\n      </div>\n  <div class=\"panel-heading\">\n    <h3 class=\"panel-title\">Loan List : <strong style=\"color:aquamarine\"> {{totalRecords}} records found</strong></h3>\n  </div>\n  <div class=\"panel-body\">\n      <table class=\"table table-striped table-bordered table-hover table-condensed\">\n          <thead >\n            <th>Khata Number</th>\n            <th>Name</th>\n            <th>Amount</th>\n            <th>Due Date</th>\n            <!-- <th>Item Type</th> -->\n            <!-- <th>Rate Of Intrest</th> -->\n            <!-- <th>Comments</th> -->\n            <th>Status</th>\n           <!--  <th>Name</th> -->\n            <!-- <th>Quality</th> -->\n          <!--   <th>Weight</th>  -->\n            <th>More Detail</th> \n            <th>New Loan</th>\n          </thead>\n          <tbody > \n          <tr *ngFor=\"let loan of loanList\" [class.bg-success]=\"loan.status=='CLOSED'\" [class.text-success]=\"loan.status=='CLOSED'\"  >  \n              <td> {{loan.khataNumber}}</td>\n              <td>  <a routerLink=\"/customerDetails/{{loan.customerId}}\" routerLinkActive=\"active\"> {{loan.customerName}}</a></td>\n              <td> {{loan.loanAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n              <td> {{loan.dueDate | date:\"dd/MM/yy\" }}</td>\n              <!-- <td> {{loan.itemType| uppercase}}</td> -->\n              <!-- <td> {{loan.rateOfInterest}} %</td> -->\n              <!-- <td> {{loan.comments}}</td> -->\n              <td > {{loan.status | lowercase }}</td>\n             <!--  <td> {{loan.itemName}}</td> -->\n              <!-- <td> {{loan.itemQuality }}%</td> -->\n             <!--  <td> {{loan.weight}}g</td> -->\n              <td style=\"cursor: pointer;\"> <div class=\"text-primary\" (click)=\"onSelect(loan.loanId)\">Details</div></td>\n              <td style=\"cursor: pointer;\"> <div class=\"text-primary\" (click)=createCustomerLoan(loan.customerId,loan.customerName)>\n                 <span class=\"glyphicon glyphicon-plus\"></span> Create Loan </div></td>\n          </tr>\n          </tbody>\n          \n       </table>\n        <!-- pager -->\n    <div>\n        <ul *ngIf=\"pager.pages && pager.pages.length\" class=\"pagination\">\n            <li [ngClass]=\"{disabled:pager.currentPage === 1}\">\n                <a (click)=\"setPage(1)\">First</a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === 1}\">\n                <a (click)=\"setPage(pager.currentPage - 1)\">Previous</a>\n            </li>\n            <li *ngFor=\"let page of pager.pages\" [ngClass]=\"{active:pager.currentPage === page}\">\n                <a (click)=\"setPage(page)\">{{page}}</a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === pager.totalPages}\">\n                <a (click)=\"setPage(pager.currentPage + 1)\">Next</a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === pager.totalPages}\">\n                <a (click)=\"setPage(pager.totalPages)\">Last</a>\n            </li>\n        </ul>  \n    </div>\n          \n  </div>\n  </div>\n\n\n\n\n"
 
 /***/ }),
 
@@ -1920,7 +2168,12 @@ var LoanListComponent = /** @class */ (function () {
         this.currentPage = page;
         //console.log('Current page is : '+page);
         // get current page of items
-        this.getLoanListDetails(page, 10);
+        if (this.searchString != null) {
+            this.searchLoans(this.searchString);
+        }
+        else {
+            this.getLoanListDetails(page, 10);
+        }
         this.pagedItems = this.loanList.slice(this.pager.startIndex, this.pager.endIndex + 1);
     };
     LoanListComponent.prototype.searchLoans = function (searchString) {
@@ -1930,7 +2183,7 @@ var LoanListComponent = /** @class */ (function () {
             return;
         }
         this.emptySearchString = null;
-        this._loanService.searchLoans(searchString, 1, 10).subscribe(function (res) {
+        this._loanService.searchLoans(searchString, this.currentPage, this.perPage).subscribe(function (res) {
             console.log(res);
             if (res != null) {
                 if (res.status == 'SUCCESS') {
@@ -2134,6 +2387,26 @@ var LoginComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/models/items.model.ts":
+/*!***************************************!*\
+  !*** ./src/app/models/items.model.ts ***!
+  \***************************************/
+/*! exports provided: Items */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Items", function() { return Items; });
+var Items = /** @class */ (function () {
+    function Items() {
+    }
+    return Items;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/orders/create-order/create-order.component.css":
 /*!****************************************************************!*\
   !*** ./src/app/orders/create-order/create-order.component.css ***!
@@ -2152,7 +2425,7 @@ module.exports = ".backdrop{ \n\n\n    background-color:rgba(0,0,0,0.6);\n    \n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form #employeeForm=\"ngForm\" (ngSubmit)=\"saveOrder(order)\">\n  <div class=\"panel panel-primary\">\n    <div class=\"panel-heading\">\n      <h3 class=\"panel-title\">Enter Order Details for :\n                       <strong style=\"color:rgb(0, 204, 255)\">{{order.customerName}}</strong></h3>\n    </div>\n    <div class=\"panel-body\">\n\n\n        <div class=\"form-group\" [class.has-error]=\"itemName.touched && itemName.invalid\">\n            <label for=\"itemName\" class=\"control-label\">Item Name</label>\n            <input id=\"itemName\" required type=\"text\" class=\"form-control\"\n                   name=\"itemName\" [(ngModel)]=\"order.itemName\" #itemName=\"ngModel\">\n                   <span class=\"help-block\" *ngIf=\"itemName.touched && itemName.invalid\">\n                     Please enter itemName\n                   </span>\n          </div>\n     \n          <div class=\"form-group\" >\n              <label for=\"itemType\"  class=\"control-label\">Select Item Type</label>\n              <select [(ngModel)]=\"order.itemType\" name=\"itemType\" id=\"itemType\" class=\"form-control\" >\n                  <option value=\"\" disabled selected>select a category</option>\n                  <option *ngFor=\"let item of availableItemType\" [value]=\"item\">{{item}}</option>\n                </select>\n          </div>\n  \n           \n  \n          <div class=\"form-group\" [class.has-error]=\"weight.touched && weight.invalid\">\n            <label for=\"weight\" class=\"control-label\">Weight</label>\n            <input id=\"weight\" required type=\"text\" class=\"form-control\"\n                   name=\"weight\" [(ngModel)]=\"order.weight\" #weight=\"ngModel\">\n                   <span class=\"help-block\" *ngIf=\"weight.touched && weight.invalid\">\n                     Please enter weight\n                   </span>\n          </div>\n  \n          <div class=\"form-group\" >\n            <label for=\"itemQuality\" class=\"control-label\">Iteam Quality (Tanch)%</label>\n            <select [(ngModel)]=\"order.itemQuality\" name=\"itemQuality\" id=\"itemQuality\" class=\"form-control\" >\n              <option value=\"\" disabled selected>select a category</option>\n              <option *ngFor=\"let itemQuality of itemQualityList\" [value]=\"itemQuality\">{{itemQuality}}</option>\n            </select>\n          </div>\n\n      \n\n        <div class=\"form-group\">\n            <label for=\"dueDate\" class=\"control-label\">Due Date</label>\n            <span class=\"glyphicon glyphicon-calendar\"></span>\n            <div class=\"form-control\" >\n                <app-date-picker [(ngModel)]=\"order.dueDate\"  name=\"dueDate\"> </app-date-picker>\n            </div>\n        </div>\n    \n        <div class=\"form-group\" [class.has-error]=\"marketRate.invalid && marketRate.touched\">\n                <label for=\"marketRate\" class=\"control-label\">Market Rate</label>\n                <input  id=\"marketRate\" required  type=\"text\" class=\"form-control\" \n                        name=\"marketRate\" [(ngModel)]=\"order.marketRate\"\n                       #marketRate=\"ngModel\" (blur)=\"calculateAmount(order)\">\n                       <span class=\"help-block\" *ngIf=\"marketRate.invalid && marketRate.touched\">\n                            Please enter Market Rate \n                       </span>\n         </div>\n\n\n      <div class=\"form-group\" [class.has-error]=\"orderAmount.invalid && orderAmount.touched\">\n          <label for=\"orderAmount\" class=\"control-label\"> Order Amount  \n              &nbsp;<span *ngIf=\"calculationLogic\" style=\"color:darkorange\">\n                <small><em>({{calculationLogic}})</em></small></span></label>\n          <input  id=\"orderAmount\" required  type=\"text\" class=\"form-control\" \n                  name=\"orderAmount\" [(ngModel)]=\"order.orderAmount\"\n                 #orderAmount=\"ngModel\">\n                 <span class=\"help-block\" *ngIf=\"orderAmount.invalid && orderAmount.touched\">\n                      Please enter Order Amount\n                 </span>\n        </div>\n\n        <div class=\"form-group\" [class.has-error]=\"makingCharge.invalid && makingCharge.touched\">\n          <label for=\"makingCharge\" class=\"control-label\">Making Charge</label>\n          <input  id=\"makingCharge\"  type=\"text\" class=\"form-control\" \n                  name=\"makingCharge\" [(ngModel)]=\"order.makingCharge\"\n                 #makingCharge=\"ngModel\">\n                 \n        </div>\n\n        <div class=\"form-group\" [class.has-error]=\"discount.invalid && discount.touched\">\n          <label for=\"discount\" class=\"control-label\">Discount </label>\n          <input  id=\"discount\"  type=\"text\" class=\"form-control\" \n                  name=\"discount\" [(ngModel)]=\"order.discount\"\n                 #discount=\"ngModel\">\n                 \n        </div>\n\n        <div class=\"form-group\" [class.has-error]=\"receivedAmount.invalid && receivedAmount.touched\">\n            <label for=\"receivedAmount\" class=\"control-label\">Recieved Amount</label>\n            <input  id=\"receivedAmount\" required  type=\"text\" class=\"form-control\" \n                    name=\"receivedAmount\" [(ngModel)]=\"order.receivedAmount\"\n                   #receivedAmount=\"ngModel\" (blur)=getPendingAmount(order)>\n                   <span class=\"help-block\" *ngIf=\"receivedAmount.invalid && receivedAmount.touched\">\n                        Please enter Order Amount\n                   </span>\n          </div>\n\n          <div class=\"form-group\" class=\"text-primary\"  *ngIf=\"order?.receivedAmount\">\n              <label for=\"receivedAmount\" class=\"control-label\">Pending Amount : </label>\n             ({{order?.orderAmount}} + {{order?.makingCharge}} ) - ( {{order?.receivedAmount}} +  {{order?.discount}}) =  \n             <span  class=\"form-control\" class=\"text-warning\" *ngIf=\"pendingAmount\">\n               <strong>\n                {{pendingAmount}}\n\n               </strong>  </span> \n                    \n            </div>\n          \n        \n        \n\n        <div class=\"form-group\">\n          <label for=\"comments\">Comments</label>\n          <input id=\"comments\" type=\"text\" class=\"form-control\"\n                 name=\"comments\" [(ngModel)]=\"order.comments\">\n        </div>\n\n        <div class=\"form-group\" >\n                <label for=\"khataNumber\" >Khata Number</label>\n                <input  id=\"khataNumber\"   type=\"text\" class=\"form-control\" \n                        name=\"khataNumber\" [(ngModel)]=\"order.khataNumber\">\n                      \n              </div>\n\n\n\n    </div>\n      <div class=\"panel-footer\">\n       <button class=\"btn btn-primary\" type=\"submit\">Save</button>\n    </div>\n    <div class=\"panel-footer text-success\" *ngIf=\"successMessage\">\n        {{successMessage}}\n     </div>\n     <div class=\"panel-footer text-danger\" *ngIf=\"errorResponse\">\n        {{errorResponse}}\n     </div>\n     <div class=\"text-danger\" *ngIf=\"validationError\">\n            {{validationError}}\n         </div>\n  </div>\n</form> \n\n\n\n\n<div class=\"modal \" tabindex=\"-1\" id=\"confirmationModal\"\n  data-keyboard=\"false\" data-backdrop=\"static\" [ngStyle]=\"{'display':getDisplayObject()}\" >\n  <div class=\"modal-dialog modal-lg\">\n  <div class=\"modal-content\">\n        \n                <div class=\"modal-header\">\n          \n                        <button type=\"button\" (click)=\"dismissModal()\" class=\"close\" data-dismiss=\"modal\">\n                            &times;\n                        </button>\n                        <h4 class=\"modal-title\">Create Order Status</h4>\n                    </div>\n                    <div class=\"modal-body\">\n                        <div class=\"text-success\" style=\"align-content: center\"  *ngIf=\"success_response\"> \n                            <h4>{{success_response}}</h4> </div>\n                           \n                        <div class=\"text-error\" style=\"align-content: center\"  *ngIf=\"errorResponseOnCreateOrder\">\n                             <h4>{{errorResponseOnCreateOrder}}</h4></div>\n                    </div>\n                    <div class=\"modal-footer\">\n                        <button type=\"button\" (click)=\"dismissModal()\" class=\"btn btn-info\" >Create one more Order</button>\n                        <button type=\"button\" class=\"btn btn-primary\"\n                        (click)=\"dismissModalAndRedirect()\"   data-dismiss=\"modal\">Go to Order List</button>\n                    </div>\n            \n         \n      \n      \n  </div>\n</div>\n</div> \n\n\n\n\n\n\n\n"
+module.exports = "<form #employeeForm=\"ngForm\" (ngSubmit)=\"saveOrder(order)\">\n  <div class=\"panel panel-primary\">\n    <div class=\"panel-heading\">\n      <h3 class=\"panel-title\">Enter Order Details for :\n                       <strong style=\"color:rgb(0, 204, 255)\">{{order.customerName}}</strong></h3>\n    </div>\n    <div class=\"panel-body\">\n\n      \n        <div class=\"panel panel-default col-md-12\" id=\"itemDetailsId\" *ngFor=\"let itemObj of itemContainers; let i=index\">\n\n\n\n          <div class=\"panel-body\">\n            <div class=\"col-md-12\">\n              <div> Add details for Item {{i+1}}</div>\n              <br>\n              <div class=\"form-group col-md-3\"   >\n                <label for=\"itemName{{i}}\" class=\"control-label\">Item Name</label>\n                <input id=\"itemName{{i}}\" required type=\"text\" class=\"form-control\"\n                       name=\"itemName{{i}}\" [(ngModel)]=\"itemObj.itemName\" #itemNameCntrl=\"ngModel\">\n                       <span class=\"help-block\" *ngIf=\"itemNameCntrl.touched && itemNameCntrl.invalid\">\n                         Please enter itemName\n                       </span>\n              </div>\n    \n              <div class=\"form-group col-md-3\" >\n                <label for=\"itemType{{i}}\"  class=\"control-label\">Select Item Type</label>\n                <select [(ngModel)]=\"itemObj.itemType\" name=\"itemType{{i}}\" id=\"itemType{{i}}\" class=\"form-control\" >\n                    <option value=\"\" disabled selected>select a category</option>\n                    <option *ngFor=\"let item of availableItemType\" [value]=\"item\">{{item}}</option>\n                  </select>\n            </div>\n    \n            <div class=\"form-group col-md-3\" >\n              <label for=\"weight{{i}}\" class=\"control-label\">Weight</label>\n              <input id=\"weight{{i}}\" required type=\"text\" class=\"form-control\"\n                     name=\"weight\" [(ngModel)]=\"itemObj.weight\" #weightCntrl=\"ngModel\">\n                     <span class=\"help-block\" *ngIf=\"weightCntrl.touched && weightCntrl.invalid\">\n                      Please enter weight\n                    </span>\n                     \n            </div>\n    \n           <!--  <div class=\"form-group col-md-3\" >\n              <label for=\"itemQuality{{i}}\" class=\"control-label\">Iteam Quality (Tanch)%</label>\n              <select [(ngModel)]=\"itemObj.itemQuality\" name=\"itemQuality{{i}}\" id=\"itemQuality{{i}}\" class=\"form-control\" >\n                <option value=\"\" disabled selected>select a category</option>\n                <option *ngFor=\"let itemQuality of itemQualityList\" [value]=\"itemQuality\">{{itemQuality}}</option>\n              </select>\n            </div> -->\n    \n           \n    \n            <div class=\"form-group col-md-3\" >\n              <label for=\"makingCharge{{i}}\" class=\"control-label\">Making Charge</label>\n              <input  id=\"makingCharge{{i}}\"  type=\"text\" class=\"form-control\" \n                      name=\"makingCharge{{i}}\" [(ngModel)]=\"itemObj.makingCharge\">\n                     \n            </div>\n\n            </div>\n\n            <div class=\"col-md-12\">\n\n              <div class=\"form-group col-md-3\" >\n                <label for=\"marketRate\" class=\"control-label\">Market Rate</label>\n                <input  id=\"marketRate{{i}}\" required  type=\"text\" class=\"form-control\" \n                        name=\"marketRate{{i}}\" [(ngModel)]=\"itemObj.marketRate\"  #marketRateCntrl=\"ngModel\">\n                        <span class=\"help-block\" *ngIf=\"marketRateCntrl.invalid && marketRateCntrl.touched\">\n                          Please enter Market Rate \n                     </span>\n                      \n        </div>\n      \n      \n              <div class=\"form-group col-md-3\" >\n                <label for=\"discount{{i}}\" class=\"control-label\">Discount </label>\n                <input  id=\"discount{{i}}\"  type=\"text\" class=\"form-control\" \n                        name=\"discount{{i}}\" [(ngModel)]=\"itemObj.discount\" (blur)=\"calculateItemOrderAmount(itemObj, i)\"\n                       #discount=\"ngModel\">\n                       \n              </div>\n      \n             \n             \n      \n         <div class=\"form-group col-md-3\">\n          <label for=\"orderAmount{{i}}\" class=\"control-label\"> Order Amount  \n              &nbsp;</label>\n          <input  id=\"orderAmount{{i}}\" required  type=\"text\" class=\"form-control\" \n                  name=\"orderAmount{{i}}\" [(ngModel)]=\"itemObj.itemPrice\">\n                  <span *ngIf=\"itemObj.calculationLogicString\" style=\"color:darkorange\">\n                    <small><em>({{itemObj.calculationLogicString}})</em></small></span>\n        </div>\n      \n        <div class=\"form-group col-md-3\">\n          <label for=\"comments\">Item Comments</label>\n          <input id=\"comments\" type=\"text\" class=\"form-control\"\n                 name=\"comments\" [(ngModel)]=\"itemObj.itemComments\">\n        </div>\n      \n\n            </div>\n\n         \n          \n\n       \n      </div>\n\n\n        </div>\n\n        <div form-group col-md-6>\n\n          <div form-group col-md-6>\n            <div  class=\"text-primary col-md-2\" style=\"cursor: pointer;\" (click)=\"addMoreItems()\">Add More Items</div>\n            <!--  <button class=\"btn btn-info\" (click)=\"addMoreItems()\">Add More Items</button> -->\n            &nbsp;\n            <div class=\"text-primary col-md-2\" style=\"cursor: pointer;\" (click)=\"deleteItems()\">Delete More Items</div>\n            <!--   <button  class=\"btn btn-info\" (click)=\"deleteItems()\">Delete More Items</button> -->\n          </div>\n         \n        </div>\n       <br>\n\n       <!-- \n\n        <div class=\"form-group\" [class.has-error]=\"itemName.touched && itemName.invalid\">\n            <label for=\"itemName\" class=\"control-label\">Item Name</label>\n            <input id=\"itemName\" required type=\"text\" class=\"form-control\"\n                   name=\"itemName\" [(ngModel)]=\"order.itemName\" #itemName=\"ngModel\">\n                   <span class=\"help-block\" *ngIf=\"itemName.touched && itemName.invalid\">\n                     Please enter itemName\n                   </span>\n          </div>\n     \n          <div class=\"form-group\" >\n              <label for=\"itemType\"  class=\"control-label\">Select Item Type</label>\n              <select [(ngModel)]=\"order.itemType\" name=\"itemType\" id=\"itemType\" class=\"form-control\" >\n                  <option value=\"\" disabled selected>select a category</option>\n                  <option *ngFor=\"let item of availableItemType\" [value]=\"item\">{{item}}</option>\n                </select>\n          </div>\n  \n           \n  \n          <div class=\"form-group\" [class.has-error]=\"weight.touched && weight.invalid\">\n            <label for=\"weight\" class=\"control-label\">Weight</label>\n            <input id=\"weight\" required type=\"text\" class=\"form-control\"\n                   name=\"weight\" [(ngModel)]=\"order.weight\" #weight=\"ngModel\">\n                   <span class=\"help-block\" *ngIf=\"weight.touched && weight.invalid\">\n                     Please enter weight\n                   </span>\n          </div>\n  \n          <div class=\"form-group\" >\n            <label for=\"itemQuality\" class=\"control-label\">Iteam Quality (Tanch)%</label>\n            <select [(ngModel)]=\"order.itemQuality\" name=\"itemQuality\" id=\"itemQuality\" class=\"form-control\" >\n              <option value=\"\" disabled selected>select a category</option>\n              <option *ngFor=\"let itemQuality of itemQualityList\" [value]=\"itemQuality\">{{itemQuality}}</option>\n            </select>\n          </div>\n\n       -->\n\n        <div class=\"form-group\">\n            <label for=\"dueDate\" class=\"control-label\">Due Date</label>\n            <span class=\"glyphicon glyphicon-calendar\"></span>\n            <div class=\"form-control\" >\n                <app-date-picker [(ngModel)]=\"order.dueDate\"  (click)=\"calculateTotalOrderAmount(order)\"  name=\"dueDate\"> </app-date-picker>\n            </div>\n        </div>\n\n    \n      <!--   <div class=\"form-group\" [class.has-error]=\"marketRate.invalid && marketRate.touched\">\n                <label for=\"marketRate\" class=\"control-label\">Market Rate</label>\n                <input  id=\"marketRate\" required  type=\"text\" class=\"form-control\" \n                        name=\"marketRate\" [(ngModel)]=\"order.marketRate\"\n                       #marketRate=\"ngModel\" (blur)=\"calculateAmount(order)\">\n                       <span class=\"help-block\" *ngIf=\"marketRate.invalid && marketRate.touched\">\n                            Please enter Market Rate \n                       </span>\n         </div>\n\n\n      <div class=\"form-group\" [class.has-error]=\"orderAmount.invalid && orderAmount.touched\">\n          <label for=\"orderAmount\" class=\"control-label\"> Order Amount  \n              &nbsp;<span *ngIf=\"calculationLogic\" style=\"color:darkorange\">\n                <small><em>({{calculationLogic}})</em></small></span></label>\n          <input  id=\"orderAmount\" required  type=\"text\" class=\"form-control\" \n                  name=\"orderAmount\" [(ngModel)]=\"order.orderAmount\"\n                 #orderAmount=\"ngModel\">\n                 <span class=\"help-block\" *ngIf=\"orderAmount.invalid && orderAmount.touched\">\n                      Please enter Order Amount\n                 </span>\n        </div>\n\n        <div class=\"form-group\" [class.has-error]=\"makingCharge.invalid && makingCharge.touched\">\n          <label for=\"makingCharge\" class=\"control-label\">Making Charge</label>\n          <input  id=\"makingCharge\"  type=\"text\" class=\"form-control\" \n                  name=\"makingCharge\" [(ngModel)]=\"order.makingCharge\"\n                 #makingCharge=\"ngModel\">\n                 \n        </div>\n\n        <div class=\"form-group\" [class.has-error]=\"discount.invalid && discount.touched\">\n          <label for=\"discount\" class=\"control-label\">Discount </label>\n          <input  id=\"discount\"  type=\"text\" class=\"form-control\" \n                  name=\"discount\" [(ngModel)]=\"order.discount\"\n                 #discount=\"ngModel\">\n                 \n        </div> -->\n        <div class=\"form-group\" [class.has-error]=\"orderAmount.invalid && orderAmount.touched\">\n          <label for=\"orderAmount\" class=\"control-label\"> Total Order Amount  \n              &nbsp;</label>\n          <input  id=\"orderAmount\" required  type=\"text\" class=\"form-control\" \n                  name=\"orderAmount\" [(ngModel)]=\"order.totalOrderAmount\"\n                 #orderAmount=\"ngModel\">\n                 <span class=\"help-block\" *ngIf=\"orderAmount.invalid && orderAmount.touched\">\n                      Please enter Order Amount\n                 </span>\n        </div>\n\n        <div class=\"form-group\" [class.has-error]=\"receivedAmount.invalid && receivedAmount.touched\">\n            <label for=\"receivedAmount\" class=\"control-label\">Recieved Amount</label>\n            <input  id=\"receivedAmount\" required  type=\"text\" class=\"form-control\" \n                    name=\"receivedAmount\" [(ngModel)]=\"order.receivedAmount\"\n                   #receivedAmount=\"ngModel\" (blur)=getPendingAmount(order)>\n                   <span class=\"help-block\" *ngIf=\"receivedAmount.invalid && receivedAmount.touched\">\n                        Please enter Order Amount\n                   </span>\n          </div>\n\n          <div class=\"form-group\" class=\"text-primary\"  *ngIf=\"order?.receivedAmount\">\n              <label for=\"receivedAmount\" class=\"control-label\">Pending Amount : </label>\n             {{order?.totalOrderAmount}} -  {{order?.receivedAmount}} =  \n             <span  class=\"form-control\" class=\"text-warning\" *ngIf=\"pendingAmount\">\n               <strong>\n                {{pendingAmount}} Rs\n\n               </strong>  </span> \n                    \n            </div>\n          \n        \n        \n\n        <div class=\"form-group\">\n          <label for=\"comments\">Comments</label>\n          <input id=\"comments\" type=\"text\" class=\"form-control\"\n                 name=\"comments\" [(ngModel)]=\"order.comments\">\n        </div>\n\n        <div class=\"form-group\" >\n                <label for=\"khataNumber\" >Khata Number</label>\n                <input  id=\"khataNumber\"   type=\"text\" class=\"form-control\" \n                        name=\"khataNumber\" [(ngModel)]=\"order.khataNumber\">\n                      \n              </div>\n\n\n\n    </div>\n      <div class=\"panel-footer\">\n       <button class=\"btn btn-primary\" [disabled]=\"submitClicked\"  type=\"submit\">Save</button>\n    </div>\n    <div class=\"panel-footer text-success\" *ngIf=\"successMessage\">\n        {{successMessage}}\n     </div>\n     <div class=\"panel-footer text-danger\" *ngIf=\"errorResponse\">\n        {{errorResponse}}\n     </div>\n     <div class=\"text-danger\" *ngIf=\"validationError\">\n            {{validationError}}\n         </div>\n  </div>\n</form> \n\n\n\n\n<div class=\"modal \" tabindex=\"-1\" id=\"confirmationModal\"\n  data-keyboard=\"false\" data-backdrop=\"static\" [ngStyle]=\"{'display':getDisplayObject()}\" >\n  <div class=\"modal-dialog modal-lg\">\n  <div class=\"modal-content\">\n        \n                <div class=\"modal-header\">\n          \n                        <button type=\"button\" (click)=\"dismissModal()\" class=\"close\" data-dismiss=\"modal\">\n                            &times;\n                        </button>\n                        <h4 class=\"modal-title\">Create Order Status</h4>\n                    </div>\n                    <div class=\"modal-body\">\n                        <div class=\"text-success\" style=\"align-content: center\"  *ngIf=\"success_response\"> \n                            <h4>{{success_response}}</h4> </div>\n                           \n                        <div class=\"text-error\" style=\"align-content: center\"  *ngIf=\"errorResponseOnCreateOrder\">\n                             <h4>{{errorResponseOnCreateOrder}}</h4></div>\n                    </div>\n                    <div class=\"modal-footer\">\n                        <button type=\"button\" (click)=\"dismissModal()\" class=\"btn btn-info\" >Create one more Order</button>\n                        <button type=\"button\" class=\"btn btn-primary\"\n                        (click)=\"dismissModalAndRedirect()\"   data-dismiss=\"modal\">Go to Order List</button>\n                    </div>\n      \n  </div>\n</div>\n</div> \n\n\n\n\n\n\n\n"
 
 /***/ }),
 
@@ -2169,6 +2442,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_order_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/order.service */ "./src/app/services/order.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_app_models_items_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/models/items.model */ "./src/app/models/items.model.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2181,12 +2455,17 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var CreateOrderComponent = /** @class */ (function () {
     function CreateOrderComponent(_orderService, _activatedRoute, _router) {
         this._orderService = _orderService;
         this._activatedRoute = _activatedRoute;
         this._router = _router;
         this.displayModalObject = 'none';
+        this.submitClicked = false;
+        this.totalOrderAmount = 0;
+        this.item = new src_app_models_items_model__WEBPACK_IMPORTED_MODULE_3__["Items"]();
+        this.itemContainers = [];
         //customerId : null;
         this.availableItemType = [
             "Gold", "Silver", "Platinum", "Diamond"
@@ -2214,8 +2493,8 @@ var CreateOrderComponent = /** @class */ (function () {
             exchangeWeight: null,
             receivedAmount: null,
             discount: null,
-            makingCharge: null,
-            marketRate: null
+            itemsList: null,
+            totalOrderAmount: null
         };
     }
     CreateOrderComponent.prototype.ngOnInit = function () {
@@ -2225,15 +2504,24 @@ var CreateOrderComponent = /** @class */ (function () {
         var customerName = customeIdNameSplitted[1];
         this.order.customerId = parseInt(customerId);
         this.order.customerName = customerName;
+        this.item = new src_app_models_items_model__WEBPACK_IMPORTED_MODULE_3__["Items"]();
+        this.itemContainers.push(this.item);
     };
     CreateOrderComponent.prototype.saveOrder = function (order) {
         var _this = this;
+        var res = this.validateItemList();
+        if (res != '') {
+            this.validationError = res;
+            return;
+        }
         if (!this.validateLoanData(order)) {
             return;
         }
+        this.submitClicked = true;
+        order.itemsList = this.itemContainers;
         console.log(order);
         this._orderService.saveOrderDetails(order).subscribe(function (paymentData) {
-            if (paymentData.status == 'SUCCESS') {
+            if (paymentData.status == 'SUCCESS' || paymentData.message == 'SUCCESS') {
                 _this.baseResponse = paymentData;
                 _this.success_response = paymentData.message;
                 _this.displayModalObject = 'block';
@@ -2263,11 +2551,9 @@ var CreateOrderComponent = /** @class */ (function () {
     };
     ;
     CreateOrderComponent.prototype.getPendingAmount = function (order) {
-        var orderAmount = order.orderAmount;
-        var makingCharge = order.makingCharge;
-        var discount = order.discount;
+        var orderAmount = order.totalOrderAmount;
         var receivedAmount = order.receivedAmount;
-        this.pendingAmount = (Number(orderAmount) + Number(makingCharge)) - (Number(discount) + Number(receivedAmount));
+        this.pendingAmount = (Number(orderAmount) - Number(receivedAmount));
     };
     CreateOrderComponent.prototype.getDisplayObject = function () {
         return this.displayModalObject;
@@ -2285,45 +2571,97 @@ var CreateOrderComponent = /** @class */ (function () {
             this.validationError = 'Please enter order details';
             return false;
         }
-        if (order.itemName == null || order.itemName == '') {
-            this.validationError = 'Please enter itemName';
-            return false;
+        /* if(order.itemName == null || order.itemName == ''){
+          this.validationError='Please enter itemName';
+          return false;
         }
-        if (order.itemType == null || order.itemType == '') {
-            this.validationError = 'Please select itemType';
-            return false;
+        
+        if(order.itemType == null || order.itemType == ''){
+          this.validationError='Please select itemType';
+          return false;
         }
-        if (order.weight == null || order.weight == 0) {
-            this.validationError = 'Please enter weight';
-            return false;
+        if(order.weight == null || order.weight == 0){
+          this.validationError='Please enter weight';
+          return false;
         }
-        if (order.itemQuality == null) {
-            this.validationError = 'Please enter itemQuality';
-            return false;
-        }
+        if(order.itemQuality == null ){
+          this.validationError='Please enter itemQuality';
+          return false;
+        } */
         if (order.dueDate == null) {
             this.validationError = 'Please enter dueDate';
             return false;
         }
-        if (order.orderAmount == null || order.orderAmount == 0) {
-            this.validationError = 'Please enter orderAmount';
-            return false;
-        }
+        /* if(order.orderAmount == null || order.orderAmount == 0){
+          this.validationError='Please enter orderAmount';
+          return false;
+        } */
         return true;
     };
-    CreateOrderComponent.prototype.calculateAmount = function (order) {
+    CreateOrderComponent.prototype.validateItemList = function () {
+        var respnse = '';
+        var i = 1;
+        this.itemContainers.forEach(function (itm) {
+            if (itm.itemName == null) {
+                respnse = 'Please enter Item Name for item ' + i;
+                return respnse;
+            }
+            if (itm.weight == null) {
+                respnse = 'Please enter Weight for item : ' + i;
+                return respnse;
+            }
+            if (itm.marketRate == null) {
+                respnse = 'Please enter marketRate for item : ' + i;
+                return respnse;
+            }
+            if (itm.makingCharge == null) {
+                this.validationError = 'Please enter makingCharge for item : ' + i;
+                return respnse;
+            }
+            if (itm.itemPrice == null) {
+                respnse = 'Please enter order amount for Item ' + i;
+                return respnse;
+            }
+            i++;
+        });
+        return respnse;
+    };
+    CreateOrderComponent.prototype.calculateItemOrderAmount = function (itemObj, i) {
         var amount = 0;
-        if (order.itemType != null && (order.itemType == 'Silver' || order.itemType == 'silver')) {
-            this.calculationLogic = 'Amount calculated for Silver rate ' + order.marketRate + ' per Kg  for weight ' + order.weight + ' grams';
-            amount = (order.marketRate / 1000) * order.weight;
+        var calculationLogicStr = "";
+        if (itemObj.itemType != null && (itemObj.itemType == 'Silver' || itemObj.itemType == 'silver')) {
+            calculationLogicStr = 'Amount calculated for Silver rate ' + itemObj.marketRate + ' per Kg  for weight ' + itemObj.weight + ' grams';
+            itemObj.discount = itemObj.discount != null ? itemObj.discount : 0;
+            amount = (((itemObj.marketRate / 1000) * itemObj.weight) + Number(itemObj.makingCharge)) - itemObj.discount;
             amount = Math.round(amount);
         }
-        else if (order.itemType != null && (order.itemType == 'Gold' || order.itemType == 'gold')) {
-            this.calculationLogic = 'Amount calculated for Gold rate ' + order.marketRate + ' per 10 grams  for weight ' + order.weight + ' grams';
-            amount = (order.marketRate / 10) * order.weight;
+        else if (itemObj.itemType != null && (itemObj.itemType == 'Gold' || itemObj.itemType == 'gold')) {
+            calculationLogicStr = 'Amount calculated for Gold rate ' + itemObj.marketRate + ' per 10 grams  for weight ' + itemObj.weight + ' grams';
+            itemObj.discount = itemObj.discount != null ? itemObj.discount : 0;
+            amount = (((itemObj.marketRate / 10) * itemObj.weight) + Number(itemObj.makingCharge)) - itemObj.discount;
             amount = Math.round(amount);
         }
-        this.order.orderAmount = amount;
+        this.itemContainers[i].itemPrice = amount;
+        this.itemContainers[i].calculationLogicString = calculationLogicStr;
+        //this.order.orderAmount=amount;
+    };
+    CreateOrderComponent.prototype.calculateTotalOrderAmount = function (order) {
+        var ordrAmnt = 0;
+        this.itemContainers.forEach(function (itm) {
+            if (itm.itemPrice != null && !isNaN(itm.itemPrice)) {
+                ordrAmnt = ordrAmnt + parseInt(itm.itemPrice);
+                console.log('totalAmount is : ' + ordrAmnt);
+                order.totalOrderAmount = ordrAmnt;
+            }
+        });
+    };
+    CreateOrderComponent.prototype.addMoreItems = function () {
+        console.log(JSON.stringify(this.itemContainers));
+        this.item = new src_app_models_items_model__WEBPACK_IMPORTED_MODULE_3__["Items"]();
+        this.itemContainers.push(this.item);
+    };
+    CreateOrderComponent.prototype.deleteItems = function () {
+        this.itemContainers.pop();
     };
     CreateOrderComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2336,6 +2674,69 @@ var CreateOrderComponent = /** @class */ (function () {
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], CreateOrderComponent);
     return CreateOrderComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/orders/order-details-edit/order-details-edit.component.css":
+/*!****************************************************************************!*\
+  !*** ./src/app/orders/order-details-edit/order-details-edit.component.css ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/orders/order-details-edit/order-details-edit.component.html":
+/*!*****************************************************************************!*\
+  !*** ./src/app/orders/order-details-edit/order-details-edit.component.html ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  order-details-edit works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/orders/order-details-edit/order-details-edit.component.ts":
+/*!***************************************************************************!*\
+  !*** ./src/app/orders/order-details-edit/order-details-edit.component.ts ***!
+  \***************************************************************************/
+/*! exports provided: OrderDetailsEditComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderDetailsEditComponent", function() { return OrderDetailsEditComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var OrderDetailsEditComponent = /** @class */ (function () {
+    function OrderDetailsEditComponent() {
+    }
+    OrderDetailsEditComponent.prototype.ngOnInit = function () {
+    };
+    OrderDetailsEditComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-order-details-edit',
+            template: __webpack_require__(/*! ./order-details-edit.component.html */ "./src/app/orders/order-details-edit/order-details-edit.component.html"),
+            styles: [__webpack_require__(/*! ./order-details-edit.component.css */ "./src/app/orders/order-details-edit/order-details-edit.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], OrderDetailsEditComponent);
+    return OrderDetailsEditComponent;
 }());
 
 
@@ -2360,7 +2761,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n <div class=\"panel panel-primary\">\n  <div class=\"panel-heading\">\n    <h3 class=\"panel-title\">Order Details</h3>\n  </div>\n  <div class=\"panel-body\">           \n\n<div class=\"pannel panel-info\">\n  <div class=\"panel-heading\">\n   \n      <span   style=\"color:rgb(27, 27, 83)\">Name  : </span><strong>{{orderDetail?.customerName}}</strong> \n     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span  style=\"color:rgb(27, 27, 83)\">City :</span><strong> {{orderDetail?.customerCity}}</strong> \n   \n  </div>\n\n  <div class=\"panel-body\">\n    <table class=\"table table-striped table-bordered table-hover table-condensed\">\n      <tbody > \n       <tr>\n          <td>Order Id</td>\n          <td class=\"text-primary\"> {{orderDetail?.orderId}}</td>\n        </tr> \n        <tr>\n          <td>Khata Number</td>\n          <td class=\"text-primary\"> {{orderDetail?.khataNumber}}</td>\n        </tr> \n       \n        <tr>\n            <td>Amount</td>\n            <td class=\"text-primary\"> {{orderDetail?.orderAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n        </tr>\n        <tr>\n            <td>Making Charge</td>\n            <td class=\"text-primary\"> {{orderDetail?.makingCharge | currency:'INR':'symbol':'4.2-2' }}</td>\n        </tr>\n        <tr>\n            <td>Discount</td>\n            <td class=\"text-primary\"> {{orderDetail?.discount | currency:'INR':'symbol':'4.2-2' }}</td>\n        </tr>\n        <tr>\n            <td>Received Amount during order</td>\n            <td class=\"text-primary\"> {{orderDetail?.receivedAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n        </tr>\n        <tr *ngIf=\"!checkPaymentDetailsAvailable() && initialPendingAmount\">\n                <td>Pending Amount</td>\n                <td class=\"text-info\"><strong>{{initialPendingAmount| currency:'INR':'symbol':'4.2-2' }}</strong> </td>\n         </tr>\n         \n        <tr>\n            <td>Due Date</td>\n            <td class=\"text-primary\"> {{orderDetail?.dueDate | date:\"dd/MM/yy\" }}</td>\n        </tr>\n        <tr>  \n          <td>Item Type</td>\n          <td class=\"text-primary\"> {{orderDetail?.itemType| lowercase}}</td>\n        </tr>\n        <tr>  \n              <td>Item Name</td>\n              <td class=\"text-primary\"> {{orderDetail?.itemName| lowercase}}</td>\n          </tr>\n      \n\n      <tr>  \n          <td>Item Quality</td>\n          <td class=\"text-primary\"> {{orderDetail?.itemQuality}}%</td>\n      </tr>\n      <tr>  \n          <td>Order Placed on Date in (\"DD/MM/YY\")</td>\n          <td class=\"text-primary\"> {{orderDetail?.createdDate | date:\"dd/MM/yy\" }}</td>\n      </tr>\n      <tr>  \n          <td>Comment</td>\n          <td class=\"text-primary\"> {{orderDetail?.comments| lowercase}}</td>\n      </tr>\n      <tr>  \n      <tr [class.success]=\"orderDetail?.status=='Closed'\">  \n              <td>Order Status</td>\n              <td class=\"text-primary\"> {{orderDetail?.status}}</td>\n        </tr>\n\n\n      <tr *ngIf=\"orderDetail?.status=='OPEN'\">  \n          <td colspan=\"2\" class=\"text-center\"><button class=\"btn btn-primary\" \n              data-target=\"#paymentModal\"  data-toggle=\"modal\" >Add Payment</button> </td>\n       \n        </tr>\n\n      </tbody>\n      </table>\n      \n      </div>\n</div>\n\n\n<div class=\"pannel panel-info\" *ngIf=\"checkPaymentDetailsAvailable()\">\n    <div class=\"panel-heading\">\n       Order Payment Details\n      </div>\n\n    <div class=\"panel-body\"> \n        <table class=\"table  table-bordered table-hover table-condensed\">\n            <thead  class=\"table-bordered\">\n              <th>Payment Id</th>\n              <th>Payment Amount</th>\n              <th>Balance Amount</th>\n              <th>Payment Date</th>\n              <!-- <th>Payment Type</th> -->\n              <th>Comment</th>\n              \n             \n            </thead>\n            <tbody > \n            <tr *ngFor=\"let payment of orderPaymentDetailsList\" \n            [class.text-success]=\"payment.paymentType=='Cash'\"\n            [class.bg-success]=\"payment.balanceAmount=='0'\" >  \n                <td> {{payment.orderPaymentId}}</td>\n                <td> {{payment.partialPaymentAmount | currency:'INR':'symbol':'4.2-2'}}</td>\n                <td> {{payment.balanceAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n                <td> {{payment.createdOn|  date:\"dd/MM/yy\"}}</td>\n                <!-- <td> {{payment.paymentType | lowercase}}</td> -->\n               \n                <td> {{payment.comment }}</td>\n                \n               \n            </tr> \n            \n            </tbody>\n        </table>\n    </div> \n</div>\n\n <div class=\"modal fade\" tabindex=\"-1\" id=\"paymentModal\"\n  data-keyboard=\"false\" data-backdrop=\"static\">\n  <div class=\"modal-dialog modal-lg\">\n  <div class=\"modal-content\">\n      <div class=\"modal-header\">\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\">\n              &times;\n          </button>\n          <h4 class=\"modal-title\">Add Order Payment</h4>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              \n              <div class=\"form-group\" >\n                          <label for=\"partialPaymentAmount\" class=\"control-label\">Payment Amount</label>\n                          <input  id=\"partialPaymentAmount\" required  type=\"number\" class=\"form-control\" \n                                  name=\"partialPaymentAmount\" [(ngModel)]=\"orderPayment.partialPaymentAmount\"\n                                  #orderAmount=\"ngModel\">\n                                 \n              </div>\n              <div class=\"form-group\">\n                      <label for=\"comment\">Comments</label>\n                      <input id=\"comment\" type=\"text\" class=\"form-control\"\n                             name=\"comment\" [(ngModel)]=\"orderPayment.comment\">\n               </div>\n               <div class=\"form-group\">\n                      <label for=\"createdOn\" class=\"control-label\">Payment Date</label>\n                      <span class=\"glyphicon glyphicon-calendar\"></span>\n                      <div class=\"form-control\" >\n                          <app-date-picker [(ngModel)]=\"orderPayment.createdOn\"  name=\"createdOn\"> </app-date-picker>\n                      </div>\n                    </div>\n              <div class=\"form-group\" >\n                      <label for=\"paymentType\" class=\"control-label\">Partial Payment</label>\n                      <select [(ngModel)]=\"orderPayment.paymentType\" name=\"paymentType\" id=\"paymentType\" class=\"form-control\" >\n                        <option value=\"\" disabled selected>select a category</option>\n                        <option *ngFor=\"let paymentType of paymentTypeList\" [value]=\"paymentType\">{{paymentType}}</option>\n                      </select>\n              </div>\n             \n          </form>\n      </div>\n      <div class=\"modal-footer\">\n          <button type=\"submit\" class=\"btn btn-primary\" (click)=\"savePartialPayment(orderPayment)\">Save</button>\n          <button type=\"button\" class=\"btn btn-primary\"\n                  data-dismiss=\"modal\">Close</button>\n      </div>\n      <div class=\"text-success\" style=\"align-content: center\"  *ngIf=\"success_response\"> \n          <h4>{{success_response}}</h4> </div>\n         \n      <div class=\"text-error\" style=\"align-content: center\"  *ngIf=\"errorResponseOnPayment\">\n           <h4> {{errorResponseOnPayment}} </h4></div>\n  </div>\n</div>\n</div> \n\n\n</div>"
+module.exports = "\n\n <div class=\"panel panel-primary\">\n  <div class=\"panel-heading\">\n    <h3 class=\"panel-title\">Order Details</h3>\n  </div>\n  <div class=\"panel-body\">           \n\n<div class=\"pannel panel-info\">\n  <div class=\"panel-heading\">\n   \n      <span   style=\"color:rgb(27, 27, 83)\">Name  : </span><strong>{{orderDetail?.customerName}}</strong> \n     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span  style=\"color:rgb(27, 27, 83)\">City :</span><strong> {{orderDetail?.customerCity}}</strong> \n   \n  </div>\n\n  <div class=\"panel-body\">\n    <table class=\"table table-striped table-bordered table-hover table-condensed\">\n      <tbody > \n       <tr>\n          <td>Order Id</td>\n          <td class=\"text-primary\"> {{orderDetail?.orderId}}</td>\n        </tr> \n        <tr>\n          <td>Khata Number</td>\n          <td class=\"text-primary\"> {{orderDetail?.khataNumber}}</td>\n        </tr> \n       \n        <tr>\n            <td>Amount</td>\n            <td class=\"text-primary\"> {{orderDetail?.orderAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n        </tr>\n       <!--  <tr>\n            <td>Making Charge</td>\n            <td class=\"text-primary\"> {{orderDetail?.makingCharge | currency:'INR':'symbol':'4.2-2' }}</td>\n        </tr> -->\n        <tr>\n            <td>Discount</td>\n            <td class=\"text-primary\"> {{orderDetail?.discount | currency:'INR':'symbol':'4.2-2' }}</td>\n        </tr>\n        <tr>\n            <td>Received Amount during order</td>\n            <td class=\"text-primary\"> {{orderDetail?.receivedAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n        </tr>\n        <tr *ngIf=\"!checkPaymentDetailsAvailable() && initialPendingAmount\">\n                <td>Pending Amount</td>\n                <td class=\"text-info\"><strong>{{initialPendingAmount| currency:'INR':'symbol':'4.2-2' }}</strong> </td>\n         </tr>\n         \n        <tr>\n            <td>Due Date</td>\n            <td class=\"text-primary\"> {{orderDetail?.dueDate | date:\"dd/MM/yy\" }}</td>\n        </tr>\n          <!-- \n        <tr>  \n          <td>Item Type</td>\n          <td class=\"text-primary\"> {{orderDetail?.itemType| lowercase}}</td>\n        </tr>\n      <tr>  \n              <td>Item Name</td>\n              <td class=\"text-primary\"> {{orderDetail?.itemName| lowercase}}</td>\n          </tr>\n      \n\n      <tr>  \n          <td>Item Quality</td>\n          <td class=\"text-primary\"> {{orderDetail?.itemQuality}}%</td>\n      </tr> -->\n      <tr>  \n          <td>Order Placed on Date in (\"DD/MM/YY\")</td>\n          <td class=\"text-primary\"> {{orderDetail?.createdDate | date:\"dd/MM/yy\" }}</td>\n      </tr>\n      <tr>  \n          <td>Comment</td>\n          <td class=\"text-primary\"> {{orderDetail?.comments| lowercase}}</td>\n      </tr>\n      <tr>  \n      <tr [class.success]=\"orderDetail?.status=='Closed'\">  \n              <td>Order Status</td>\n              <td class=\"text-primary\"> {{orderDetail?.status}}</td>\n        </tr>\n\n\n      <tr *ngIf=\"orderDetail?.status=='OPEN'\">  \n          <td colspan=\"2\" class=\"text-center\"><button class=\"btn btn-primary\" \n              data-target=\"#paymentModal\"  data-toggle=\"modal\" >Add Payment</button> </td>\n       \n        </tr>\n\n      </tbody>\n      </table>\n      \n      </div>\n</div>\n\n<div class=\"pannel panel-info\" >\n    <div class=\"panel-heading\">\n       Order Item Details\n      </div>\n\n    <div class=\"panel-body\"> \n        <table class=\"table  table-bordered table-hover table-condensed\">\n            <thead  class=\"table-bordered\">\n              <th>Item Name</th>\n              <th>Item Type</th>\n              <th>Weight (grams)</th>\n              <th>Discount</th>\n              <th>Count</th>\n              <th>Making Charge</th>\n              <th>Item Price</th>\n             \n              \n             \n            </thead>\n            <tbody > \n            <tr *ngFor=\"let item of orderDetail?.itemsList\"  >  \n                <td> {{item.itemName}}</td>\n                <td> {{item.itemType }}</td>\n                <td> {{item.weight || \"NA\"}}</td>\n                <td> {{item.discount || \"NA\"}}</td>\n                <td> {{item.count || \"1\"}}</td>\n                <td> {{item.makingCharge || \"NA\"}}</td>\n                <td> {{item.itemPrice || \"NA\"}}</td>\n                \n            </tr> \n            \n            </tbody>\n        </table>\n    </div> \n</div>\n\n\n<div class=\"pannel panel-info\" *ngIf=\"checkPaymentDetailsAvailable()\">\n    <div class=\"panel-heading\">\n       Order Payment Details\n      </div>\n\n    <div class=\"panel-body\"> \n        <table class=\"table  table-bordered table-hover table-condensed\">\n            <thead  class=\"table-bordered\">\n              <th>Payment Id</th>\n              <th>Payment Amount</th>\n              <th>Balance Amount</th>\n              <th>Payment Date</th>\n              <!-- <th>Payment Type</th> -->\n              <th>Comment</th>\n              \n             \n            </thead>\n            <tbody > \n            <tr *ngFor=\"let payment of orderPaymentDetailsList\" \n            [class.text-success]=\"payment.paymentType=='Cash'\"\n            [class.bg-success]=\"payment.balanceAmount=='0'\" >  \n                <td> {{payment.orderPaymentId}}</td>\n                <td> {{payment.partialPaymentAmount | currency:'INR':'symbol':'4.2-2'}}</td>\n                <td> {{payment.balanceAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n                <td> {{payment.createdOn|  date:\"dd/MM/yy\"}}</td>\n                <!-- <td> {{payment.paymentType | lowercase}}</td> -->\n               \n                <td> {{payment.comment }}</td>\n                \n               \n            </tr> \n            \n            </tbody>\n        </table>\n    </div> \n</div>\n\n <div class=\"modal fade\" tabindex=\"-1\" id=\"paymentModal\"\n  data-keyboard=\"false\" data-backdrop=\"static\">\n  <div class=\"modal-dialog modal-lg\">\n  <div class=\"modal-content\">\n      <div class=\"modal-header\">\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\">\n              &times;\n          </button>\n          <h4 class=\"modal-title\">Add Order Payment</h4>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              \n              <div class=\"form-group\" >\n                          <label for=\"partialPaymentAmount\" class=\"control-label\">Payment Amount</label>\n                          <input  id=\"partialPaymentAmount\" required  type=\"number\" class=\"form-control\" \n                                  name=\"partialPaymentAmount\" [(ngModel)]=\"orderPayment.partialPaymentAmount\"\n                                  #orderAmount=\"ngModel\">\n                                 \n              </div>\n              <div class=\"form-group\">\n                      <label for=\"comment\">Comments</label>\n                      <input id=\"comment\" type=\"text\" class=\"form-control\"\n                             name=\"comment\" [(ngModel)]=\"orderPayment.comment\">\n               </div>\n               <div class=\"form-group\">\n                      <label for=\"createdOn\" class=\"control-label\">Payment Date</label>\n                      <span class=\"glyphicon glyphicon-calendar\"></span>\n                      <div class=\"form-control\" >\n                          <app-date-picker [(ngModel)]=\"orderPayment.createdOn\"  name=\"createdOn\"> </app-date-picker>\n                      </div>\n                    </div>\n              <div class=\"form-group\" >\n                      <label for=\"paymentType\" class=\"control-label\">Partial Payment</label>\n                      <select [(ngModel)]=\"orderPayment.paymentType\" name=\"paymentType\" id=\"paymentType\" class=\"form-control\" >\n                        <option value=\"\" disabled selected>select a category</option>\n                        <option *ngFor=\"let paymentType of paymentTypeList\" [value]=\"paymentType\">{{paymentType}}</option>\n                      </select>\n              </div>\n             \n          </form>\n      </div>\n      <div class=\"modal-footer\">\n          <button type=\"submit\" class=\"btn btn-primary\" (click)=\"savePartialPayment(orderPayment)\">Save</button>\n          <button type=\"button\" class=\"btn btn-primary\"\n                  data-dismiss=\"modal\">Close</button>\n      </div>\n      <div class=\"text-success\" style=\"align-content: center\"  *ngIf=\"success_response\"> \n          <h4>{{success_response}}</h4> </div>\n         \n      <div class=\"text-error\" style=\"align-content: center\"  *ngIf=\"errorResponseOnPayment\">\n           <h4> {{errorResponseOnPayment}} </h4></div>\n  </div>\n</div>\n</div> \n\n\n</div>"
 
 /***/ }),
 
@@ -2458,11 +2859,11 @@ var OrderDetailsComponent = /** @class */ (function () {
     OrderDetailsComponent.prototype.calculatePendingAmount = function (orderData) {
         if (orderData != null) {
             //console.log('Inside calculate Pending amount' + orderData.receivedAmount);
-            var makingCharge = orderData.makingCharge != null ? orderData.makingCharge : 0;
-            var discount = orderData.discount != null ? orderData.discount : 0;
+            //let makingCharge = orderData.makingCharge != null?orderData.makingCharge:0;
+            //let discount = orderData.discount != null ?orderData.discount:0;
             var receivedAmount = orderData.receivedAmount != null ? orderData.receivedAmount : 0;
-            var pendingAmount = (Number(orderData.orderAmount) + Number(makingCharge))
-                - (Number(discount) + Number(receivedAmount));
+            var pendingAmount = (Number(orderData.totalOrderAmount))
+                - (+Number(receivedAmount));
             this.initialPendingAmount = pendingAmount;
         }
     };
@@ -2497,6 +2898,69 @@ var OrderDetailsComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/orders/order-item-details/order-item-details.component.css":
+/*!****************************************************************************!*\
+  !*** ./src/app/orders/order-item-details/order-item-details.component.css ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/orders/order-item-details/order-item-details.component.html":
+/*!*****************************************************************************!*\
+  !*** ./src/app/orders/order-item-details/order-item-details.component.html ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  order-item-details works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/orders/order-item-details/order-item-details.component.ts":
+/*!***************************************************************************!*\
+  !*** ./src/app/orders/order-item-details/order-item-details.component.ts ***!
+  \***************************************************************************/
+/*! exports provided: OrderItemDetailsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderItemDetailsComponent", function() { return OrderItemDetailsComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var OrderItemDetailsComponent = /** @class */ (function () {
+    function OrderItemDetailsComponent() {
+    }
+    OrderItemDetailsComponent.prototype.ngOnInit = function () {
+    };
+    OrderItemDetailsComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-order-item-details',
+            template: __webpack_require__(/*! ./order-item-details.component.html */ "./src/app/orders/order-item-details/order-item-details.component.html"),
+            styles: [__webpack_require__(/*! ./order-item-details.component.css */ "./src/app/orders/order-item-details/order-item-details.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], OrderItemDetailsComponent);
+    return OrderItemDetailsComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/orders/order-list/order-list.component.css":
 /*!************************************************************!*\
   !*** ./src/app/orders/order-list/order-list.component.css ***!
@@ -2515,7 +2979,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"panel panel-primary\">\n\n    <div style=\"float: right;\">\n        <form #searchEmployeeForm=\"ngForm\" (ngSubmit)=\"searchOrders(searchString)\">\n          <table class=\"table-condensed\">\n            <tr>\n              <td>\n                <div style=\"color:aquamarine\" *ngIf=\"filterInfo\">Showing result with filter : {{searchString}} </div>\n              </td>\n              <td style=\"cursor: pointer;\">\n                <div style=\"color:rgb(222, 224, 236)\" *ngIf=\"filterInfo\" (click)=clearFilter()>\n                  <span id=\"searchclear\" class=\"glyphicon glyphicon-remove-circle\"> </span>Clear Filter </div>\n              </td>\n    \n              <td>\n                <div class=\"text-danger\" class=\"bg-danger\" *ngIf=\"emptySearchString\"> {{emptySearchString}} </div>\n              </td>\n              <td class=\"mx-auto\">\n                <div>\n                  <input type=\"text\" name=\"searchString\" required placeholder=\"Search Orders\" [(ngModel)]=\"searchString\">\n                </div>\n    \n              </td>\n    \n              <td>\n                <button class=\"btn btn-info btn-sm\" type=\"submit\">Search</button>\n              </td>\n    \n            </tr>\n          </table>\n        </form>\n      </div>\n  <div class=\"panel-heading\">\n    <h3 class=\"panel-title\">Orders List : <strong style=\"color:aquamarine\"> {{totalRecords}} records found</strong></h3>\n  </div>\n  <div class=\"panel-body\">\n      <table class=\"table table-striped table-responsive table-bordered table-hover table-condensed\">\n          <thead >\n            <th>Order Id</th>\n            <th>Name</th>\n            <th>Amount</th>\n            <th>Due Date</th>\n            <!-- <th>Item Type</th> -->\n            <!-- <th>Rate Of Intrest</th> -->\n            <!-- <th>Comments</th> -->\n            <th>Status</th>\n            <th>Name</th>\n            <!-- <th>Quality</th> -->\n            <th>Weight</th> \n            <th>More Detail</th> \n            <th>New Loan</th>\n          </thead>\n          <tbody > \n          <tr *ngFor=\"let order of orderList\" [class.bg-success]=\"order.status=='Closed'\"\n          [class.text-success]=\"order.status=='Closed'\" >  \n              <td> {{order.orderId}}</td>\n              <td> {{order.customerName}}</td>\n              <td> {{order.orderAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n              <td> {{order.dueDate | date:\"dd/MM/yy\" }}</td>\n              <!-- <td> {{loan.itemType| uppercase}}</td> -->\n              <!-- <td> {{loan.rateOfInterest}} %</td> -->\n              <!-- <td> {{loan.comments}}</td> -->\n              <td > {{order.status | lowercase }}</td>\n              <td> {{order.itemName}}</td>\n              <!-- <td> {{loan.itemQuality }}%</td> -->\n              <td> {{order.weight}}g</td>\n              <td style=\"cursor: pointer;\">\n                 <div class=\"text-primary\" (click)=\"getOrderDetails(order.orderId)\">Details</div></td>\n              <td style=\"cursor: pointer;\"> \n                <div class=\"text-primary\" (click)=createOrderForCustomer(order.customerId,order.customerName)>\n                 <span class=\"glyphicon glyphicon-plus\"></span> Create Order </div></td>\n          </tr>\n          </tbody>\n       </table>\n           <!-- pager -->\n    <div>\n        <ul *ngIf=\"pager.pages && pager.pages.length\" class=\"pagination\">\n            <li [ngClass]=\"{disabled:pager.currentPage === 1}\">\n                <a (click)=\"setPage(1)\">First</a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === 1}\">\n                <a (click)=\"setPage(pager.currentPage - 1)\">Previous</a>\n            </li>\n            <li *ngFor=\"let page of pager.pages\" [ngClass]=\"{active:pager.currentPage === page}\">\n                <a (click)=\"setPage(page)\">{{page}}</a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === pager.totalPages}\">\n                <a (click)=\"setPage(pager.currentPage + 1)\">Next</a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === pager.totalPages}\">\n                <a (click)=\"setPage(pager.totalPages)\">Last</a>\n            </li>\n        </ul>  \n    </div>\n  </div>\n  </div>\n\n\n\n\n"
+module.exports = "<div class=\"panel panel-primary\">\n\n    <div style=\"float: right;\">\n        <form #searchEmployeeForm=\"ngForm\" (ngSubmit)=\"searchOrders(searchString)\">\n          <table class=\"table-condensed\">\n            <tr>\n              <td>\n                <div style=\"color:aquamarine\" *ngIf=\"filterInfo\">Showing result with filter : {{searchString}} </div>\n              </td>\n              <td style=\"cursor: pointer;\">\n                <div style=\"color:rgb(222, 224, 236)\" *ngIf=\"filterInfo\" (click)=clearFilter()>\n                  <span id=\"searchclear\" class=\"glyphicon glyphicon-remove-circle\"> </span>Clear Filter </div>\n              </td>\n    \n              <td>\n                <div class=\"text-danger\" class=\"bg-danger\" *ngIf=\"emptySearchString\"> {{emptySearchString}} </div>\n              </td>\n              <td class=\"mx-auto\">\n                <div>\n                  <input type=\"text\" name=\"searchString\" required placeholder=\"Search Orders\" [(ngModel)]=\"searchString\">\n                </div>\n    \n              </td>\n    \n              <td>\n                <button class=\"btn btn-info btn-sm\" type=\"submit\">Search</button>\n              </td>\n    \n            </tr>\n          </table>\n        </form>\n      </div>\n  <div class=\"panel-heading\">\n    <h3 class=\"panel-title\">Orders List : <strong style=\"color:aquamarine\"> {{totalRecords}} records found</strong></h3>\n  </div>\n  <div class=\"panel-body\">\n      <table class=\"table table-striped table-responsive table-bordered table-hover table-condensed\">\n          <thead >\n            <th>Khata No</th>\n            <th>Name</th>\n            <th>Amount</th>\n            <th>Due Date</th>\n            <!-- <th>Item Type</th> -->\n            <!-- <th>Rate Of Intrest</th> -->\n            <!-- <th>Comments</th> -->\n            <th>Status</th>\n           <!--  <th>Item</th> -->\n            <!-- <th>Quality</th> -->\n           <!--  <th>Weight</th>  -->\n            <th>More Detail</th> \n            <th>New Order</th>\n          </thead>\n          <tbody > \n          <tr *ngFor=\"let order of orderList\" [class.bg-success]=\"order.status=='Closed'\"\n          [class.text-success]=\"order.status=='Closed'\" >  \n              <td> {{order.khataNumber}}</td>\n              <td> <a routerLink=\"/customerDetails/{{order.customerId}}\" routerLinkActive=\"active\">{{order.customerName}}</a></td>\n              <td> {{order.orderAmount | currency:'INR':'symbol':'4.2-2' }}</td>\n              <td> {{order.dueDate | date:\"dd/MM/yy\" }}</td>\n              <!-- <td> {{loan.itemType| uppercase}}</td> -->\n              <!-- <td> {{loan.rateOfInterest}} %</td> -->\n              <!-- <td> {{loan.comments}}</td> -->\n              <td > {{order.status | lowercase }}</td>\n            <!--   <td> {{order.itemName}}</td> -->\n              <!-- <td> {{loan.itemQuality }}%</td> -->\n            <!--   <td> {{order.weight}}g</td> -->\n              <td style=\"cursor: pointer;\">\n                 <div class=\"text-primary\" (click)=\"getOrderDetails(order.orderId)\">Details</div></td>\n              <td style=\"cursor: pointer;\"> \n                <div class=\"text-primary\" (click)=createOrderForCustomer(order.customerId,order.customerName)>\n                 <span class=\"glyphicon glyphicon-plus\"></span> Create Order </div></td>\n          </tr>\n          </tbody>\n       </table>\n\n       \n           <!-- pager -->\n    <div>\n        <ul *ngIf=\"pager.pages && pager.pages.length\" class=\"pagination\">\n            <li [ngClass]=\"{disabled:pager.currentPage === 1}\">\n                <a (click)=\"setPage(1)\">First</a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === 1}\">\n                <a (click)=\"setPage(pager.currentPage - 1)\">Previous</a>\n            </li>\n            <li *ngFor=\"let page of pager.pages\" [ngClass]=\"{active:pager.currentPage === page}\">\n                <a (click)=\"setPage(page)\">{{page}}</a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === pager.totalPages}\">\n                <a (click)=\"setPage(pager.currentPage + 1)\">Next</a>\n            </li>\n            <li [ngClass]=\"{disabled:pager.currentPage === pager.totalPages}\">\n                <a (click)=\"setPage(pager.totalPages)\">Last</a>\n            </li>\n        </ul>  \n    </div>\n  </div>\n  </div>\n\n\n\n\n"
 
 /***/ }),
 
@@ -2609,7 +3073,12 @@ var OrderListComponent = /** @class */ (function () {
         this.currentPage = page;
         //console.log('Current page is : '+page);
         // get current page of items
-        this.getOrderListDetials(page, 10);
+        if (this.searchString != null) {
+            this.searchOrders(this.searchString);
+        }
+        else {
+            this.getOrderListDetials(page, 10);
+        }
         this.pagedItems = this.orderList.slice(this.pager.startIndex, this.pager.endIndex + 1);
     };
     OrderListComponent.prototype.searchOrders = function (searchString) {
@@ -2619,7 +3088,7 @@ var OrderListComponent = /** @class */ (function () {
             return;
         }
         this.emptySearchString = null;
-        this._orderService.searchOrders(searchString, 1, 10).subscribe(function (res) {
+        this._orderService.searchOrders(searchString, this.currentPage, this.perPage).subscribe(function (res) {
             console.log(res);
             if (res != null) {
                 if (res.status == 'SUCCESS') {
@@ -2910,7 +3379,13 @@ var LoanService = /** @class */ (function () {
     };
     ;
     LoanService.prototype.saveLoan = function (loan) {
+        console.log(JSON.stringify(loan));
         return this._httpClient.post(this.getLoanUrl, loan, httpOptions);
+    };
+    ;
+    LoanService.prototype.updateLoan = function (loan) {
+        console.log(JSON.stringify(loan));
+        return this._httpClient.put(this.getLoanUrl, loan, httpOptions);
     };
     ;
     LoanService.prototype.saveLoanPayment = function (loanPayment) {
@@ -3038,7 +3513,10 @@ var OrderService = /** @class */ (function () {
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (response) { return response.json(); }));
     };
     OrderService.prototype.saveOrderDetails = function (order) {
-        return this._httpClient.post(this.baseUrl + '/order', order, httpOptions);
+        return this._httpClient.post(this.baseUrl + 'order', order, httpOptions);
+    };
+    OrderService.prototype.updateOrderDetails = function (order) {
+        return this._httpClient.put(this.baseUrl + 'order', order, httpOptions);
     };
     OrderService.prototype.searchOrders = function (searchString, pageNo, perPage) {
         return this._httpClient.get(this.baseUrl + 'searchOrder/' + searchString

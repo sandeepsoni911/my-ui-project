@@ -1,0 +1,245 @@
+<form #employeeForm="ngForm" (ngSubmit)="updateLoan(loan)">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Enter Loan Details for : <strong style="color: rgb(0, 204, 255)">
+            {{loan?.customerName}}</strong> </h3>
+      </div>
+      <div class="panel-body">
+  
+        <div class="form-group" [class.has-error]="loanAmount.invalid && loanAmount.touched">
+          <label for="loanAmount" class="control-label">Loan Amount</label>
+          <input id="loanAmount" required type="text" class="form-control" name="loanAmount"
+            (keypress)="numberOnly($event)" maxlength="8" [(ngModel)]="loan.loanAmount" #loanAmount="ngModel">
+          <span class="help-block" *ngIf="loanAmount.invalid && loanAmount.touched">
+            Please enter Loan Amount
+          </span>
+        </div>
+  
+        <div class="form-group">
+          <label for="loanCreatedDate" class="control-label">Loan Taken on Date</label>
+          <span class="glyphicon glyphicon-calendar"></span>
+          <div class="form-control">
+            <app-date-picker [(ngModel)]="loanCreatedDate" name="loanCreatedDate"> </app-date-picker>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="dueDate" class="control-label">Due Date</label>
+          <span class="glyphicon glyphicon-calendar"></span>
+          <div class="form-control">
+            <app-date-picker [(ngModel)]="enteredDate" name="dueDate"> </app-date-picker>
+          </div>
+        </div>
+  
+  
+        <!-- Item list starts -->
+  
+  
+        <div class="panel panel-default col-md-12" id="itemDetailsId" *ngFor="let itemObj of itemContainers; let i=index">
+  
+          <div class="panel-body">
+            <div class="col-md-12">
+              <div> Add details for Item {{i+1}}</div>
+              <br>
+              <div class="form-group col-md-3">
+                <label for="itemName{{i}}" class="control-label">Item Name</label>
+                <input id="itemName{{i}}" required type="text" class="form-control" name="itemName{{i}}"
+                  [(ngModel)]="itemObj.itemName" #itemNameCntrl="ngModel">
+                <span class="help-block" *ngIf="itemNameCntrl.touched && itemNameCntrl.invalid">
+                  Please enter itemName
+                </span>
+              </div>
+  
+              <div class="form-group col-md-3">
+                <label for="itemType{{i}}" class="control-label">Select Item Type</label>
+                <select [(ngModel)]="itemObj.itemType" name="itemType{{i}}" id="itemType{{i}}" class="form-control">
+                  <option value="" disabled selected>select a category</option>
+                  <option *ngFor="let item of availableItemType" [value]="item">{{item}}</option>
+                </select>
+              </div>
+  
+              <div class="form-group col-md-3">
+                <label for="weight{{i}}" class="control-label">Weight</label>
+                <input id="weight{{i}}" required type="text" class="form-control" name="weight"
+                  [(ngModel)]="itemObj.weight" #weightCntrl="ngModel">
+                <span class="help-block" *ngIf="weightCntrl.touched && weightCntrl.invalid">
+                  Please enter weight
+                </span>
+  
+              </div>
+  
+               <div class="form-group col-md-3" >
+                    <label for="itemQuality{{i}}" class="control-label">Iteam Quality (Tanch)%</label>
+                    <select [(ngModel)]="itemObj.itemQuality" name="itemQuality{{i}}" id="itemQuality{{i}}" class="form-control" >
+                      <option value="" disabled selected>select a category</option>
+                      <option *ngFor="let itemQuality of itemQualityList" [value]="itemQuality">{{itemQuality}}</option>
+                    </select>
+                  </div> 
+  
+  
+  
+  
+            </div>
+  
+            <div class="col-md-12">
+  
+              <div class="form-group col-md-3">
+                <label for="marketRate" class="control-label">Market Rate</label>
+                <input id="marketRate{{i}}" required type="text" class="form-control" name="marketRate{{i}}"
+                  [(ngModel)]="itemObj.marketRate" #marketRateCntrl="ngModel">
+                <span class="help-block" *ngIf="marketRateCntrl.invalid && marketRateCntrl.touched">
+                  Please enter Market Rate
+                </span>
+  
+              </div>
+  
+  
+             
+  
+  
+  
+  
+              <div class="form-group col-md-3">
+                <label for="orderAmount{{i}}" class="control-label"> Item Selling Amount
+                  &nbsp;</label>
+                <input id="orderAmount{{i}}" required type="text" class="form-control" name="orderAmount{{i}}"
+                  [(ngModel)]="itemObj.itemPrice">
+                <span *ngIf="itemObj.calculationLogicString" style="color:darkorange">
+                  <small><em>({{itemObj.calculationLogicString}})</em></small></span>
+              </div>
+  
+              <div class="form-group col-md-3">
+                <label for="comments">Item Comments</label>
+                <input id="comments" type="text" class="form-control" name="comments" [(ngModel)]="itemObj.itemComments">
+              </div>
+  
+  
+            </div>
+  
+  
+  
+  
+  
+          </div>
+  
+  
+        </div>
+  
+       
+  
+          <div form-group col-md-6>
+            <div  class="text-primary col-md-2" style="cursor: pointer;" (click)="addMoreItems()">Add More Items</div>
+            <!--  <button class="btn btn-info" (click)="addMoreItems()">Add More Items</button> -->
+            &nbsp;
+            <div class="text-primary col-md-2" style="cursor: pointer;" (click)="deleteItems()">Delete More Items</div>
+            <!--   <button  class="btn btn-info" (click)="deleteItems()">Delete More Items</button> -->
+          </div>
+  
+        
+        <br>
+  
+  
+  
+  
+       <!--  <div class="form-group">
+          <label for="itemType" class="control-label">Select Item Type</label>
+          <select [(ngModel)]="loan.itemType" name="itemType" id="itemType" class="form-control">
+            <option value="" disabled selected>select a category</option>
+            <option *ngFor="let item of availableItemType" [value]="item">{{item}}</option>
+          </select>
+        </div> -->
+  
+        <div class="form-group">
+          <label for="rateOfInterest" class="control-label">Select Rate Of Interest %</label>
+          <select [(ngModel)]="loan.rateOfInterest" name="rateOfInterest" id="rateOfInterest" class="form-control">
+            <option value="" disabled selected>select a Rate Of Interest</option>
+            <option *ngFor="let rateOfIntrest of rateOfInterestList" [value]="rateOfIntrest">{{rateOfIntrest}}</option>
+          </select>
+        </div>
+  
+       <!--  <div class="form-group" [class.has-error]="itemName.touched && itemName.invalid">
+          <label for="itemName" class="control-label">Item Name</label>
+          <input id="itemName" required type="text" class="form-control" name="itemName" [(ngModel)]="loan.itemName"
+            #itemName="ngModel">
+          <span class="help-block" *ngIf="itemName.touched && itemName.invalid">
+            Please enter itemName
+          </span>
+        </div>
+  
+        <div class="form-group" [class.has-error]="weight.touched && weight.invalid">
+          <label for="weight" class="control-label">Weight</label>
+          <input id="weight" required type="text" maxlength="8" class="form-control" name="weight"
+            [(ngModel)]="loan.weight" (keypress)="numberOnly($event)" #weight="ngModel">
+          <span class="help-block" *ngIf="weight.touched && weight.invalid">
+            Please enter weight
+          </span>
+        </div>
+  
+        <div class="form-group">
+          <label for="itemQuality" class="control-label">Iteam Quality (Tanch)%</label>
+          <select [(ngModel)]="loan.itemQuality" name="itemQuality" id="itemQuality" class="form-control">
+            <option value="" disabled selected>select a category</option>
+            <option *ngFor="let itemQuality of itemQualityList" [value]="itemQuality">{{itemQuality}}</option>
+          </select>
+        </div> -->
+  
+        <div class="form-group" >
+            <label for="khataNumber" >Khata Number</label>
+            <input  id="khataNumber"   type="text" class="form-control" 
+                    name="khataNumber" [(ngModel)]="loan.khataNumber">
+                  
+          </div>
+        <div class="form-group">
+          <label for="comments">Comments</label>
+          <input id="comments" type="text" class="form-control" name="comments" [(ngModel)]="loan.comments">
+        </div> 
+  
+  
+  
+      </div>
+      <div class="panel-footer">
+        <button class="btn btn-primary" type="submit">Save</button>
+      </div>
+      <div class="panel-footer text-success" *ngIf="successMessage">
+        {{successMessage}}
+      </div>
+      <div class="panel-footer text-danger" *ngIf="errorResponse">
+        {{errorResponse}}
+      </div>
+      <div class="panel-footer text-danger" *ngIf="validationError">
+        {{validationError}}
+      </div>
+    </div>
+  </form>
+  
+  
+  <div class="modal " tabindex="-1" id="confirmationModal" data-keyboard="false" data-backdrop="static"
+    [ngStyle]="{'display':getDisplayObject()}">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+  
+        <div class="modal-header">
+  
+          <button type="button" (click)="dismissModal()" class="close" data-dismiss="modal">
+            &times;
+          </button>
+          <h4 class="modal-title">Create Loan Status</h4>
+        </div>
+        <div class="modal-body">
+          <div class="text-success" style="align-content: center" *ngIf="successMessage">
+            <h4>{{successMessage}}</h4>
+          </div>
+  
+          <div class="text-error" style="align-content: center" *ngIf="errorResponse">
+            <h4>{{errorResponse}}</h4>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="dismissModal()" class="btn btn-info">Create one more Loan</button>
+          <button type="button" class="btn btn-primary" (click)="dismissModalAndRedirect()" data-dismiss="modal">Go to
+            Loan List</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>

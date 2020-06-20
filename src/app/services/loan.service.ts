@@ -32,6 +32,8 @@ export class LoanService{
 
    getLoanUrl = this.baseUrl+'loan';
 
+   getDefaultLoanUrl = this.baseUrl+'defaultLoans';
+
    getLoanPaymentUrl = this.baseUrl+'loanPartialPayment/';
 
    getCustomerLoanUrl = this.baseUrl+'loanDetailsByCustomerId/';
@@ -49,6 +51,14 @@ getLoanList(pageNum, perPage) : Observable<any>  {
     .pipe(map((response : Response) => <any>response.json()));
 };
 
+getDefaltLoanList(pageNum, perPage, goldRate, silverRate, calcuLationDate) : Observable<any>  {
+  return this._http.get(this.getDefaultLoanUrl+'?pageNumber='+pageNum+'&perPage='
+  +perPage+'&goldRate='+goldRate+'&silverRate='+silverRate+'&calcuLationDate='+calcuLationDate)
+  .pipe(map((response : Response) => <any>response.json()));
+};
+
+
+
 getCustomerLoanList(customerId: string) : Observable<Loan[]>  {
   console.log('jhfginside loanlist  s')
   return this._http.get(this.getCustomerLoanUrl.concat(customerId))
@@ -56,9 +66,16 @@ getCustomerLoanList(customerId: string) : Observable<Loan[]>  {
 };
 
 
+
 saveLoan(loan :Loan) : Observable<BaseResponse> {
+  console.log(JSON.stringify(loan))
     return this._httpClient.post<BaseResponse>(this.getLoanUrl, loan, httpOptions);
   };
+
+  updateLoan(loan :Loan) : Observable<BaseResponse> {
+    console.log(JSON.stringify(loan))
+      return this._httpClient.put<BaseResponse>(this.getLoanUrl, loan, httpOptions);
+    };
 
   saveLoanPayment(loanPayment :LoanPayment) : Observable<any> {
     return this._httpClient.post<LoanPayment>(this.baseUrl.concat('loanPartialPayment'), loanPayment, httpOptions, ) ;

@@ -9,14 +9,11 @@
               <th>Name</th>
               <th>Amount</th>
               <th>Due Date</th>
-              <th>Item Type</th>
               <th>Rate Of Intrest</th>
               <th>Comments</th>
               <th>Status</th>
-              <th>Item Name</th>
-              <th>Item Quality</th>
-              <th>Weight(gram)</th> 
               <th>More Detail</th> 
+              <th>New Loan</th>
             </thead>
             <tbody > 
             <tr *ngFor="let loan of loanList" [class.bg-success]="loan.status=='CLOSED'"
@@ -25,16 +22,19 @@
                 <td> {{loan.customerName}}</td>
                 <td> {{loan.loanAmount | currency:'INR':'symbol':'4.2-2' }}</td>
                 <td> {{loan.dueDate | date:"dd/MM/yy" }}</td>
-                <td> {{loan.itemType| uppercase}}</td>
+
                 <td> {{loan.rateOfInterest}} %</td>
                 <td> {{loan.comments}}</td>
                 <td> {{loan.status | uppercase }}</td>
-                <td> {{loan.itemName}}</td>
-                <td> {{loan.itemQuality }}%</td>
-                <td> {{loan.weight}}g</td>
+
                 <td style="cursor: pointer;"> 
                     <div class="text-primary" (click)="onSelect(loan.loanId)">More Details</div></td>
+                    <td style="cursor: pointer;"> 
+                      <div class="text-primary" (click)=createCustomerLoan(order.customerId,order.customerName)>
+                       <span class="glyphicon glyphicon-plus"></span> Create Loan </div>
+                   </td>
             </tr>
+            
             </tbody>
             
             </table>
@@ -45,7 +45,7 @@
             <h5 class="text-info"> {{customerName}} doesn't have any loan yet. Please click on below button to place new loan.</h5>
             
             
-                  <button class="btn btn-info " (click)=createOrderForCustomer(customerId,customerName) type="button">Create Loan</button> 
+                  <button class="btn btn-info " (click)=createCustomerLoan(customerId,customerName) type="button">Create Loan</button> 
         </div>
 </div>
 
@@ -62,13 +62,14 @@
               <th>Due Date</th>
               <!-- <th>Item Type</th> -->
               <!-- <th>Rate Of Intrest</th> -->
-              <!-- <th>Comments</th> -->
+              <th>Comments</th>
               <th>Status</th>
-              <th>Name</th>
+              <!-- <th>Name</th> -->
               <!-- <th>Quality</th> -->
-              <th>Weight</th> 
+             <!--  <th>Weight</th>  -->
               <th>More Detail</th> 
-              <th>New Loan</th>
+              <th>New Order</th>
+              
             </thead>
             <tbody > 
             <tr *ngFor="let order of customerOrderList" [class.bg-success]="order.status=='Closed'"
@@ -79,17 +80,17 @@
                 <td> {{order.dueDate | date:"dd/MM/yy" }}</td>
                 <!-- <td> {{loan.itemType| uppercase}}</td> -->
                 <!-- <td> {{loan.rateOfInterest}} %</td> -->
-                <!-- <td> {{loan.comments}}</td> -->
-                <td > {{order.status | lowercase }}</td>
-                <td> {{order.itemName}}</td>
+                <td> {{order.comments}}</td>
+                <td > {{order.status | uppercase }}</td>
+                <!-- <td> {{order.itemName}}</td> -->
                 <!-- <td> {{loan.itemQuality }}%</td> -->
-                <td> {{order.weight}}g</td>
+                <!-- <td> {{order.weight}}g</td> -->
                 <td style="cursor: pointer;">
                    <div class="text-primary" (click)="getOrderDetails(order.orderId)">Details</div>
                 </td>
                 <td style="cursor: pointer;"> 
-                  <div class="text-primary" (click)=createCustomerLoan(order.customerId,order.customerName)>
-                   <span class="glyphicon glyphicon-plus"></span> Create Loan </div>
+                  <div class="text-primary" (click)=createOrderForCustomer(order.customerId,order.customerName)>
+                   <span class="glyphicon glyphicon-plus"></span> Create Order </div>
                </td>
             </tr>
             </tbody>

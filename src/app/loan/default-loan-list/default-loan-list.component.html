@@ -1,0 +1,157 @@
+
+
+<div class="col-md-9">
+
+  <form>
+    
+    <div class="form-group col-md-3">
+      <label for="goldRate" class="control-label">Markete Rate For Gold</label>
+      <input id="goldRate" required type="text" class="form-control" name="goldRate"
+        [(ngModel)]="goldRate" #marketRateCntrl="ngModel">
+      <span class="help-block" *ngIf="marketRateCntrl.invalid && marketRateCntrl.touched">
+        Please enter Market Rate for Gold
+      </span>
+  
+    </div>
+    <div class="form-group col-md-3">
+      <label for="silverRate" class="control-label">Markete Rate For Silver</label>
+      <input id="silverRate" required type="text" class="form-control" name="silverRate"
+        [(ngModel)]="silverRate" #silverRateCtrl="ngModel">
+      <span class="help-block" *ngIf="silverRateCtrl.invalid && silverRateCtrl.touched">
+        Please enter Market Rate for Silver
+      </span>
+  
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="calcuLationDateId" class="control-label">Calculate On Date</label>
+      <span class="glyphicon glyphicon-calendar"></span>
+      <div class="form-control">
+        <app-date-picker [(ngModel)]="calcuLationDate" name="calcuLationDateId"> </app-date-picker>
+      </div>
+    </div>
+
+    <div class=" form-group col-md-3">
+      <label> </label>
+      <button type="button" (click)="fetchDefaultLoans()" class="btn btn-info">Find Default Loans</button>
+    </div>
+   
+
+  </form>
+  
+
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+<div class="panel panel-primary" *ngIf="loanList">
+  <div style="float: right;">
+      <form #searchEmployeeForm="ngForm" (ngSubmit)="searchLoans(searchString)">
+        <table class="table-condensed">
+          <tr>
+            <td>
+              <div style="color:aquamarine" *ngIf="filterInfo">Showing result with filter : {{searchString}} </div>
+            </td>
+            <td style="cursor: pointer;">
+              <div style="color:rgb(222, 224, 236)" *ngIf="filterInfo" (click)=clearFilter()>
+                <span id="searchclear" class="glyphicon glyphicon-remove-circle"> </span>Clear Filter </div>
+            </td>
+  
+            <td>
+              <div class="text-danger" class="bg-danger" *ngIf="emptySearchString"> {{emptySearchString}} </div>
+            </td>
+            <td class="mx-auto">
+              <div>
+                <input type="text" name="searchString" required placeholder="Search Loans" [(ngModel)]="searchString">
+              </div>
+  
+            </td>
+  
+            <td>
+              <button class="btn btn-info btn-sm" type="submit">Search</button>
+            </td>
+  
+          </tr>
+        </table>
+      </form>
+    </div>
+<div class="panel-heading">
+  <h3 class="panel-title">Loan List : <strong style="color:aquamarine"> {{totalRecords}} records found</strong></h3>
+</div>
+<div class="panel-body">
+    <table class="table table-striped table-bordered table-hover table-condensed">
+        <thead >
+          <th>Khata Number</th>
+          <th>Name</th>
+          <th>Amount</th>
+          <th>Due Date</th>
+          <!-- <th>Item Type</th> -->
+          <!-- <th>Rate Of Intrest</th> -->
+          <!-- <th>Comments</th> -->
+          <th>Status</th>
+         <!--  <th>Name</th> -->
+          <!-- <th>Quality</th> -->
+        <!--   <th>Weight</th>  -->
+          <th>Selling Amount</th> 
+          <th>Total Interest</th>
+          <th>Pending Amount</th>
+          <th>Default</th>
+          <th>Details</th>
+        </thead>
+        <tbody > 
+        <tr *ngFor="let loan of loanList" [class.bg-success]="loan.status=='CLOSED'" [class.text-success]="loan.status=='CLOSED'" 
+        [class.bg-danger]="loan.isDefault" [class.text-danger]="loan.isDefault" >  
+            <td> {{loan.khataNumber}}</td>
+            <td>  <a routerLink="/customerDetails/{{loan.customerId}}" routerLinkActive="active"> {{loan.customerName}}</a></td>
+            <td> {{loan.loanAmount | currency:'INR':'symbol':'4.2-2' }}</td>
+            <td> {{loan.dueDate | date:"dd/MM/yy" }}</td>
+            <!-- <td> {{loan.itemType| uppercase}}</td> -->
+            <!-- <td> {{loan.rateOfInterest}} %</td> -->
+            <!-- <td> {{loan.comments}}</td> -->
+            <td > {{loan.status | lowercase }}</td>
+           <!--  <td> {{loan.itemName}}</td> -->
+            <!-- <td> {{loan.itemQuality }}%</td> -->
+           <!--  <td> {{loan.weight}}g</td> -->
+           
+
+           <td > {{loan.totalSellingAmount | currency:'INR':'symbol':'4.2-2' }}</td>
+           <td > {{loan.totalInterest  | currency:'INR':'symbol':'4.2-2' }}</td>
+           <td > {{loan.totalBalanceAmount | currency:'INR':'symbol':'4.2-2' }}</td>
+           <td *ngIf="loan.isDefault"> YES</td>
+           <td *ngIf="!loan.isDefault"> NO</td>
+           <td style="cursor: pointer;"> <div class="text-primary" (click)="onSelect(loan.loanId)">Details</div></td>
+
+        </tr>
+        </tbody>
+        
+     </table>
+      <!-- pager -->
+  <div>
+      <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(1)">First</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+          </li>
+          <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+              <a (click)="setPage(page)">{{page}}</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.currentPage + 1)">Next</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.totalPages)">Last</a>
+          </li>
+      </ul>  
+  </div>
+        
+</div>
+</div>
+
+
+
+

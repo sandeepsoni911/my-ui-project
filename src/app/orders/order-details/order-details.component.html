@@ -44,7 +44,13 @@
         </tr>
         <tr *ngIf="!checkPaymentDetailsAvailable() && initialPendingAmount">
                 <td>Pending Amount</td>
-                <td class="text-info"><strong>{{initialPendingAmount| currency:'INR':'symbol':'4.2-2' }}</strong> </td>
+                <div *ngIf="currencyFormatting">
+                  <td class="text-info"><strong>{{initialPendingAmount| currency:'INR':'symbol':'4.2-2' }}</strong> </td>
+                </div>
+                <div *ngIf="!currencyFormatting">
+                  <td class="text-info"><strong>{{initialPendingAmount}}</strong> </td>
+                </div>
+                
          </tr>
          
         <tr>

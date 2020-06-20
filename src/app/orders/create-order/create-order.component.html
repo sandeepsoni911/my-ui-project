@@ -115,11 +115,11 @@
         <div form-group col-md-6>
 
           <div form-group col-md-6>
-            <div class="text-primary" style="cursor: pointer;" (click)="addMoreItems()">Add More Items</div>
-           <!--  <button class="btn btn-info" (click)="addMoreItems()">Add More Items</button> -->
+            <div  class="text-primary col-md-2" style="cursor: pointer;" (click)="addMoreItems()">Add More Items</div>
+            <!--  <button class="btn btn-info" (click)="addMoreItems()">Add More Items</button> -->
             &nbsp;
-            <div class="text-primary" style="cursor: pointer;" (click)="deleteItems()">Delete More Items</div>
-           <!--   <button  class="btn btn-info" (click)="deleteItems()">Delete More Items</button> -->
+            <div class="text-primary col-md-2" style="cursor: pointer;" (click)="deleteItems()">Delete More Items</div>
+            <!--   <button  class="btn btn-info" (click)="deleteItems()">Delete More Items</button> -->
           </div>
          
         </div>
@@ -235,10 +235,10 @@
 
           <div class="form-group" class="text-primary"  *ngIf="order?.receivedAmount">
               <label for="receivedAmount" class="control-label">Pending Amount : </label>
-             ({{order?.orderAmount}} + {{order?.makingCharge}} ) - ( {{order?.receivedAmount}} +  {{order?.discount}}) =  
+             {{order?.totalOrderAmount}} -  {{order?.receivedAmount}} =  
              <span  class="form-control" class="text-warning" *ngIf="pendingAmount">
                <strong>
-                {{pendingAmount}}
+                {{pendingAmount}} Rs
 
                </strong>  </span> 
                     

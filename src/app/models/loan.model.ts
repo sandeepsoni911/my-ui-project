@@ -1,3 +1,5 @@
+import { Items } from "./items.model";
+
 export interface Loan {
 
 
@@ -14,8 +16,9 @@ export interface Loan {
 	weight : number;
 	customerName : string;
 	createdDate : Date;
-	khataNumber : number;
+	khataNumber : string;
 	customerCity: string;
+	itemsList:Items[]
 
     
 }

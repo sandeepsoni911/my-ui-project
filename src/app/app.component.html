@@ -35,6 +35,11 @@
                 <a class="nav-link" id="orderList-tab" data-toggle="tab" routerLink="orderList">
                     <span class="glyphicon glyphicon-list"></span> Order List</a>
             </li>
+            <li class="nav-item" *ngIf="_authService.loggedIn()">
+                <a class="nav-link" id="orderList-tab" data-toggle="tab" routerLink="defaultLoanList">
+                    <span class="glyphicon glyphicon-list"></span> Default Loan List</a>
+            </li>
+            
 
             <li class="navbar-nav" style="float: right;" >
                     <a class="nav-link"  *ngIf="!_authService.loggedIn()" style="cursor:pointer" routerLink="/login"

@@ -65,6 +65,11 @@ export class OrderService {
 
       return this._httpClient.post<BaseResponse>(this.baseUrl+'order', order, httpOptions);
     }
+
+    updateOrderDetails(order : Order): Observable<BaseResponse> {
+
+      return this._httpClient.put<BaseResponse>(this.baseUrl+'order', order, httpOptions);
+    }
   
 
     

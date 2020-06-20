@@ -1,17 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { LoanService } from '../services/loan.service';
-import {Loan} from '../models/loan.model';
+
 import {Router} from '@angular/router';
-import {PagerService} from '../services/pagerService.service';
+import { LoanService } from 'src/app/services/loan.service';
+import { PagerService } from 'src/app/services/pagerService.service';
+import { Loan } from 'src/app/models/loan.model';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
-  selector: 'app-loan-list',
-  templateUrl: './loan-list.component.html',
-  styleUrls: ['./loan-list.component.css']
+  selector: 'app-default-loan-list',
+  templateUrl: './default-loan-list.component.html',
+  styleUrls: ['./default-loan-list.component.css']
 })
-export class LoanListComponent implements OnInit {
+export class DefaultLoanListComponent implements OnInit {
 
-  loanList: Loan[] ;
+  loanList: any[] ;
+
+  goldRate = 40000;
+  silverRate = 70000;
+  calcuLationDate : Date = new Date();
   
 
   //Pagination & Search attributes
@@ -42,12 +49,15 @@ export class LoanListComponent implements OnInit {
  
    ngOnInit() {
     if(this.currentPage == 1){
-        this.getLoanListDetails(1, 10);
+       
     } 
    }
 
-   getLoanListDetails(currentPage, perPageSize){
-      this._loanService.getLoanList(currentPage, perPageSize)
+   getDefaultLoanListDetails(currentPage, perPageSize, goldRate, silverRate, calcuLationDate){
+
+    let datePipe = new DatePipe('en-US');
+   let calcuLationDateStr =  datePipe.transform(this.calcuLationDate, 'yyyy-MM-dd');
+      this._loanService.getDefaltLoanList(currentPage, perPageSize, goldRate, silverRate, calcuLationDateStr)
                            .subscribe(
                       //(loanData) => this.loanList = loanData
                       res => {
@@ -112,7 +122,7 @@ export class LoanListComponent implements OnInit {
    if(this.searchString != null){
     this.searchLoans(this.searchString);
    }else{
-    this.getLoanListDetails(page, 10);
+    this.getDefaultLoanListDetails(page, 10, this.goldRate, this.silverRate, this.calcuLationDate);
    }
       
     
@@ -159,9 +169,13 @@ searchLoans(searchString : string){
 
 /* To clear serch filters*/
 clearFilter(){
-  this.getLoanListDetails(this.currentPage, 10);
+  this.getDefaultLoanListDetails(this.currentPage, 10, this.goldRate, this.silverRate, this.calcuLationDate);
   this.searchString = null;
   this.filterInfo = false;
+}
+
+fetchDefaultLoans(){
+  this.getDefaultLoanListDetails(1, 10, this.goldRate, this.silverRate, this.calcuLationDate);
 }
 
 }

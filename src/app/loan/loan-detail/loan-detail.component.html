@@ -5,7 +5,8 @@
           <h3 class="panel-title">Loan Details</h3>
         </div>
         <div class="panel-body">           
-
+            <div> <button class="btn btn-primary" 
+                (click)="editLoanDetail(loanDetail?.loanId)">Edit Loan Details </button></div>
     <div class="pannel panel-info">
         <div class="panel-heading">
          
@@ -35,23 +36,13 @@
                   <td>Due Date</td>
                   <td class="text-primary"> {{loanDetail?.dueDate | date:"dd/MM/yy" }}</td>
               </tr>
-              <tr>  
-                <td>Item Type</td>
-                <td class="text-primary"> {{loanDetail?.itemType| lowercase}}</td>
-              </tr>
-              <tr>  
-                    <td>Item Name</td>
-                    <td class="text-primary"> {{loanDetail?.itemName| lowercase}}</td>
-                </tr>
+             
             <tr>  
                 <td>Rate of Interest</td>
                 <td class="text-primary"> {{loanDetail?.rateOfInterest}}%</td>
             </tr>
 
-            <tr>  
-                <td>Item Quality</td>
-                <td class="text-primary"> {{loanDetail?.itemQuality}}%</td>
-            </tr>
+           
             <tr>  
                 <td>Loan Taken on Date in ("DD/MM/YY")</td>
                 <td class="text-primary"> {{loanDetail?.createdDate | date:"dd/MM/yy" }}</td>
@@ -67,6 +58,12 @@
                 </tr>
 
 
+
+
+               
+
+
+
             <tr *ngIf="loanDetail?.status=='OPEN'">  
                 <td colspan="2" class="text-center"><button class="btn btn-primary" 
                     data-target="#loginModal"  data-toggle="modal" >Add Payment/Loan </button> </td>
@@ -77,6 +74,51 @@
             </table>
             <div class="text-info" *ngIf="!loanDetail.loanId"> This customer doesn't have any loan  </div>
         </div>
+
+        <div class="pannel panel-info" >
+            <div class="panel-heading">
+               Loan Item Details
+              </div>
+        
+            <div class="panel-body"> 
+                <table class="table  table-bordered table-hover table-condensed">
+                    <thead  class="table-bordered">
+                      <th>Item Name</th>
+                      <th>Item Type</th>
+                      <th>Weight (grams)</th>
+                      <th>Item Quality(Tanch)</th>
+                      <th>Count</th>
+                      <th>Item Price</th>
+                      <th>Comments</th>
+                     
+                      
+                     
+                    </thead>
+                    <tbody > 
+                    <tr *ngFor="let item of loanDetail?.itemsList"  >  
+                        <td> {{item.itemName}}</td>
+                        <td> {{item.itemType }}</td>
+                        <td> {{item.weight || "NA"}}</td>
+                        <td> {{item.itemQuality || "NA"}}</td>
+                        <td> {{item.count || "1"}}</td>
+                        <td> {{item.itemPrice || "NA"}}</td>
+                        <td> {{item.itemComments }}</td>
+                        
+                    </tr> 
+                    
+                    </tbody>
+                </table>
+            </div> 
+        </div>
+
+
+
+       
+
+
+
+
+
 
         <div class="pannel panel-info" *ngIf="checkPaymentDetailsAvailable()">
             <div class="panel-heading">

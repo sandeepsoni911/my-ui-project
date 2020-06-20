@@ -64,8 +64,7 @@ export class CreateOrderComponent implements OnInit {
       exchangeWeight : null,
       receivedAmount : null,
       discount : null,
-      makingCharge : null,
-      marketRate : null,
+
       itemsList:null,
       totalOrderAmount:null
 
@@ -146,16 +145,12 @@ export class CreateOrderComponent implements OnInit {
 
   getPendingAmount(order : Order){
 
-    let  orderAmount: number = order.orderAmount;
-    let  makingCharge: number = order.makingCharge;
-
-
-   let  discount: number = order.discount;
-    
+    let  orderAmount: number = order.totalOrderAmount;
    let receivedAmount : number = order.receivedAmount;
 
    
-    this.pendingAmount = (Number(orderAmount)+Number(makingCharge))-(Number(discount)+Number(receivedAmount));
+    this.pendingAmount = (Number(orderAmount) - Number(receivedAmount));
+   
   }
 
 
@@ -253,12 +248,12 @@ calculateItemOrderAmount(itemObj : Items, i:number) {
   if(itemObj.itemType != null && (itemObj.itemType == 'Silver' || itemObj.itemType == 'silver')){
     calculationLogicStr = 'Amount calculated for Silver rate '+itemObj.marketRate+' per Kg  for weight '+itemObj.weight + ' grams'; 
     itemObj.discount  = itemObj.discount !=null?itemObj.discount :0;
-    amount = ((itemObj.marketRate/1000)*itemObj.weight)-itemObj.discount;
+    amount = (((itemObj.marketRate/1000)*itemObj.weight)+Number(itemObj.makingCharge))-itemObj.discount;
     amount = Math.round(amount);
   }else if (itemObj.itemType != null && (itemObj.itemType == 'Gold' || itemObj.itemType == 'gold')){
     calculationLogicStr = 'Amount calculated for Gold rate '+itemObj.marketRate+' per 10 grams  for weight '+itemObj.weight + ' grams';
     itemObj.discount  = itemObj.discount !=null?itemObj.discount :0;
-    amount = ((itemObj.marketRate/10)*itemObj.weight)-itemObj.discount;
+    amount = (((itemObj.marketRate/10)*itemObj.weight)+Number(itemObj.makingCharge))-itemObj.discount;
     amount = Math.round(amount);
   }
 this.itemContainers[i].itemPrice=amount;

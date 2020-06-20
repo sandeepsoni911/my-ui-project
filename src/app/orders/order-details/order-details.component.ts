@@ -17,7 +17,7 @@ export class OrderDetailsComponent implements OnInit {
 
   initialPendingAmount;
   baseResponse : BaseResponse;
-
+  currencyFormatting:boolean;
   orderPaymentDetailsList : OrderPayment[];
 
   success_response;
@@ -118,14 +118,17 @@ export class OrderDetailsComponent implements OnInit {
   calculatePendingAmount(orderData : Order){
     if(orderData != null){
       //console.log('Inside calculate Pending amount' + orderData.receivedAmount);
-      let makingCharge = orderData.makingCharge != null?orderData.makingCharge:0;
-      let discount = orderData.discount != null ?orderData.discount:0;
+      //let makingCharge = orderData.makingCharge != null?orderData.makingCharge:0;
+      //let discount = orderData.discount != null ?orderData.discount:0;
       let receivedAmount = orderData.receivedAmount != null ?orderData.receivedAmount:0;
       let pendingAmount =(
-                          Number(orderData.orderAmount)+Number(makingCharge))
-                           -(Number(discount)+Number(receivedAmount)
+                          Number(orderData.orderAmount))
+                           -(+Number(receivedAmount)
                            );
       this.initialPendingAmount = pendingAmount;
+      if(pendingAmount>999){
+        this.currencyFormatting=true;
+      }
     }
     
   }

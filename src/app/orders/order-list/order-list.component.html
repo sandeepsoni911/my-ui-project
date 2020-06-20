@@ -36,7 +36,7 @@
   <div class="panel-body">
       <table class="table table-striped table-responsive table-bordered table-hover table-condensed">
           <thead >
-            <th>Order Id</th>
+            <th>Khata No</th>
             <th>Name</th>
             <th>Amount</th>
             <th>Due Date</th>
@@ -44,26 +44,26 @@
             <!-- <th>Rate Of Intrest</th> -->
             <!-- <th>Comments</th> -->
             <th>Status</th>
-            <th>Name</th>
+           <!--  <th>Item</th> -->
             <!-- <th>Quality</th> -->
-            <th>Weight</th> 
+           <!--  <th>Weight</th>  -->
             <th>More Detail</th> 
-            <th>New Loan</th>
+            <th>New Order</th>
           </thead>
           <tbody > 
           <tr *ngFor="let order of orderList" [class.bg-success]="order.status=='Closed'"
           [class.text-success]="order.status=='Closed'" >  
-              <td> {{order.orderId}}</td>
-              <td> {{order.customerName}}</td>
+              <td> {{order.khataNumber}}</td>
+              <td> <a routerLink="/customerDetails/{{order.customerId}}" routerLinkActive="active">{{order.customerName}}</a></td>
               <td> {{order.orderAmount | currency:'INR':'symbol':'4.2-2' }}</td>
               <td> {{order.dueDate | date:"dd/MM/yy" }}</td>
               <!-- <td> {{loan.itemType| uppercase}}</td> -->
               <!-- <td> {{loan.rateOfInterest}} %</td> -->
               <!-- <td> {{loan.comments}}</td> -->
               <td > {{order.status | lowercase }}</td>
-              <td> {{order.itemName}}</td>
+            <!--   <td> {{order.itemName}}</td> -->
               <!-- <td> {{loan.itemQuality }}%</td> -->
-              <td> {{order.weight}}g</td>
+            <!--   <td> {{order.weight}}g</td> -->
               <td style="cursor: pointer;">
                  <div class="text-primary" (click)="getOrderDetails(order.orderId)">Details</div></td>
               <td style="cursor: pointer;"> 

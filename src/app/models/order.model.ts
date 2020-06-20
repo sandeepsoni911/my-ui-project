@@ -14,14 +14,12 @@ export interface Order {
 	customerName : string;
 	customerCity : string;
 	createdDate : Date;
-	khataNumber : number;
+	khataNumber : string;
 	exchangeItemName : string;
 	exchangeItemQuality : number;
 	exchangeWeight : number;
 	receivedAmount : number;
 	discount : number;
-	makingCharge : number;
-	marketRate : number;
 	itemsList:Items[],
 	totalOrderAmount:number
 

@@ -41,6 +41,9 @@ import { OrderDashboardComponent } from './dashboard/order-dashboard/order-dashb
 import { OrderPaymentDashboardComponent } from './dashboard/order-payment-dashboard/order-payment-dashboard.component';
 import { LoanPaymentDashboardComponent } from './dashboard/loan-payment-dashboard/loan-payment-dashboard.component';
 import { OrderItemDetailsComponent } from './orders/order-item-details/order-item-details.component';
+import { LoanDetailsEditComponent } from './loan/loan-details-edit/loan-details-edit.component';
+import { OrderDetailsEditComponent } from './orders/order-details-edit/order-details-edit.component';
+import { DefaultLoanListComponent } from './loan/default-loan-list/default-loan-list.component';
 
 
 
@@ -51,15 +54,18 @@ const appRoutes : Routes = [
 {path: 'loanList', component: LoanListComponent, canActivate : [AuthGuard] },
 {path: 'createLoan/:customerId', component : CreateLoanComponent, canActivate : [AuthGuard] },
 {path: 'loanDetail/:id', component: LoanDetailComponent, canActivate : [AuthGuard] },
+{path: 'editLoanDetail/:id', component: LoanDetailsEditComponent, canActivate : [AuthGuard] },
 {path: 'customerLoanDetail/:id', component: CustomerLoanDetailComponent, canActivate : [AuthGuard] },
 {path: 'customerDetails/:id', component: CustomerDetailsComponent, canActivate : [AuthGuard] },
 {path: 'login', component: LoginComponent},
 {path: 'home', component: HomePageComponent},
 {path: 'orderDetails/:id', component : OrderDetailsComponent},
+{path: 'editOrderDetails/:id', component : OrderDetailsEditComponent},
 {path: 'createOrder/:cutomerId', component : CreateOrderComponent},
 {path: 'orderList', component: OrderListComponent},
 {path: 'dashboard', component: OrderDashboardComponent},
 {path: 'orderItemDetails', component:OrderItemDetailsComponent},
+{path: 'defaultLoanList', component:DefaultLoanListComponent},
 
 {path: '', redirectTo: '/home', pathMatch: 'full'}
 
@@ -86,7 +92,10 @@ const appRoutes : Routes = [
   
     OrderPaymentDashboardComponent,
     LoanPaymentDashboardComponent,
-    OrderItemDetailsComponent
+    OrderItemDetailsComponent,
+    LoanDetailsEditComponent,
+    OrderDetailsEditComponent,
+    DefaultLoanListComponent
   ],
   imports: [
     BrowserModule,

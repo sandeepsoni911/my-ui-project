@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Loan} from '../models/loan.model';
 import {LoanService} from '../services/loan.service';
-import {DatePipe} from '@angular/common'
+import {DatePipe} from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
+import { Items } from '../models/items.model';
 
 
 
@@ -21,16 +22,20 @@ export class CreateLoanComponent implements OnInit {
  customerName;
  validationError;
 
+ item = new Items();
+
+  itemContainers  =[];
+
   availableItemType : string[] = [
     "Gold", "Silver", "Platinum", "Diamond"
   ];
 
   rateOfInterestList : string[] = [
-    "1", "1.5", "2", "2.5", "3","3.5", "4", "4.5", "5"
+    "1.00", "1.25","1.50","1.75", "2.00","2.25", "2.50","2.75", "3.00","3.25","3.50", "3.75","4.00","4.25", "4.50","4.75", "5"
   ];
 
   itemQualityList : string[] = [
-    "40", "50", "55", "60", "65","70", "75", "80", "85","90","95","99"
+    "40", "50", "55", "60", "65","70", "75", "80", "85","90","95","99","100"
   ];
 
   
@@ -49,7 +54,8 @@ export class CreateLoanComponent implements OnInit {
   itemType :null,
   createdDate : null,
   khataNumber : null,
-  customerCity: null
+  customerCity: null,
+  itemsList:null,
   }
 
   
@@ -70,17 +76,60 @@ export class CreateLoanComponent implements OnInit {
    // this.customerName=custName;
     this.loan.customerName = custName;
     this.loan.customerId=custId;
+    this.itemContainers.push(this.item);
   }
 
+  validateItemList() : string {
+    let respnse ='';
+    let i =1;
+    this.itemContainers.forEach(function(itm){
+  
+      if(itm.itemName == null ){
+        respnse='Please enter Item Name for item '+i;
+        return respnse;
+      }
+  
+      if(itm.weight == null ){
+        respnse='Please enter Weight for item : '+i;
+        return respnse;
+      }
+      if(itm.marketRate == null ){
+        respnse='Please enter marketRate for item : '+i;
+      return respnse;
+      }
+     
+      if(itm.itemPrice == null ){
+        respnse='Please enter order amount for Item '+i;
+        return respnse;
+      }
+  
+     
+     i++;
+    }
+    
+    )
+    return respnse;
+  }
   
 
   saveLoan(loan: Loan)  { //customerName
+   // alert(this.enteredDate)
     let datePipe = new DatePipe('en-US');
     this.loan.dueDate=  datePipe.transform(this.enteredDate, 'yyyy-MM-dd');
     this.loan.createdDate = this.loanCreatedDate;
+
+
+    let res = this.validateItemList();
+    if(res != ''){
+
+      this.validationError=res;
+      return;
+    } 
+
     if(!this.validateLoanData(loan)){
       return;
     }
+    loan.itemsList=this.itemContainers;
     this.validationError = null;
 
     
@@ -167,11 +216,7 @@ validateLoanData(loan : Loan) : boolean {
     return false;
   }
 
-  if(loan.itemType == null || loan.itemType == ''){
-     
-    this.validationError='Please select itemType';
-    return false;
-  }
+
 
   if(loan.rateOfInterest == null || loan.rateOfInterest == ''){
      
@@ -179,22 +224,30 @@ validateLoanData(loan : Loan) : boolean {
     return false;
   }
 
-  if(loan.itemName == null || loan.itemName == ''){
-    this.validationError='Please enter itemName';
-    return false;
-  }
 
-  if(loan.weight == null || loan.weight <= 0){
-    this.validationError='Please enter weight';
-    return false;
-  }
 
-  if(loan.itemQuality == null || loan.itemQuality == ''){
-    this.validationError='Please select itemQuality';
+  if(loan.khataNumber == null ){
+    this.validationError='Please enter Khata Number';
     return false;
   }
   
   return true;
 }
+
+
+
+
+addMoreItems() {
+  console.log(JSON.stringify(this.itemContainers));
+  this.item = new Items();
+  this.itemContainers.push(this.item);
+}
+
+deleteItems() {
+  this.itemContainers.pop();
+}
+
+
+
 
 }

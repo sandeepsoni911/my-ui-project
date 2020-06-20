@@ -106,8 +106,12 @@ setPage(page: number) {
   this.currentPage = page;
   //console.log('Current page is : '+page);
   // get current page of items
- 
+  if(this.searchString != null){
+    this.searchOrders(this.searchString);
+  }else{
     this.getOrderListDetials(page, 10);
+  }
+   
   
   this.pagedItems = this.orderList.slice(this.pager.startIndex, this.pager.endIndex + 1);
 }
@@ -123,7 +127,7 @@ searchOrders(searchString : string){
     return;
   }
   this.emptySearchString = null;
-  this._orderService.searchOrders(searchString, 1, 10).subscribe(
+  this._orderService.searchOrders(searchString, this.currentPage, this.perPage).subscribe(
     
     res => {
       console.log(res);
