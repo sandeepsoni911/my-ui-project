@@ -113,20 +113,9 @@ export class CreateCustomerComponent implements OnInit {
     }
    
     
-    if(customer.phone == null || customer.phone == ''){
-      console.log("invalid phone");
-      this.validationError='Please enter phone';
-      return false;
+   
 
-    }
-
-    if(customer.phone.length < 10){
-      console.log("invalid phone length");
-      this.validationError='Please enter phone number of 10 digits';
-      return false;
-      
-    }
-
+    
     if(customer.gender == null || customer.gender == ''){
       console.log("invalid gender ");
       this.validationError='Please select gender';

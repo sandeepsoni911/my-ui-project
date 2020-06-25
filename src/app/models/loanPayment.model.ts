@@ -8,5 +8,6 @@ export interface LoanPayment {
     createdOn? : Date;
     interestAmount? : number;
     paymentType : string;
+    discountAmnt:number;
 
 }

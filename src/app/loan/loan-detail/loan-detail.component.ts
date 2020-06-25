@@ -23,7 +23,8 @@ export class LoanDetailComponent implements OnInit {
     loanPaymentId : null,
 	  dueDate : null,
     comment : null,
-    paymentType : null
+    paymentType : null,
+    discountAmnt:0
     
   };
   

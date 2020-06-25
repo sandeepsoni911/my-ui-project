@@ -88,7 +88,7 @@
                       <th>Weight (grams)</th>
                       <th>Item Quality(Tanch)</th>
                       <th>Count</th>
-                      <th>Item Price</th>
+                      <th>Selling Price</th>
                       <th>Comments</th>
                      
                       
@@ -101,7 +101,7 @@
                         <td> {{item.weight || "NA"}}</td>
                         <td> {{item.itemQuality || "NA"}}</td>
                         <td> {{item.count || "1"}}</td>
-                        <td> {{item.itemPrice || "NA"}}</td>
+                        <td> {{item.itemPrice || "NA"  | currency:'INR':'symbol':'4.2-2' }}</td>
                         <td> {{item.itemComments }}</td>
                         
                     </tr> 
@@ -132,8 +132,10 @@
                       <th>Payment Amount</th>
                       <th>Balance Amount</th>
                       <th>Interest Amount</th>
+                      <th>Total Pending Interest</th>
+                      <th>Discount</th>
                       <th>Payment Date</th>
-                      <th>Payment Type</th>
+                     
                       <th>Comment</th>
                       
                      
@@ -146,8 +148,9 @@
                         <td> {{payment.partialPaymentAmount | currency:'INR':'symbol':'4.2-2'}}</td>
                         <td> {{payment.balanceAmount | currency:'INR':'symbol':'4.2-2' }}</td>
                         <td> {{payment.interestAmount | currency:'INR':'symbol':'4.2-2' }}</td>
+                        <td> {{payment.totalInterestAmount | currency:'INR':'symbol':'4.2-2' }}</td>
+                        <td> {{payment.discountAmnt || '0'}}</td>
                         <td> {{payment.createdOn|  date:"dd/MM/yy"}}</td>
-                        <td> {{payment.paymentType | lowercase}}</td>
                        
                         <td> {{payment.comment }}</td>
                         
@@ -163,7 +166,7 @@
               <tbody > 
                 <tr>  
                   <td colspan="5" class="text-center"><button class="btn btn-primary" 
-                    (click)="calculateInterest(loanDetail)">Calculate Intrest </button> </td>
+                    (click)="calculateInterest(loanDetail)">Calculate Interest </button> </td>
                
                 </tr>
              </tbody>
@@ -229,11 +232,21 @@
                                        #loanAmount="ngModel">
                                        
                     </div>
-                    <div class="form-group">
-                            <label for="comments">Comments</label>
-                            <input id="comments" type="text" class="form-control"
-                                   name="comments" [(ngModel)]="loanPayment.comment">
-                     </div>
+                    <div class="form-group" >
+                        <label for="paymentType" class="control-label">Additional Loan/Partial Payment</label>
+                        <select [(ngModel)]="loanPayment.paymentType" name="paymentType" id="paymentType" class="form-control" >
+                          <option value="" disabled selected>select a category</option>
+                          <option *ngFor="let paymentType of paymentTypeList" [value]="paymentType">{{paymentType}}</option>
+                        </select>
+                </div>
+                    <div class="form-group"  *ngIf="loanPayment.paymentType == 'Payment'">
+                        <label for="partialPaymentAmount" class="control-label">Discount</label>
+                        <input  id="discountAmnt" required maxlength="5"  type="number" class="form-control" 
+                                name="discountAmnt" [(ngModel)]="loanPayment.discountAmnt"
+                               >
+                               
+                    </div>
+                   
                      <div class="form-group">
                             <label for="createdOn" class="control-label">Payment Date</label>
                             <span class="glyphicon glyphicon-calendar"></span>
@@ -241,14 +254,12 @@
                                 <app-date-picker [(ngModel)]="loanPayment.createdOn"  name="createdOn"> </app-date-picker>
                             </div>
                           </div>
-                    <div class="form-group" >
-                            <label for="paymentType" class="control-label">Additional Loan/Partial Payment</label>
-                            <select [(ngModel)]="loanPayment.paymentType" name="paymentType" id="paymentType" class="form-control" >
-                              <option value="" disabled selected>select a category</option>
-                              <option *ngFor="let paymentType of paymentTypeList" [value]="paymentType">{{paymentType}}</option>
-                            </select>
-                    </div>
-                   
+                    
+                    <div class="form-group">
+                            <label for="comments">Comments</label>
+                            <input id="comments" type="text" class="form-control"
+                                   name="comments" [(ngModel)]="loanPayment.comment">
+                     </div>
                 </form>
             </div>
             <div class="modal-footer">

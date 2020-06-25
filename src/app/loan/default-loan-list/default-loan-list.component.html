@@ -1,21 +1,21 @@
 
 
-<div class="col-md-9">
+<div class="col-md-12">
 
   <form>
     
-    <div class="form-group col-md-3">
-      <label for="goldRate" class="control-label">Markete Rate For Gold</label>
-      <input id="goldRate" required type="text" class="form-control" name="goldRate"
+    <div class="form-group col-md-4">
+      <label for="goldRate" class="control-label">Market Rate For Gold <sup>(per 10g)</sup></label>
+      <input id="goldRate" required maxlength="6" type="text" class="form-control" name="goldRate"
         [(ngModel)]="goldRate" #marketRateCntrl="ngModel">
       <span class="help-block" *ngIf="marketRateCntrl.invalid && marketRateCntrl.touched">
         Please enter Market Rate for Gold
       </span>
   
     </div>
-    <div class="form-group col-md-3">
-      <label for="silverRate" class="control-label">Markete Rate For Silver</label>
-      <input id="silverRate" required type="text" class="form-control" name="silverRate"
+    <div class="form-group col-md-4">
+      <label for="silverRate" class="control-label">Markete Rate For Silver<sup>(per 1kg)</sup></label>
+      <input id="silverRate" required  maxlength="6" type="text" class="form-control" name="silverRate"
         [(ngModel)]="silverRate" #silverRateCtrl="ngModel">
       <span class="help-block" *ngIf="silverRateCtrl.invalid && silverRateCtrl.touched">
         Please enter Market Rate for Silver
@@ -23,7 +23,7 @@
   
     </div>
 
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-4">
       <label for="calcuLationDateId" class="control-label">Calculate On Date</label>
       <span class="glyphicon glyphicon-calendar"></span>
       <div class="form-control">
@@ -42,6 +42,8 @@
 
 </div>
 
+<br>
+<br>
 <br>
 <br>
 <br>

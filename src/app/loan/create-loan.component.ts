@@ -21,6 +21,7 @@ export class CreateLoanComponent implements OnInit {
  errorResponse;
  customerName;
  validationError;
+ submitClicked=false;
 
  item = new Items();
 
@@ -134,7 +135,7 @@ export class CreateLoanComponent implements OnInit {
 
     
    
-   
+    this.submitClicked = true;
     this._loanService.saveLoan(loan)
                           .subscribe(
                             
@@ -247,7 +248,24 @@ deleteItems() {
   this.itemContainers.pop();
 }
 
+calculateSellingAmount(item, i :number){
+  console.log(JSON.stringify(item));
+  console.log(i);
+  let sellingPrice;
+  let sellPrice;
+  if(item.itemType == 'GOLD' ||  item.itemType == 'Gold' ){
+    console.log(JSON.stringify(item));
+     sellPrice = Number(item.weight)*Number(item.itemQuality)/100;
+     sellingPrice = sellPrice*(item.marketRate/10);
+     this.itemContainers[i].itemPrice = sellingPrice;
+  }else{
+    sellPrice = Number(item.weight)*Number(item.itemQuality)/100;
+    sellingPrice = sellPrice*item.marketRate/1000;
+    this.itemContainers[i].itemPrice = sellingPrice;
+  }
+  
 
+}
 
 
 }

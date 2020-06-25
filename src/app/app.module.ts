@@ -44,7 +44,7 @@ import { OrderItemDetailsComponent } from './orders/order-item-details/order-ite
 import { LoanDetailsEditComponent } from './loan/loan-details-edit/loan-details-edit.component';
 import { OrderDetailsEditComponent } from './orders/order-details-edit/order-details-edit.component';
 import { DefaultLoanListComponent } from './loan/default-loan-list/default-loan-list.component';
-
+import { AgGridModule } from 'ag-grid-angular';
 
 
 
@@ -107,7 +107,7 @@ const appRoutes : Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes, { useHash: true }),
     NgbModule.forRoot(),
-    
+    AgGridModule.withComponents([])
   
   ],
   providers: [AuthService, CustomerService, LoanService, AuthGuard ],

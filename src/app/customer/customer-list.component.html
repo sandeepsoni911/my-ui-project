@@ -58,7 +58,7 @@
           <td style="word-break:break-all;" class="text-primary">
             <a routerLink="//customerDetails/{{customer.id}}" routerLinkActive="active"> {{customer.fullName}}</a></td>
             <td style="word-break:break-all;"> {{customer.fatherName}}</td>
-          <td style="word-break:break-all;"> {{customer.phone}}</td>
+          <td style="word-break:break-all;"> {{customer.phone || "NA"}}</td>
           <td style="word-break:break-all;"> {{customer.address}}</td>
           <td style="word-break:break-all;"> {{customer.city}}</td>
           <td style="cursor: pointer; word-break:break-all;">
