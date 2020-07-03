@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 
@@ -45,6 +45,7 @@ import { LoanDetailsEditComponent } from './loan/loan-details-edit/loan-details-
 import { OrderDetailsEditComponent } from './orders/order-details-edit/order-details-edit.component';
 import { DefaultLoanListComponent } from './loan/default-loan-list/default-loan-list.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { TokenInterceptorService } from './auth/token,interceptor.service';
 
 
 
@@ -58,14 +59,14 @@ const appRoutes : Routes = [
 {path: 'customerLoanDetail/:id', component: CustomerLoanDetailComponent, canActivate : [AuthGuard] },
 {path: 'customerDetails/:id', component: CustomerDetailsComponent, canActivate : [AuthGuard] },
 {path: 'login', component: LoginComponent},
-{path: 'home', component: HomePageComponent},
-{path: 'orderDetails/:id', component : OrderDetailsComponent},
-{path: 'editOrderDetails/:id', component : OrderDetailsEditComponent},
-{path: 'createOrder/:cutomerId', component : CreateOrderComponent},
-{path: 'orderList', component: OrderListComponent},
-{path: 'dashboard', component: OrderDashboardComponent},
-{path: 'orderItemDetails', component:OrderItemDetailsComponent},
-{path: 'defaultLoanList', component:DefaultLoanListComponent},
+{path: 'home', component: HomePageComponent, canActivate : [AuthGuard]},
+{path: 'orderDetails/:id', component : OrderDetailsComponent, canActivate : [AuthGuard]},
+{path: 'editOrderDetails/:id', component : OrderDetailsEditComponent, canActivate : [AuthGuard]},
+{path: 'createOrder/:cutomerId', component : CreateOrderComponent, canActivate : [AuthGuard]},
+{path: 'orderList', component: OrderListComponent, canActivate : [AuthGuard]},
+{path: 'dashboard', component: OrderDashboardComponent, canActivate : [AuthGuard]},
+{path: 'orderItemDetails', component:OrderItemDetailsComponent, canActivate : [AuthGuard]},
+{path: 'defaultLoanList', component:DefaultLoanListComponent, canActivate : [AuthGuard]},
 
 {path: '', redirectTo: '/home', pathMatch: 'full'}
 
@@ -110,7 +111,16 @@ const appRoutes : Routes = [
     AgGridModule.withComponents([])
   
   ],
-  providers: [AuthService, CustomerService, LoanService, AuthGuard ],
+  providers: [
+    AuthService,
+     CustomerService,
+      LoanService,
+       AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

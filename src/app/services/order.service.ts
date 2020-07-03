@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError} from 'rxjs';
 import { map,catchError, filter, switchMap } from 'rxjs/operators';
-import {Http} from '@angular/http';
 import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 import { HttpHeaders } from '@angular/common/http';
@@ -30,35 +29,47 @@ export class OrderService {
 
   //private apiUrl = 'http://localhost:8080/CounterWebApp/';
 
-  constructor(private _http : Http, private _httpClient: HttpClient) {
+  constructor( private _httpClient: HttpClient) {
 
    }
 
    getOrderList(pageNumber, perPage) : Observable<any>  {
-    return this._http.get(this.baseUrl+'/order?pageNumber='+pageNumber+'&perPage='+perPage)
-    .pipe(map((response : Response) => <any>response.json()));
+    return this._httpClient.get(this.baseUrl+'order?pageNumber='+pageNumber+'&perPage='+perPage)
+    //.pipe(map((response : Response) => <any>response.json()));
+    .pipe(
+      // retry(3), // retry a failed request up to 3 times
+       catchError(this.handleError) // then handle the error
+     );
     };
 
-    getOrderListForCustomer(customerId : string, customerName : string) : Observable<Order[]>  {
-      return this._http.get(this.baseUrl+'/orderDetailsByCustomer?customerId='+customerId
+    getOrderListForCustomer(customerId : string, customerName : string) : Observable<any>  {
+      return this._httpClient.get(this.baseUrl+'orderDetailsByCustomer?customerId='+customerId
                             +"&customerName="+customerName)
-      .pipe(map((response : Response) => <Order[]>response.json()));
+      //.pipe(map((response : Response) => <Order[]>response.json()));
+      .pipe(
+        catchError(this.handleError) 
+      )
       };
 
-    getOrderDetails(id : string) : Observable<Order>  {
+    getOrderDetails(id : string) : Observable<any>  {
       console.log('invoking order details api for id : '+id);
-      return this._http.get(this.baseUrl.concat('/order/'+id))
-      .pipe(map((response : Response) => <Order>response.json()));
+      return this._httpClient.get(this.baseUrl.concat('order/'+id))
+      //.pipe(map((response : Response) => <Order>response.json()));
+      .pipe(
+        catchError(this.handleError) 
+      )
     };
 
     saveOrderPayment(orderPayment :OrderPayment) : Observable<BaseResponse> {
       return this._httpClient.post<BaseResponse>(this.baseUrl.concat('orderPayment'), orderPayment, httpOptions ) ;
     };
 
-    getPaymentDetailsByOrderId(orderId : string) : Observable<OrderPayment[]>{
+    getPaymentDetailsByOrderId(orderId : string) : Observable<any>{
 
-      return this._http.get(this.baseUrl+'orderPayment/'+orderId)
-      .pipe(map((response : Response) =>  <OrderPayment[]>response.json()))
+      return this._httpClient.get(this.baseUrl+'orderPayment/'+orderId)
+      .pipe(
+        catchError(this.handleError) 
+      )
     }
 
     saveOrderDetails(order : Order): Observable<BaseResponse> {

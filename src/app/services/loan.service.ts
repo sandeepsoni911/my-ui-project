@@ -34,9 +34,9 @@ export class LoanService{
 
    getDefaultLoanUrl = this.baseUrl+'defaultLoans';
 
-   getLoanPaymentUrl = this.baseUrl+'loanPartialPayment/';
+   getLoanPaymentUrl = this.baseUrl+'loanPartialPayment';
 
-   getCustomerLoanUrl = this.baseUrl+'loanDetailsByCustomerId/';
+   getCustomerLoanUrl = this.baseUrl+'loanDetailsByCustomerId';
 
 
    
@@ -46,23 +46,35 @@ constructor(private _http : Http, private _httpClient: HttpClient){
     
 }
 
+
+
 getLoanList(pageNum, perPage) : Observable<any>  {
-    return this._http.get(this.getLoanUrl+'?pageNumber='+pageNum+'&perPage='+perPage)
-    .pipe(map((response : Response) => <any>response.json()));
+    return this._httpClient.get(this.getLoanUrl+'?pageNumber='+pageNum+'&perPage='+perPage)
+    .pipe(
+      // retry(3), // retry a failed request up to 3 times
+       catchError(this.handleError) // then handle the error
+     );
 };
 
 getDefaltLoanList(pageNum, perPage, goldRate, silverRate, calcuLationDate) : Observable<any>  {
-  return this._http.get(this.getDefaultLoanUrl+'?pageNumber='+pageNum+'&perPage='
+  return this._httpClient.get(this.getDefaultLoanUrl+'?pageNumber='+pageNum+'&perPage='
   +perPage+'&goldRate='+goldRate+'&silverRate='+silverRate+'&calcuLationDate='+calcuLationDate)
-  .pipe(map((response : Response) => <any>response.json()));
+  .pipe(
+    // retry(3), // retry a failed request up to 3 times
+     catchError(this.handleError) // then handle the error
+   );
 };
 
 
 
-getCustomerLoanList(customerId: string) : Observable<Loan[]>  {
+getCustomerLoanList(customerId: string) : Observable<any>  {
   console.log('jhfginside loanlist  s')
-  return this._http.get(this.getCustomerLoanUrl.concat(customerId))
-  .pipe(map((response : Response) => <Loan[]>response.json()));
+  return this._httpClient.get(this.getCustomerLoanUrl.concat('/'+customerId))
+  //.pipe(map((response : Response) => <Loan[]>response.json()));
+  .pipe(
+    // retry(3), // retry a failed request up to 3 times
+     catchError(this.handleError) // then handle the error
+   );
 };
 
 
@@ -81,19 +93,35 @@ saveLoan(loan :Loan) : Observable<BaseResponse> {
     return this._httpClient.post<LoanPayment>(this.baseUrl.concat('loanPartialPayment'), loanPayment, httpOptions, ) ;
   };
 
-  getLoanDetail(id : string) : Observable<Loan>  {
-    return this._http.get(this.getLoanUrl.concat('/'+id))
-    .pipe(map((response : Response) => <Loan>response.json()));
+  getLoanDetail(id : string) : Observable<any>  {
+    return this._httpClient.get(this.getLoanUrl.concat('/'+id))
+   // .pipe(map((response : Response) => <Loan>response.json()));
+   .pipe(
+    // retry(3), // retry a failed request up to 3 times
+     catchError(this.handleError) // then handle the error
+   );
   };
 
-  getLoanPaymentDetailList(id : string) : Observable<LoanPayment[]>  {
-    return this._http.get(this.getLoanPaymentUrl.concat('/'+id))
-    .pipe(map((response : Response) => <LoanPayment[]>response.json()));
+  getLoanPaymentDetailList(id : string) : Observable<any>  {
+    return this._httpClient.get(this.getLoanPaymentUrl.concat('/'+id))
+    //.pipe(map((response : Response) => <LoanPayment[]>response.json()));
+    .pipe(
+      // retry(3), // retry a failed request up to 3 times
+       catchError(this.handleError) // then handle the error
+     );
   };
 
-  getInterest(id : string, date : Date) : Observable<InterestResponse>  {
-    return this._http.get(this.baseUrl.concat('/interest/'+id))
-    .pipe(map((response : Response) => <InterestResponse>response.json()));
+  getInterest(id : string, date : Date) : Observable<any>  {
+    return this._httpClient.get(this.baseUrl.concat('interest/'+id))
+    //.pipe(map((response : Response) => <InterestResponse>response.json()));
+    .pipe(
+      // retry(3), // retry a failed request up to 3 times
+       catchError(this.handleError) // then handle the error
+     );
+  };
+
+  deleteLoanPayment(id : string) : Observable<any>  {
+    return  this._httpClient.delete(this.baseUrl.concat('loanPartialPayment/').concat(id), httpOptions, ) ;
   };
 
 

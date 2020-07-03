@@ -16,7 +16,7 @@ export class CreateLoanComponent implements OnInit {
   
  displayModalObject : string = 'none'; 
  enteredDate : Date;
- loanCreatedDate:Date;
+ loanCreatedDate:Date = this.getTodayDate();
  successMessage;
  errorResponse;
  customerName;
@@ -266,6 +266,15 @@ calculateSellingAmount(item, i :number){
   
 
 }
+
+
+getTodayDate() {
+  let dt = new Date();
+  console.log('sdfsf date creating '+dt)
+  dt.setMonth(dt.getMonth()+1);
+  return dt;
+}
+
 
 
 }

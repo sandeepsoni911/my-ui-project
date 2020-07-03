@@ -35,7 +35,7 @@ export class CreateCustomerComponent implements OnInit {
     photoPath : null,
     status: null
   };
-
+  submitClicked=false;
   constructor(private _customerService : CustomerService
     , private _router : Router) {}
 
@@ -54,7 +54,7 @@ export class CreateCustomerComponent implements OnInit {
       return ;
     }
     this.validationError= null;
-    console.log(customer);
+    this.submitClicked=true;
     this._customerService.saveCustomer(customer)
                           .subscribe(
                             

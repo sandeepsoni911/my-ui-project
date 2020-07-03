@@ -10,52 +10,52 @@
                              <span class="glyphicon glyphicon-home" ></span> Home</a>
                     </li>
 
-            <li class="nav-item" *ngIf="_authService.loggedIn()">
+            <li class="nav-item" *ngIf="_authService.isLoggedIn()">
                             <a class="nav-link" id="orderList-tab" data-toggle="tab" routerLink="dashboard">
                                 <span class="glyphicon glyphicon-dashboard"></span> Dashboard</a>
             </li>
                     
-            <li class="nav-item" *ngIf="_authService.loggedIn()">
+            <li class="nav-item" *ngIf="_authService.isLoggedIn()">
                 <a class="nav-link" id="customerList-tab" data-toggle="tab" routerLink="/customerList"
                 routerLinkActive="active">
                      <span class="glyphicon glyphicon-list" ></span> Customer List</a>
             </li>
-            <li class="nav-item" *ngIf="_authService.loggedIn()">
+            <li class="nav-item" *ngIf="_authService.isLoggedIn()">
                 <a class="nav-link" id="createCustomer-tab" data-toggle="tab" routerLink="/createCustomer"
                 routerLinkActive="active">
                     <span class="glyphicon glyphicon-plus"></span> Create Customer</a>
             </li>
             
-            <li class="nav-item" *ngIf="_authService.loggedIn()">
+            <li class="nav-item" *ngIf="_authService.isLoggedIn()">
                 <a class="nav-link" id="loanList-tab" data-toggle="tab" routerLink="loanList">
                     <span class="glyphicon glyphicon-list"></span> Loan List</a>
             </li>
 
-            <li class="nav-item" *ngIf="_authService.loggedIn()">
+            <li class="nav-item" *ngIf="_authService.isLoggedIn()">
                 <a class="nav-link" id="orderList-tab" data-toggle="tab" routerLink="orderList">
                     <span class="glyphicon glyphicon-list"></span> Order List</a>
             </li>
-            <li class="nav-item" *ngIf="_authService.loggedIn()">
+            <li class="nav-item" *ngIf="_authService.isLoggedIn()">
                 <a class="nav-link" id="orderList-tab" data-toggle="tab" routerLink="defaultLoanList">
                     <span class="glyphicon glyphicon-list"></span> Default Loan List</a>
             </li>
             
 
             <li class="navbar-nav" style="float: right;" >
-                    <a class="nav-link"  *ngIf="!_authService.loggedIn()" style="cursor:pointer" routerLink="/login"
+                    <a class="nav-link"  *ngIf="!_authService.isLoggedIn()" style="cursor:pointer" routerLink="/login"
                      routerLinkActive="active"><span class="glyphicon glyphicon-user"></span> Login</a>
                 
             </li>
             
            
             <li class="navbar-nav" style="float: right;"  >
-                    <a class="nav-link"  style="cursor:pointer" *ngIf="_authService.loggedIn()"
-                    (click)="_authService.logoutUser()"  >
+                    <a class="nav-link"  style="cursor:pointer" *ngIf="_authService.isLoggedIn()"
+                    (click)="logOut()"  >
                        <span class="glyphicon glyphicon-off"></span> Logout</a>         
             </li>
-            <li class="navbar-nav" style="float: right;" *ngIf="_authService.loggedIn()" >
+            <li class="navbar-nav" style="float: right;" *ngIf="_authService.isLoggedIn()" >
                 <a class="nav-link"  >
-                   <span class="glyphicon glyphicon-user"></span> Welcome {{_authService.getUserName()}}</a>         
+                   <span class="glyphicon glyphicon-user"></span> Welcome {{_authService.loggedUser}}</a>         
             </li>
 
            

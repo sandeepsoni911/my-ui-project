@@ -16,6 +16,7 @@ export class LoanDetailComponent implements OnInit {
   errorResponseOnPayment;
   interestResponse :InterestResponse;
   loanDetail : Loan ;
+  
   loanPayment : LoanPayment = {
     loanId : null,
     partialPaymentAmount : null,
@@ -24,7 +25,8 @@ export class LoanDetailComponent implements OnInit {
 	  dueDate : null,
     comment : null,
     paymentType : null,
-    discountAmnt:0
+    discountAmnt:0,
+    createdOn: this.getTodayDate()
     
   };
   
@@ -33,9 +35,11 @@ export class LoanDetailComponent implements OnInit {
   simpleInterest  ;
   totalAmount ;
   noOfDays;
+  totalInterestAmnt = 0;
   noOfMonths : number;
   currLoanAmount : number;
   paymentDetailsAvailable : boolean = false;
+  submitClicked = false;
 
   //totalPartialInterest : number;
   
@@ -68,7 +72,7 @@ export class LoanDetailComponent implements OnInit {
     let diffInMs: number =  Math.abs(todayDate.getTime() - loanDetail.createdDate);
     this.noOfDays = Math.ceil(diffInMs / (1000 * 3600 * 24)); 
     
-    if(typeof this.loanPaymentDetailsList !== 'undefined' && this.loanPaymentDetailsList.length > 0){
+    if(this.loanPaymentDetailsList != null && typeof this.loanPaymentDetailsList !== 'undefined' && this.loanPaymentDetailsList.length > 0){
       this.currLoanAmount =  this.loanPaymentDetailsList[this.loanPaymentDetailsList.length-1].balanceAmount;
       this.paymentDetailsAvailable = true;
     }else{
@@ -83,15 +87,18 @@ export class LoanDetailComponent implements OnInit {
         
         this.simpleInterest = this.interestResponse.INTEREST ;
         this.noOfDays = this.interestResponse.DAYS ;
+        this.totalInterestAmnt = this.interestResponse.TOTAL_INTEREST;
       }
       this.noOfMonths= Math.floor(this.noOfDays/30);
       this.noOfDays = this.noOfDays%30;
-      this.totalAmount = parseFloat(this.simpleInterest)+this.currLoanAmount;
+      this.totalInterestAmnt = this.totalInterestAmnt!=null?this.totalInterestAmnt:0;
+      this.totalAmount = parseFloat(this.simpleInterest)+this.currLoanAmount+ this.totalInterestAmnt;
   }
 
   checkPaymentDetailsAvailable(): boolean {
 
-    if (typeof this.loanPaymentDetailsList !== 'undefined' && this.loanPaymentDetailsList.length > 0) {
+    if (this.loanPaymentDetailsList != null && (typeof this.loanPaymentDetailsList !== 'undefined')
+        && this.loanPaymentDetailsList.length > 0) {
       this.currLoanAmount = this.loanPaymentDetailsList[this.loanPaymentDetailsList.length - 1].balanceAmount;
       return true;
     } else {
@@ -114,7 +121,8 @@ export class LoanDetailComponent implements OnInit {
   
   savePartialPayment(loanPayment : LoanPayment) : void {
     loanPayment.loanId=this.loanDetail.loanId;
-    console.log(JSON.stringify(loanPayment))
+    console.log(JSON.stringify(loanPayment));
+    this.submitClicked = true;
     this._loanService.saveLoanPayment(loanPayment)
                   .subscribe((loanData) =>
                    {this.loanPayment = loanData
@@ -149,10 +157,35 @@ export class LoanDetailComponent implements OnInit {
   };
 
 
+  deleteLoanPayment(loanPaymentId){
+    this._loanService.deleteLoanPayment(loanPaymentId).subscribe((res) => {
+      if(res != null){
+        this.success_response = 'loan Payment deleted SuccessFully.'
+        window.location.reload();
+      }
+     
+      
+    },
+      error => {
+        this.handleError(error);
+        this.errorResponseOnPayment = JSON.stringify(error);
+
+
+      });
+  }
 
   editLoanDetail(loanId){
     this._router.navigate(['editLoanDetail', loanId ]);
     
   }
+
+  getTodayDate() {
+    let dt = new Date();
+    
+    dt.setMonth(dt.getMonth()+1);
+    return dt;
+  }
+
+ 
  
 }

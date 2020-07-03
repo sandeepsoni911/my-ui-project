@@ -12,7 +12,7 @@ import { map } from "rxjs/operators";
 export class LoginComponent implements OnInit {
 
   errorResponse;
-  loginUserData : UserDetails = {
+  loginUserData : any = {
 
     userName: null,
     password: null,
@@ -27,9 +27,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  loginUser(){
+  loginUserOld(){
     console.log(this.loginUserData);
-    this._authService.loginUser(this.loginUserData)
+    this._authService.loginUserOld(this.loginUserData)
     //.pipe(map(res => res.json()))
     .subscribe(
       res => {
@@ -53,5 +53,21 @@ export class LoginComponent implements OnInit {
       }
     )
   }
+
+
+  loginUser() {
+    this._authService.loginUser(
+      {
+        username: this.loginUserData.userName,
+        password: this.loginUserData.password
+      }
+    )
+    .subscribe(success => {
+      if (success) {
+        this._router.navigate(['/home']);
+      }
+    });
+  }
+
 
 }

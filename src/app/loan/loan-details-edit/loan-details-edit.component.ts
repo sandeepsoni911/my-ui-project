@@ -14,7 +14,7 @@ export class LoanDetailsEditComponent implements OnInit {
   loan :Loan;
   itemContainers:any;
   displayModalObject : string = 'none'; 
-  enteredDate : Date;
+  enteredDate : any;
  loanCreatedDate:Date;
  successMessage;
  errorResponse;
@@ -26,7 +26,7 @@ export class LoanDetailsEditComponent implements OnInit {
   ];
 
   rateOfInterestList : string[] = [
-    "1.00", "1.25","1.50","1.75", "2.00","2.25", "2.50","2.75", "3.00","3.25","3.50", "3.75","4.00","4.25", "4.50","4.75", "5"
+    "1", "1.25","1.5","1.75", "2","2.25", "2.5","2.75", "3","3.25","3.5", "3.75","4","4.25", "4.5","4.75", "5"
   ];
 
   itemQualityList : string[] = [
@@ -47,11 +47,19 @@ export class LoanDetailsEditComponent implements OnInit {
                                this.loan = loanData;
                                this.itemContainers=loanData.itemsList;
                               
-                              this.enteredDate = new Date(loanData.dueDate);
-                              console.log("before conversion date is : "+loanData.createdDate)
-                              this.loanCreatedDate = new Date(loanData.createdDate);
-                              console.log("after conversion date is : "+this.loanCreatedDate);
-                              console.log( "Loan details are : " + JSON.stringify(this.loan ))
+                               
+                              console.log("loanData.dueDate is : "+ loanData.dueDate);
+                              var dDate = new Date(loanData.dueDate);
+                              console.log('dDate is'  + dDate);
+                              this.enteredDate = new Date(dDate.setMonth(dDate.getMonth()+1)); //new Date(loanData.dueDate);// 
+                              
+
+                              var cDate = new Date(loanData.createdDate);
+                              console.log("loanData.createdDate is : "+ loanData.createdDate);
+                              console.log('cDate is'  + cDate);
+                              this.loanCreatedDate = new Date(cDate.setMonth(cDate.getMonth()+1));
+                              //this.loanCreatedDate = new Date(loanData.createdDate);
+                
 
                               });
   }
@@ -183,8 +191,10 @@ export class LoanDetailsEditComponent implements OnInit {
                                   
                                    this.successMessage = "Loan Details Saved Successfully.";
                                    this.displayModalObject = 'block';
-                                   this._router.navigate(['loanDetail', loan.loanId ]);
-                                  // this._router.navigate(['/loanList']);
+                                   
+
+                                 //  setTimeout(() => {  console.log("wait!"); }, 2000);
+                                 //  this._router.navigate(['loanDetail', loan.loanId ]);
                                }else{
                                  this.errorResponse = res.message;
                                }

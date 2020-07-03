@@ -89,6 +89,7 @@ export class OrderDetailsComponent implements OnInit {
                       .subscribe(
                         (orderPaymentsData) => 
                         {
+                          console.log(' orderPaymentsData : '+ JSON.stringify(orderPaymentsData) );
                           this.orderPaymentDetailsList = orderPaymentsData;
                         },
                   error => {
@@ -104,7 +105,7 @@ export class OrderDetailsComponent implements OnInit {
 
   checkPaymentDetailsAvailable(): boolean {
 
-    if (typeof this.orderPaymentDetailsList !== 'undefined' && this.orderPaymentDetailsList.length > 0) {
+    if (this.orderPaymentDetailsList != null &&  typeof this.orderPaymentDetailsList !== 'undefined' && this.orderPaymentDetailsList.length > 0) {
 
       console.log("inside checkPaymentDetailsAvailable" +this.checkPaymentDetailsAvailable.length)
      // this.currLoanAmount = this.loanPaymentDetailsList[this.loanPaymentDetailsList.length - 1].balanceAmount;

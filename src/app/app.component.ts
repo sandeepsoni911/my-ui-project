@@ -11,5 +11,9 @@ export class AppComponent {
   constructor(public _authService: AuthService){}
 
 
+  logOut(){
+    console.log('logging out ...')
+    this._authService.logout();
+  }
   
 }
