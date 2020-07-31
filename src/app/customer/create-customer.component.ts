@@ -30,7 +30,7 @@ export class CreateCustomerComponent implements OnInit {
     fatherName : null,
     phone : null,
     address : null,
-    city : null,
+    city : 'Kannauj',
     gender : null,
     photoPath : null,
     status: null

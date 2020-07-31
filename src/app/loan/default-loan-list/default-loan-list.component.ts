@@ -18,7 +18,7 @@ export class DefaultLoanListComponent implements OnInit {
 
   goldRate = 40000;
   silverRate = 70000;
-  calcuLationDate : Date = new Date();
+  calcuLationDate = this.getTodayDate();
   
 
   //Pagination & Search attributes
@@ -176,6 +176,13 @@ clearFilter(){
 
 fetchDefaultLoans(){
   this.getDefaultLoanListDetails(1, 10, this.goldRate, this.silverRate, this.calcuLationDate);
+}
+
+getTodayDate() {
+  let dt = new Date();
+  
+  dt.setMonth(dt.getMonth()+1);
+  return dt;
 }
 
 }

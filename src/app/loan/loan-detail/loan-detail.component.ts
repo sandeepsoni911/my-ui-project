@@ -17,6 +17,10 @@ export class LoanDetailComponent implements OnInit {
   interestResponse :InterestResponse;
   loanDetail : Loan ;
   
+  rateOfInterestList : string[] = [
+    "1", "1.25","1.5","1.75", "2","2.25", "2.5","2.75", "3","3.25","3.5", "3.75","4","4.25", "4.5","4.75", "5"
+  ];
+
   loanPayment : LoanPayment = {
     loanId : null,
     partialPaymentAmount : null,
@@ -40,6 +44,7 @@ export class LoanDetailComponent implements OnInit {
   currLoanAmount : number;
   paymentDetailsAvailable : boolean = false;
   submitClicked = false;
+  errorResponse;
 
   //totalPartialInterest : number;
   
@@ -51,7 +56,10 @@ export class LoanDetailComponent implements OnInit {
    let loanId = this._route.snapshot.paramMap.get('id');
 
     this._loanService.getLoanDetail(loanId)
-                           .subscribe((loanData) => this.loanDetail = loanData);
+                           .subscribe(
+                             (loanData) => {this.loanDetail = loanData;
+                             }
+                           );
  
                           
 
@@ -59,18 +67,38 @@ export class LoanDetailComponent implements OnInit {
                     .subscribe((paymentListData) => this.loanPaymentDetailsList = paymentListData);
                     
     
-    this._loanService.getInterest(loanId, null).subscribe(
-      (interestAmountResponse) => {this.interestResponse =interestAmountResponse;
-                                   }
-    )
+    
     
   }
 
-  calculateInterest(loanDetail) {
+  getInterestDetaisl(loanId, interestType, inputRate){
+    this._loanService.getInterest(loanId, null, interestType, inputRate).subscribe(
+
+
+      res => {
+      
+        console.log(res);
+        if(res != null){
+          this.interestResponse =res;
+          console.log('interestResponse is : '+JSON.stringify(this.interestResponse));
+         
+        }
+      },
+      err => {
+        this.errorResponse = JSON.stringify(err.message);
+        console.log(err)
+      });
+      
+  }
+
+  calculateInterest(loanDetail, interestType, inputRate) {
+    let loanId = this._route.snapshot.paramMap.get('id');
     let todayDate : Date = new Date();
     let loanDate : Date = null;
     let diffInMs: number =  Math.abs(todayDate.getTime() - loanDetail.createdDate);
     this.noOfDays = Math.ceil(diffInMs / (1000 * 3600 * 24)); 
+
+    this.getInterestDetaisl(loanId, interestType, inputRate);
     
     if(this.loanPaymentDetailsList != null && typeof this.loanPaymentDetailsList !== 'undefined' && this.loanPaymentDetailsList.length > 0){
       this.currLoanAmount =  this.loanPaymentDetailsList[this.loanPaymentDetailsList.length-1].balanceAmount;
@@ -78,17 +106,22 @@ export class LoanDetailComponent implements OnInit {
     }else{
       this.currLoanAmount = loanDetail.loanAmount;
     }
+    
     if( this.interestResponse == null){
+      console.log('interestResponse is null')
         let principal = loanDetail.loanAmount;
         let rate = loanDetail.rateOfInterest;
         let  month : number = 365/12;
         this.simpleInterest = (this.currLoanAmount) *(rate/100)* (this.noOfDays/month);// time in days
+        console.log('interestResponse is  null and interest is : '+this.simpleInterest);
       }else{
-        
+       
         this.simpleInterest = this.interestResponse.INTEREST ;
         this.noOfDays = this.interestResponse.DAYS ;
         this.totalInterestAmnt = this.interestResponse.TOTAL_INTEREST;
+        console.log('interestResponse is not null and interest is : '+this.simpleInterest);
       }
+     
       this.noOfMonths= Math.floor(this.noOfDays/30);
       this.noOfDays = this.noOfDays%30;
       this.totalInterestAmnt = this.totalInterestAmnt!=null?this.totalInterestAmnt:0;

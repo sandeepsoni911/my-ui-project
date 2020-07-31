@@ -18,7 +18,9 @@ export interface Loan {
 	createdDate : Date;
 	khataNumber : string;
 	customerCity: string;
-	itemsList:Items[]
+	itemsList:Items[];
+	customerAddress:string;
+	customerFatherName:string;
 
     
 }

@@ -1,6 +1,6 @@
 export interface UserDetails {
 
-    userName : string;
+    username : string;
     password : string;
     authToken : string;
     roles: string;
@@ -8,6 +8,9 @@ export interface UserDetails {
     sellerId: number;
     authorities: string[];
     refreshToken: string;
+    email:string;
+    phone:number;
+    status:string;
 	
 
 }

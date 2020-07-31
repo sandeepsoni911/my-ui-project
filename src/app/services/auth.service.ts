@@ -37,7 +37,7 @@ export class AuthService {
   private loggedUser: string;
 
   constructor(private http: HttpClient,
-              private _router: Router) { }
+              private _router: Router, ) { }
 
   
 
@@ -53,7 +53,9 @@ export class AuthService {
       tap(tokens => this.doLoginUser(user.username, tokens)),
       mapTo(true),
       catchError(error => {
-        alert(JSON.stringify(error.error));
+        this.removeTokens();
+        console.log('login method error ...... : '+JSON.stringify(error))
+       // alert(JSON.stringify(error.error));
         return of(false);
       }));
   }
@@ -121,7 +123,7 @@ export class AuthService {
     console.log('storing to localStorage : '+JSON.stringify(userDetails));
     localStorage.setItem(this.JWT_TOKEN, userDetails.authToken);
     localStorage.setItem(this.REFRESH_TOKEN, userDetails.refreshToken);
-   // localStorage.setItem('userName', userDetails.userName);
+    localStorage.setItem('userName', userDetails.username);
 
   }
 
@@ -129,7 +131,7 @@ export class AuthService {
     console.log('inside removeTokens()')
     localStorage.removeItem(this.JWT_TOKEN);
     localStorage.removeItem(this.REFRESH_TOKEN);
-   //localStorage.removeItem('userName');
+    localStorage.removeItem('userName');
 
   }
 

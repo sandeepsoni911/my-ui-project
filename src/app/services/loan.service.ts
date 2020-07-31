@@ -111,8 +111,8 @@ saveLoan(loan :Loan) : Observable<BaseResponse> {
      );
   };
 
-  getInterest(id : string, date : Date) : Observable<any>  {
-    return this._httpClient.get(this.baseUrl.concat('interest/'+id))
+  getInterest(id : string, date : Date, interestType :string, inputRate: number) : Observable<any>  {
+    return this._httpClient.get(this.baseUrl.concat('interest/'+id)+'?interestType='+interestType+'&inputRate='+inputRate)
     //.pipe(map((response : Response) => <InterestResponse>response.json()));
     .pipe(
       // retry(3), // retry a failed request up to 3 times

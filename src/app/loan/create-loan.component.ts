@@ -57,6 +57,8 @@ export class CreateLoanComponent implements OnInit {
   khataNumber : null,
   customerCity: null,
   itemsList:null,
+  customerAddress:null,
+  customerFatherName:null
   }
 
   

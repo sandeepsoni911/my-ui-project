@@ -54,8 +54,8 @@
                        <span class="glyphicon glyphicon-off"></span> Logout</a>         
             </li>
             <li class="navbar-nav" style="float: right;" *ngIf="_authService.isLoggedIn()" >
-                <a class="nav-link"  >
-                   <span class="glyphicon glyphicon-user"></span> Welcome {{_authService.loggedUser}}</a>         
+                <a class="nav-link" routerLink="/profile">
+                   Welcome {{_authService.getUserName()}}  <span class="glyphicon glyphicon-user"></span></a>         
             </li>
 
            

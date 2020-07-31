@@ -65,6 +65,8 @@ export class LoginComponent implements OnInit {
     .subscribe(success => {
       if (success) {
         this._router.navigate(['/home']);
+      }else{
+        this.errorResponse = 'Please enter correct Username/Password.';
       }
     });
   }

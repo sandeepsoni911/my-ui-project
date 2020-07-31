@@ -38,7 +38,7 @@
             <th>Khata Number</th>
             <th>Name</th>
             <th>Amount</th>
-            <th>Due Date</th>
+            <th>Loan Taken On</th>
             <!-- <th>Item Type</th> -->
             <!-- <th>Rate Of Intrest</th> -->
             <!-- <th>Comments</th> -->
@@ -54,7 +54,7 @@
               <td> {{loan.khataNumber}}</td>
               <td>  <a routerLink="/customerDetails/{{loan.customerId}}" routerLinkActive="active"> {{loan.customerName}}</a></td>
               <td> {{loan.loanAmount | currency:'INR':'symbol':'4.2-2' }}</td>
-              <td> {{loan.dueDate | date:"dd/MM/yy" }}</td>
+              <td> {{loan.createdDate | date:"dd/MM/yy" }}</td>
               <!-- <td> {{loan.itemType| uppercase}}</td> -->
               <!-- <td> {{loan.rateOfInterest}} %</td> -->
               <!-- <td> {{loan.comments}}</td> -->

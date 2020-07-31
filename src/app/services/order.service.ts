@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError} from 'rxjs';
-import { map,catchError, filter, switchMap } from 'rxjs/operators';
-import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
-import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
+import { catchError } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import {Order} from '../models/order.model';
-import { Response} from '@angular/http';
 import {OrderPayment} from '../models/orderPayment.model';
 import { BaseResponse } from '../models/baseResponse.model';
 import { environment } from '../..//environments/environment';

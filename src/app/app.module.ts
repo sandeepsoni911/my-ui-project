@@ -46,6 +46,7 @@ import { OrderDetailsEditComponent } from './orders/order-details-edit/order-det
 import { DefaultLoanListComponent } from './loan/default-loan-list/default-loan-list.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { TokenInterceptorService } from './auth/token,interceptor.service';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
 
 
 
@@ -67,6 +68,7 @@ const appRoutes : Routes = [
 {path: 'dashboard', component: OrderDashboardComponent, canActivate : [AuthGuard]},
 {path: 'orderItemDetails', component:OrderItemDetailsComponent, canActivate : [AuthGuard]},
 {path: 'defaultLoanList', component:DefaultLoanListComponent, canActivate : [AuthGuard]},
+{path: 'profile', component: UserProfileComponent,  canActivate : [AuthGuard]},
 
 {path: '', redirectTo: '/home', pathMatch: 'full'}
 
@@ -96,7 +98,8 @@ const appRoutes : Routes = [
     OrderItemDetailsComponent,
     LoanDetailsEditComponent,
     OrderDetailsEditComponent,
-    DefaultLoanListComponent
+    DefaultLoanListComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

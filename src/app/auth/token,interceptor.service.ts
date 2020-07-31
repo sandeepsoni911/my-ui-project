@@ -21,6 +21,7 @@ export class TokenInterceptorService implements HttpInterceptor {
 
     return next.handle(request).pipe(catchError(error => {
       if (error instanceof HttpErrorResponse && error.status === 401) {
+        console.log('got 401 error response from server... ')
         this._router.navigate(['/login'])
         return 
        // return this.handle401Error(request, next);

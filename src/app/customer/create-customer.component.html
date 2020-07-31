@@ -20,12 +20,12 @@
       
 
       <div class="form-group" [class.has-error]="fatherName.invalid && fatherName.touched">
-        <label for="fatherName" class="control-label">Father's Name</label>
+        <label for="fatherName" class="control-label">Father/Mother/Husband Name</label>
         <input  id="fatherName" required  type="text" class="form-control" 
                name="fatherName" [(ngModel)]="customer.fatherName"
                #fatherName="ngModel">
                <span class="help-block" *ngIf="fatherName.invalid && fatherName.touched">
-                    Please enter Father's name
+                    Please enter Father/Mother/Husband name
                </span>
       </div>
 
@@ -61,7 +61,7 @@
        <div class="form-group" [class.has-error]="city.touched && city.invalid">
           <label for="city" class="control-label">City</label>
           <input id="city" required type="text" class="form-control"
-                 name="city" [(ngModel)]="customer.city" #city="ngModel">
+                 name="city" [(ngModel)]="customer.city" #city="ngModel" >
                  <span class="help-block" *ngIf="city.touched && city.invalid">
                    Please enter city name
                  </span>

@@ -16,6 +16,8 @@ export class CustomerLoanDetailComponent implements OnInit {
   customerOrderList : Order[];
   customerId;
   customerName;
+
+  
   constructor(private _ActivatedRoute : ActivatedRoute
               ,private _loanService : LoanService
               ,private _router : Router
